@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Trazabilidad">
+  <g fill="none" stroke="#4D7048" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M32 54c10-10 16-18 16-27a16 16 0 1 0-32 0c0 9 6 17 16 27Z"/>
+    <path d="M32 39V22M32 29c-5-1-8-4-8-9 6 1 8 4 8 9ZM32 34c5-1 8-4 8-9-6 1-8 4-8 9Z"/>
+    <path d="M14 54h36"/>
+  </g>
+</svg>

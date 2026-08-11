@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Poda y formación">
+  <g fill="none" stroke="#4D7048" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="22" cy="42" r="6"/><circle cx="41" cy="42" r="6"/>
+    <path d="m26 38 15-20 5 4-12 18M37 38 18 21l4-5 20 18"/>
+  </g>
+</svg>

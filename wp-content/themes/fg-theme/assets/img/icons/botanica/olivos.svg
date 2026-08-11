@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 80" role="img" aria-label="Olivos">
+  <g fill="none" stroke="#4D7048" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 65C42 49 55 31 70 10"/>
+    <path d="M35 54c-11-7-17-16-17-26 12 2 18 10 17 26Z"/>
+    <path d="M42 43c-3-12 1-21 11-27 4 11 0 20-11 27Z"/>
+    <path d="M51 33c-10-5-15-12-16-21 11 2 16 9 16 21Z"/>
+    <path d="M58 27c1-10 6-17 15-21 2 10-3 17-15 21Z"/>
+    <ellipse cx="43" cy="55" rx="4" ry="5" fill="#4D7048"/>
+    <ellipse cx="58" cy="39" rx="4" ry="5" fill="#4D7048"/>
+  </g>
+</svg>

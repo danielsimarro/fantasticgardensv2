@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Visitas programadas">
+  <g fill="none" stroke="#4D7048" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="13" y="15" width="30" height="31" rx="3"/><path d="M13 25h30M22 11v8m12-8v8"/>
+    <circle cx="45" cy="44" r="10"/><path d="M45 39v6l4 2"/>
+  </g>
+</svg>

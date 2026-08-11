@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Dirección de obra">
+  <g fill="none" stroke="#4D7048" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 39c0-12 8-22 18-22s18 10 18 22H14Z"/>
+    <path d="M10 39h44v6H10zM32 17v22"/>
+  </g>
+</svg>
