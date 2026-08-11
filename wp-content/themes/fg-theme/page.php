@@ -1,21 +1,26 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Plantilla genérica para cualquier página de WordPress sin plantilla propia.
+ * @package Fantastic_Gardens
+ */
+if (!defined('ABSPATH')) exit;
+get_header();
 
-<main id="main">
+while (have_posts()) : the_post(); ?>
 
-  <?php while (have_posts()): the_post(); ?>
+  <section class="section">
+    <div class="wrap">
+      <?php fg_breadcrumb([['label' => __('Inicio', 'fg-theme'), 'url' => home_url('/')], ['label' => get_the_title()]]); ?>
+      <h1 class="page-title"><?php the_title(); ?></h1>
+      <span class="accent-rule"></span>
+      <?php if (has_excerpt()) : ?>
+        <p class="page-lead"><?php echo wp_kses_post(get_the_excerpt()); ?></p>
+      <?php endif; ?>
+      <div class="legal-prose"><?php the_content(); ?></div>
+    </div>
+  </section>
 
-    <?php get_template_part('template-parts/page-hero'); ?>
+<?php endwhile;
 
-    <section class="page-content">
-      <div class="container">
-        <div class="page-content__body">
-          <?php the_content(); ?>
-        </div>
-      </div>
-    </section>
-
-  <?php endwhile; ?>
-
-</main>
-
-<?php get_footer(); ?>
+fg_site_closing();
+get_footer();
