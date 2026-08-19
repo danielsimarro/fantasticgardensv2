@@ -5,10 +5,10 @@ Template Name: Historia y Nosotros
 if (!defined('ABSPATH')) exit;
 get_header();
 
-/* Antigüedad unificada a "más de veinte años" en todo el sitio (decisión del
-   cliente, jul. 2026). La referencia a "finales de los años ochenta" se
-   retira porque contradecía esa cifra; el año exacto de fundación sigue
-   pendiente de confirmar por el cliente. */
+/* Antigüedad unificada a "más de treinta años" en todo el sitio (decisión del
+   cliente, ago. 2026, actualiza la cifra de "veinte años" de jul. 2026). La
+   referencia a "finales de los años ochenta" se retira porque contradecía esa
+   cifra; el año exacto de fundación sigue pendiente de confirmar por el cliente. */
 $fg_publicos_historia = [
   __('Particulares', 'fg-theme'),
   __('Comunidades', 'fg-theme'),
@@ -16,7 +16,7 @@ $fg_publicos_historia = [
 ];
 
 $body  = '<div class="split-hero__prose">';
-$body .= '<p>' . esc_html__('Desde hace más de veinte años convertimos el amor por la naturaleza en jardines con ', 'fg-theme')
+$body .= '<p>' . esc_html__('Desde hace más de treinta años convertimos el amor por la naturaleza en jardines con ', 'fg-theme')
         . '<em class="em-verde">' . esc_html__('identidad, cuidado y permanencia', 'fg-theme') . '</em>.</p>';
 $body .= '<p>' . esc_html__('Lo que comenzó como una afición por las plantas y el paisaje se transformó en Fantastic Gardens A.J. S.L., una empresa dedicada al ', 'fg-theme')
         . '<em class="em-verde">' . esc_html__('diseño, realización y mantenimiento', 'fg-theme') . '</em>'
@@ -30,12 +30,13 @@ $body .= '</div>';
 $body .= '</div>';
 
 fg_split_hero([
-  'image'       => fg_asset('hero-nuestra-historia.jpg'),
-  'image_alt'   => __('Jardinero de Fantastic Gardens paseando por un jardín en terrazas con lavanda', 'fg-theme'),
-  'title'       => __('Nuestra Historia', 'fg-theme'),
-  'title_class' => 'is-verde',
-  'subtitle'    => __('Una historia nacida en la Costa del Sol', 'fg-theme'),
-  'body'        => $body,
+  'image'               => fg_asset('vivero-ronda-vista-aerea-olivares-invernaderos.jpg'),
+  'image_alt'           => __('Vista aérea del vivero de Fantastic Gardens en Ronda entre olivares', 'fg-theme'),
+  'title'               => __('Nuestra Historia', 'fg-theme'),
+  'title_class'         => 'is-verde',
+  'subtitle'            => __('Una historia nacida en la Costa del Sol', 'fg-theme'),
+  'body'                => $body,
+  'mobile_image_first'  => true,
 ]);
 ?>
 <section class="section section--beige has-wm" id="origen">
@@ -47,7 +48,7 @@ fg_split_hero([
   <div class="wrap">
     <div class="origin-story">
       <div class="origin-story__media" data-img-reveal>
-        <img src="<?php echo esc_url(fg_asset('familia-fundadores.jpg')); ?>" alt="" loading="lazy" decoding="async">
+        <img src="<?php echo esc_url(fg_asset('equipo-fantastic-gardens-vivero-ronda.jpg')); ?>" alt="<?php esc_attr_e('Equipo de Fantastic Gardens reunido en el vivero de Ronda', 'fg-theme'); ?>" loading="lazy" decoding="async">
       </div>
       <div class="origin-story__body">
         <?php echo fg_kicker(__('Nuestros orígenes', 'fg-theme'), '01'); ?>
@@ -72,15 +73,9 @@ fg_split_hero([
   </div>
 </section>
 
-<div class="chapter-mark" aria-hidden="true">
-  <span class="chapter-mark__line"></span>
-  <img class="chapter-mark__leaf" src="<?php echo esc_url(fg_asset('hojita.svg')); ?>" alt="" width="14" height="17" loading="lazy" decoding="async">
-  <span class="chapter-mark__line"></span>
-</div>
-
 <?php
 $valores = [
-  ['icon' => 'calendar', 'title' => __('Más de veinte años de oficio', 'fg-theme'), 'desc' => __('Más de veinte años creando y cuidando jardines en la Costa del Sol.', 'fg-theme')],
+  ['icon' => 'calendar', 'title' => __('Más de treinta años de oficio', 'fg-theme'), 'desc' => __('Más de treinta años creando y cuidando jardines en la Costa del Sol.', 'fg-theme')],
   ['icon' => 'icons/servicios/concepto-pencil.svg', 'title' => __('Diseño y paisajismo', 'fg-theme'),          'desc' => __('Proyectamos espacios con identidad mediterránea, funcionales, elegantes y sostenibles.', 'fg-theme')],
   ['icon' => 'icons/servicios/poda-formacion.svg',  'title' => __('Mantenimiento especializado', 'fg-theme'),  'desc' => __('Cuidado constante, equipos propios y atención cercana para jardines que perduran en el tiempo.', 'fg-theme')],
 ];
@@ -154,7 +149,7 @@ $valores = [
             'icon'  => 'pin',
             'year'  => __('Hoy', 'fg-theme'),
             'title' => __('Empresa de referencia en la Costa del Sol', 'fg-theme'),
-            'text'  => __('Más de veinte años de experiencia, plantaciones en Ronda, Málaga y Valencia, equipo de ingenieros técnicos y la misma pasión por la naturaleza que nos fundó.', 'fg-theme'),
+            'text'  => __('Más de treinta años de experiencia, plantaciones en Ronda, Málaga y Valencia, equipo de ingenieros técnicos y la misma pasión por la naturaleza que nos fundó.', 'fg-theme'),
         ],
     ]);
     ?>

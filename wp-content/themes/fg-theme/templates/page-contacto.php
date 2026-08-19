@@ -52,8 +52,8 @@ get_header();
 
 <?php
 fg_photo_hero([
-    'image'      => fg_asset('hero-contacto.jpg'),
-    'image_alt'  => __('Camino de gravilla entre olivos y lavanda en un jardín mediterráneo al atardecer', 'fg-theme'),
+    'image'      => fg_asset('tumbonas-piscina-jardin-villa-marbella.jpg'),
+    'image_alt'  => __('Tumbonas y sombrilla junto a la piscina en el jardín de una villa en Marbella', 'fg-theme'),
     'kicker'     => __('Contacto', 'fg-theme'),
     'title_html' => esc_html__('Hablemos de', 'fg-theme') . ' <em class="em-lima">' . esc_html__('su jardín', 'fg-theme') . '</em>',
     'subtitle'   => __('Presupuesto y primera visita sin compromiso en Marbella, San Pedro de Alcántara y toda la Costa del Sol. Elija cómo prefiere hablar con nosotros.', 'fg-theme'),
@@ -69,6 +69,7 @@ fg_photo_hero([
     <div class="contact-tiles">
 
       <a class="contact-tile contact-tile--dark" href="tel:<?php echo esc_attr(fg_opt('phone_sanpedro_href')); ?>" data-reveal>
+        <span class="contact-tile__num" aria-hidden="true">01</span>
         <span class="contact-tile__head">
           <span class="contact-tile__icon" aria-hidden="true">
             <?php echo fg_icon('phone'); ?>
@@ -86,6 +87,7 @@ fg_photo_hero([
       </a>
 
       <a class="contact-tile contact-tile--light" href="https://wa.me/<?php echo esc_attr($fg_wa_href); ?>" data-reveal data-reveal-delay="80">
+        <span class="contact-tile__num" aria-hidden="true">02</span>
         <span class="contact-tile__head">
           <span class="contact-tile__icon" aria-hidden="true"><?php echo fg_icon('whatsapp'); ?></span>
           <span class="contact-tile__eyebrow"><?php esc_html_e('WhatsApp', 'fg-theme'); ?></span>
@@ -100,6 +102,7 @@ fg_photo_hero([
       </a>
 
       <a class="contact-tile contact-tile--light" href="mailto:<?php echo esc_attr(fg_opt('email')); ?>" data-reveal data-reveal-delay="160">
+        <span class="contact-tile__num" aria-hidden="true">03</span>
         <span class="contact-tile__head">
           <span class="contact-tile__icon" aria-hidden="true"><?php echo fg_icon('mail'); ?></span>
           <span class="contact-tile__eyebrow"><?php esc_html_e('Correo', 'fg-theme'); ?></span>
@@ -114,6 +117,7 @@ fg_photo_hero([
       </a>
 
       <a class="contact-tile contact-tile--verde" href="#formulario" data-reveal data-reveal-delay="240">
+        <span class="contact-tile__num" aria-hidden="true">04</span>
         <span class="contact-tile__head">
           <span class="contact-tile__icon" aria-hidden="true"><?php echo fg_icon('form'); ?></span>
           <span class="contact-tile__eyebrow"><?php esc_html_e('Formulario · 1 minuto', 'fg-theme'); ?></span>
@@ -132,7 +136,7 @@ fg_photo_hero([
     <div class="contact-tiles-stats" data-reveal data-reveal-delay="80">
       <div class="stats-grid">
         <div class="stat"><span class="stat__num" data-count="24"><?php esc_html_e('24', 'fg-theme'); ?></span><span class="stat__label"><?php esc_html_e('Horas de respuesta laborables', 'fg-theme'); ?></span></div>
-        <div class="stat"><span class="stat__num" data-count="20" data-prefix="+">+20</span><span class="stat__label"><?php esc_html_e('Años en la Costa del Sol', 'fg-theme'); ?></span></div>
+        <div class="stat"><span class="stat__num" data-count="30" data-prefix="+">+30</span><span class="stat__label"><?php esc_html_e('Años en la Costa del Sol', 'fg-theme'); ?></span></div>
         <div class="stat"><span class="stat__num" data-count="0" data-suffix=" €">0 €</span><span class="stat__label"><?php esc_html_e('Visita y presupuesto', 'fg-theme'); ?></span></div>
         <div class="stat"><span class="stat__num" data-count="2">2</span><span class="stat__label"><?php esc_html_e('Sedes: Marbella y Ronda', 'fg-theme'); ?></span></div>
       </div>
@@ -259,18 +263,18 @@ fg_photo_hero([
           <div class="field-row">
             <div class="field">
               <label for="nombre" class="field__label"><?php esc_html_e('Nombre', 'fg-theme'); ?></label>
-              <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+              <input type="text" id="nombre" name="nombre" autocomplete="name" placeholder="<?php esc_attr_e('María García', 'fg-theme'); ?>" required>
             </div>
 
             <div class="field">
               <label for="telefono" class="field__label"><?php esc_html_e('Teléfono', 'fg-theme'); ?></label>
-              <input type="tel" id="telefono" name="telefono" autocomplete="tel" required>
+              <input type="tel" id="telefono" name="telefono" autocomplete="tel" placeholder="<?php esc_attr_e('600 000 000', 'fg-theme'); ?>" required>
             </div>
           </div>
 
           <div class="field">
             <label for="email" class="field__label"><?php esc_html_e('Correo electrónico', 'fg-theme'); ?></label>
-            <input type="email" id="email" name="email" autocomplete="email" required>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="<?php esc_attr_e('maria@ejemplo.com', 'fg-theme'); ?>" required>
           </div>
 
           <div class="field">
@@ -378,6 +382,7 @@ fg_photo_hero([
                     title="<?php echo esc_attr($sede['map_title']); ?>"></iframe>
           </div>
           <div class="location-card__body">
+            <span class="location-card__num" aria-hidden="true"><?php echo esc_html(sprintf('%02d', $i + 1)); ?></span>
             <div class="location-card__head">
               <span class="location-card__icon" aria-hidden="true"><?php echo fg_icon('pin'); ?></span>
               <div>
