@@ -223,15 +223,19 @@ function fg_photo_hero(array $a): void {
 
 /** Hero partido: columna de texto crema + fotografía. $portrait para fuentes 3:4.
  *  $a['watermark'] (opcional): array de argumentos para fg_watermark(), filigrana
- *  de fondo tras el texto. */
+ *  de fondo tras el texto. $a['mobile_image_first'] (opcional, bool): en móvil
+ *  (donde el grid es de una sola columna) muestra la imagen antes que el texto;
+ *  no afecta al orden en escritorio. Por defecto false (orden actual: texto,
+ *  luego imagen, en todos los anchos). */
 function fg_split_hero(array $a): void {
     $side = ($a['image_side'] ?? 'right') === 'left' ? 'split-hero--image-left' : '';
+    $mobile_first = !empty($a['mobile_image_first']) ? ' split-hero--mobile-media-first' : '';
     $portrait = !empty($a['portrait']) ? ' split-hero__media--portrait' : '';
     $image = fg_hero_image($a['image']);
     $title_class = 'split-hero__title' . (!empty($a['title_class']) ? ' ' . $a['title_class'] : '');
     $text_class = 'split-hero__text' . (!empty($a['watermark']) ? ' has-wm' : '');
     ?>
-    <section class="split-hero <?php echo esc_attr($side); ?>">
+    <section class="split-hero <?php echo esc_attr($side . $mobile_first); ?>">
       <div class="<?php echo esc_attr($text_class); ?>">
         <?php if (!empty($a['watermark'])) fg_watermark($a['watermark']); ?>
         <div class="split-hero__inner" data-reveal>
@@ -573,8 +577,9 @@ function fg_watermark(array $a = []): void {
  * $a: image, image_alt, text (marcado ya escapado por el llamador).
  */
 function fg_quote_band(array $a): void {
+    $cls = 'quote-band' . (!empty($a['compact']) ? ' quote-band--compact' : '');
     ?>
-    <section class="quote-band">
+    <section class="<?php echo esc_attr($cls); ?>">
       <img class="quote-band__img" data-parallax="0.32"
            src="<?php echo esc_url($a['image']); ?>"
            alt="<?php echo esc_attr($a['image_alt'] ?? ''); ?>" loading="lazy" decoding="async">
