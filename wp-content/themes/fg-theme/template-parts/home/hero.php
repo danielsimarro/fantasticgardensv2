@@ -21,13 +21,13 @@ $cifras = [
 ?>
 <section class="hero" id="inicio">
   <div class="hero__media">
-    <img class="hero__img hero__img--mobile"
-         src="<?php echo esc_url($hero_mobile); ?>"
-         alt="<?php esc_attr_e('Villa mediterránea en Marbella con piscina de borde infinito, olivos y cipreses al atardecer', 'fg-theme'); ?>"
-         fetchpriority="high" decoding="async">
-    <img class="hero__img hero__img--desktop"
-         src="<?php echo esc_url($hero_poster); ?>"
-         alt="" aria-hidden="true" fetchpriority="high" decoding="async">
+    <picture>
+      <source media="(min-width: 768px)" srcset="<?php echo esc_url($hero_poster); ?>">
+      <img class="hero__img"
+           src="<?php echo esc_url($hero_mobile); ?>"
+           alt="<?php esc_attr_e('Villa mediterránea en Marbella con piscina de borde infinito, olivos y cipreses al atardecer', 'fg-theme'); ?>"
+           fetchpriority="high" decoding="async">
+    </picture>
     <video class="hero__video" data-hero-video
            src="<?php echo esc_url($hero_video); ?>"
            poster="<?php echo esc_url($hero_poster); ?>"

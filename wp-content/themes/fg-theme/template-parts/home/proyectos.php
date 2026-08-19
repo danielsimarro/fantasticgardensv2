@@ -14,6 +14,7 @@ $proyectos_query = new WP_Query([
     'posts_per_page' => 3,
     'orderby'        => 'menu_order',
     'order'          => 'ASC',
+    'no_found_rows'  => true,
 ]);
 
 $items = [];

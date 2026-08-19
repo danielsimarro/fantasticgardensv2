@@ -259,10 +259,12 @@ function fg_page_slugs(): array {
 /** Permalink de una página interna por clave lógica (ver fg_page_slugs()). */
 function fg_page_url(string $key): string {
     if ($key === '' || $key === 'home') return home_url('/');
+    static $cache = [];
+    if (isset($cache[$key])) return $cache[$key];
     $slugs = fg_page_slugs();
     $slug  = $slugs[$key] ?? $key;
     $page  = get_page_by_path($slug);
-    return $page ? (get_permalink($page->ID) ?: home_url('/' . $slug . '/')) : home_url('/' . $slug . '/');
+    return $cache[$key] = ($page ? (get_permalink($page->ID) ?: home_url('/' . $slug . '/')) : home_url('/' . $slug . '/'));
 }
 
 /** Logo del sitio: custom-logo si está definido; si no, el lockup de marca (wordmark-olivo.svg). */

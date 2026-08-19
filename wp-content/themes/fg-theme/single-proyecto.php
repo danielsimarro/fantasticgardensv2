@@ -82,6 +82,7 @@ while (have_posts()) : the_post();
         'post__not_in'   => [get_the_ID()],
         'orderby'        => 'menu_order',
         'order'          => 'ASC',
+        'no_found_rows'  => true,
     ]);
 
     if ($fg_related_q->have_posts()) :

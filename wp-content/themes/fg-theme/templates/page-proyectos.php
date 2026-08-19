@@ -31,6 +31,7 @@ get_header();
         'post_status'    => 'publish',
         'orderby'        => 'menu_order',
         'order'          => 'ASC',
+        'no_found_rows'  => true,
     ]);
 
     if ($fg_proyectos_q->have_posts()) :
