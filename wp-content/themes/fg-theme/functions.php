@@ -242,6 +242,8 @@ function fg_page_slugs(): array {
         'servicios'      => 'servicios-jardineria-paisajismo-mantenimiento-y-vivero',
         'diseno'         => 'fantastic-gardens-paisajismo-diseno-jardines',
         'mantenimiento'  => 'mantenimiento-a-casas-y-empresas-jardineria',
+        'soluciones-integrales' => 'soluciones-integrales-jardineria-marbella',
+        'desbroce-limpieza'     => 'desbroce-y-limpieza-de-parcelas-marbella',
         'vivero'         => 'vivero-y-plantacion-propia',
         'especies'       => 'catalogo-especies-plantas-vivero-marbella',
         'proyectos'      => 'proyectos-realizados-jardineria-costa-del-sol-malaga',
@@ -349,7 +351,7 @@ function fg_seo_head(): void {
     $has_seo_plugin = defined('RANK_MATH_VERSION') || defined('WPSEO_VERSION') || class_exists('WPSEO_Frontend');
 
     if (!$has_seo_plugin && is_front_page()) {
-        $desc = 'Jardinería y paisajismo de lujo en Marbella y Costa del Sol. Diseño 3D, vivero propio y +20 años de experiencia. Presupuesto sin compromiso.';
+        $desc = 'Jardinería y paisajismo de lujo en Marbella y Costa del Sol. Diseño 3D, vivero propio y +30 años de experiencia. Presupuesto sin compromiso.';
         echo '<meta name="description" content="' . esc_attr($desc) . '">' . "\n";
         echo '<meta name="robots" content="index, follow">' . "\n";
         echo '<meta property="og:type" content="website">' . "\n";
@@ -378,7 +380,7 @@ function fg_seo_head(): void {
             '@context'    => 'https://schema.org',
             '@type'       => 'LocalBusiness',
             'name'        => 'Fantastic Gardens',
-            'description' => 'Empresa de jardinería y paisajismo de lujo en Marbella y la Costa del Sol. Más de 20 años de experiencia diseñando y manteniendo jardines exclusivos para villas de alto nivel.',
+            'description' => 'Empresa de jardinería y paisajismo de lujo en Marbella y la Costa del Sol. Más de 30 años de experiencia diseñando y manteniendo jardines exclusivos para villas de alto nivel.',
             'url'         => home_url('/'),
             'telephone'   => '+34' . preg_replace('/\D+/', '', fg_opt('phone')),
             'email'       => fg_opt('email'),
