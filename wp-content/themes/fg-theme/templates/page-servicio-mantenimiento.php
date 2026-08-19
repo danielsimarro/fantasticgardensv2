@@ -6,10 +6,8 @@ if (!defined('ABSPATH')) exit;
 get_header();
 
 fg_photo_hero([
-  'image'         => fg_asset('hero-mantenimiento.jpg'),
-  'image_alt'     => __('Jardinero de Fantastic Gardens podando un seto en un jardín mediterráneo', 'fg-theme'),
-  'kicker'        => __('Servicios · Mantenimiento', 'fg-theme'),
-  'kicker_num'    => '02',
+  'image'         => fg_asset('corte-cesped-jardin-mantenimiento-marbella.jpg'),
+  'image_alt'     => __('Cortacésped profesional dejando líneas perfectas en el jardín de una villa en Marbella', 'fg-theme'),
   'title_html'    =>
     '<span data-reveal data-reveal-delay="80">' . esc_html__('Mantenimiento', 'fg-theme') . '</span>'
     . '<span class="line-2" data-reveal data-reveal-delay="200"><em class="em-lima">' . esc_html__('a medida', 'fg-theme') . '</em></span>',
@@ -32,7 +30,7 @@ fg_photo_hero([
   ]); ?>
   <div class="wrap home-sobre" data-reveal>
     <div class="home-sobre__media" data-img-reveal>
-      <img data-kenburns src="<?php echo esc_url(fg_asset('card-mantenimiento-min.jpg')); ?>" alt="<?php esc_attr_e('Equipo de mantenimiento de Fantastic Gardens en un jardín mediterráneo', 'fg-theme'); ?>" loading="lazy" decoding="async">
+      <img data-kenburns src="<?php echo esc_url(fg_asset('mantenimiento-jardin-mediterraneo-marbella.jpg')); ?>" alt="<?php esc_attr_e('Jardinero de Fantastic Gardens cuidando las plantas de un jardín mediterráneo con piscina en Marbella', 'fg-theme'); ?>" loading="lazy" decoding="async">
     </div>
     <div class="home-sobre__copy">
       <?php echo fg_kicker(__('El servicio', 'fg-theme'), '01'); ?>
@@ -40,10 +38,10 @@ fg_photo_hero([
         <?php esc_html_e('Mantenimiento de jardinería', 'fg-theme'); ?><br><em class="em-verde"><?php esc_html_e('a la medida de cada jardín', 'fg-theme'); ?></em>
       </h2>
       <p class="home-estudio__lead" data-reveal data-reveal-delay="140">
-        <?php esc_html_e('Para que un jardín se vea bonito y acogedor durante todo el año hacen falta conocimientos fitosanitarios, técnica y maquinaria. Cumplimos con todos ellos al pie de la letra.', 'fg-theme'); ?>
+        <?php esc_html_e('Para que un jardín esté bonito y acogedor todo el año hacen falta conocimientos fitosanitarios, técnica y maquinaria propia. Los tenemos todos.', 'fg-theme'); ?>
       </p>
       <p class="home-sobre__text" data-reveal data-reveal-delay="190">
-        <?php esc_html_e('Nuestro equipo, cualificado y experimentado, se hace cargo de los trabajos más complicados. La combinación de nuestras políticas de calidad y los mejores materiales nos ha posicionado como una de las empresas más representativas del sector, con mantenimiento de jardines de casas, villas, comunidades y parques.', 'fg-theme'); ?>
+        <?php esc_html_e('Nuestro equipo, cualificado y experimentado, se hace cargo de los trabajos más exigentes: casas, villas, comunidades y parques en toda la Costa del Sol.', 'fg-theme'); ?>
       </p>
       <div class="quote-aside" data-reveal data-reveal-delay="240">
         <p class="quote-aside__text"><?php esc_html_e('Un jardín no se mantiene: se acompaña temporada a temporada.', 'fg-theme'); ?></p>
@@ -51,7 +49,7 @@ fg_photo_hero([
       </div>
       <div class="mini-stats" data-reveal data-reveal-delay="300">
         <div class="mini-stat">
-          <span class="mini-stat__num" data-count="20" data-prefix="+">+20</span>
+          <span class="mini-stat__num" data-count="30" data-prefix="+">+30</span>
           <span class="mini-stat__label"><?php esc_html_e('Años cuidando jardines', 'fg-theme'); ?></span>
         </div>
         <div class="mini-stat">
@@ -67,6 +65,7 @@ fg_photo_hero([
 fg_quote_band([
     'image'     => fg_asset('hero-servicios.jpg'),
     'image_alt' => __('Jardín mediterráneo mantenido por Fantastic Gardens', 'fg-theme'),
+    'compact'   => true,
     'text'      => sprintf(
         /* translators: %s: la frase "mejores manos" en cursiva. */
         esc_html__('Tus plantas en las %s.', 'fg-theme'),
@@ -116,13 +115,23 @@ fg_quote_band([
         <?php endforeach; ?>
       </div>
       <div class="calendar-media" data-img-reveal>
-        <img data-kenburns src="<?php echo esc_url(fg_asset('calendario-ritmo-del-jardin.jpg')); ?>" alt="<?php esc_attr_e('Jardinero de Fantastic Gardens revisando el riego en un jardín mediterráneo', 'fg-theme'); ?>" loading="lazy" decoding="async">
+        <img data-kenburns src="<?php echo esc_url(fg_asset('jardinero-plantacion-jardin-grava-marbella.jpg')); ?>" alt="<?php esc_attr_e('Jardinero de Fantastic Gardens plantando en un jardín de grava en Marbella', 'fg-theme'); ?>" loading="lazy" decoding="async">
       </div>
     </div>
   </div>
 </section>
 
 <section class="section section--osc has-wm" id="maquinaria">
+  <?php fg_watermark([
+    'src' => 'icons/servicios/direccion-obra-helmet.svg', 'pos' => 'tr',
+    'size' => 'clamp(11rem, 22vw, 20rem)', 'opacity' => '.05', 'color' => 'var(--crema)',
+    'float' => 40, 'rot' => 8,
+  ]); ?>
+  <?php fg_watermark([
+    'src' => 'hojita.svg', 'pos' => 'bl', 'ratio' => '581 / 690',
+    'size' => 'clamp(10rem, 20vw, 22rem)', 'opacity' => '.05', 'color' => 'var(--crema)',
+    'float' => 30, 'rot' => -8,
+  ]); ?>
   <div class="wrap">
     <div class="section-head section-head--split">
       <div>
@@ -149,10 +158,12 @@ fg_quote_band([
         ?>
         <div class="row-osc<?php echo $flip ? ' row-osc--flip' : ''; ?>" data-reveal data-reveal-delay="<?php echo esc_attr((string) ($i * 70)); ?>">
           <div class="row-osc__media" data-img-reveal>
-            <img src="<?php echo esc_url(fg_asset($m['img'])); ?>" alt="<?php echo esc_attr($m['title']); ?>" loading="lazy" decoding="async">
+            <span class="row-osc__glow" aria-hidden="true"></span>
+            <img data-parallax="0.04" src="<?php echo esc_url(fg_asset($m['img'])); ?>" alt="<?php echo esc_attr($m['title']); ?>" loading="lazy" decoding="async">
           </div>
           <div class="row-osc__body">
             <div class="row-osc__head">
+              <span class="row-osc__bignum" aria-hidden="true"><?php echo esc_html($m['num']); ?></span>
               <span class="row-osc__num"><?php echo esc_html($m['num']); ?></span>
               <h3 class="row-osc__title"><?php echo esc_html($m['title']); ?></h3>
             </div>

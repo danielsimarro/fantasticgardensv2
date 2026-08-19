@@ -6,8 +6,9 @@ if (!defined('ABSPATH')) exit;
 get_header();
 
 fg_split_hero([
-  'image'        => fg_asset('hero-vivero.jpg'),
-  'image_alt'    => __('Camino de vivero con olivos y plantas mediterráneas en macetas de barro', 'fg-theme'),
+  'image'        => fg_asset('vivero-garden-center-fantastic-gardens-ronda-fachada.jpg'),
+  'image_alt'    => __('Fachada de los invernaderos del vivero y garden center de Fantastic Gardens en Ronda', 'fg-theme'),
+  'mobile_image_first' => true,
   'title'        => __('Vivero y Plantación Propia', 'fg-theme'),
   'subtitle'     => __('Nuestro Garden Center de Ronda, una selección botánica con carácter mediterráneo', 'fg-theme'),
   'body'         => '<div class="split-hero__actions">' . fg_pill(__('Descubrir especies', 'fg-theme'), fg_page_url('especies'), 'verde') . '</div>',
@@ -23,7 +24,7 @@ fg_stats_band([
   ['num' => '4.000 m²', 'count' => 4000,  'sep' => '.', 'suffix' => ' m²', 'label' => __('Cubiertos en Ronda', 'fg-theme')],
   ['num' => '+40 ha',   'count' => 40,    'prefix' => '+', 'suffix' => ' ha', 'label' => __('De plantación propia', 'fg-theme')],
   ['num' => '17.000',   'count' => 17000, 'sep' => '.',    'label' => __('Especies distintas', 'fg-theme')],
-  ['num' => '+20',      'count' => 20,    'prefix' => '+', 'label' => __('Años de experiencia', 'fg-theme')],
+  ['num' => '+30',      'count' => 30,    'prefix' => '+', 'label' => __('Años de experiencia', 'fg-theme')],
 ], [
   'src' => 'hojita.svg', 'pos' => 'tr', 'ratio' => '581 / 690',
   'size' => 'clamp(10rem, 22vw, 20rem)', 'opacity' => '.10', 'color' => 'var(--crema)', 'float' => 40,
@@ -37,7 +38,7 @@ fg_stats_band([
   ]); ?>
   <div class="wrap home-sobre" data-reveal>
     <div class="home-sobre__media" data-img-reveal>
-      <img data-kenburns src="<?php echo esc_url(fg_asset('card-plantacion.jpg')); ?>" alt="<?php esc_attr_e('Explanada del Garden Center de Ronda con olivos y coníferas en maceta', 'fg-theme'); ?>" loading="lazy" decoding="async">
+      <img data-kenburns src="<?php echo esc_url(fg_asset('garden-center-ronda-invernaderos-vista-aerea.jpg')); ?>" alt="<?php esc_attr_e('Vista aérea de los invernaderos del Garden Center de Fantastic Gardens en Ronda', 'fg-theme'); ?>" loading="lazy" decoding="async">
     </div>
     <div class="home-sobre__copy">
       <?php fg_section_heading([
@@ -47,12 +48,13 @@ fg_stats_band([
       ]); ?>
       <?php
       $garden_center = [
-        ['icon' => fg_asset('icons/botanica/especies-singulares.svg'), 'label' => __('Selección botánica', 'fg-theme')],
-        ['icon' => fg_asset('icons/servicios/materiales-stones.svg'),  'label' => __('Complementos de jardín', 'fg-theme')],
-        ['icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8z"/><path d="M17 9h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M7 3.5c.5 1 .5 1.5 0 2.5M11 3.5c.5 1 .5 1.5 0 2.5"/></svg>', 'label' => __('Cafetería', 'fg-theme')],
-        ['icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M9.5 16V8h3.2a2.6 2.6 0 1 1 0 5.2H9.5"/></svg>', 'label' => __('Zona infantil y parking', 'fg-theme')],
+        ['icon' => fg_asset('icons/botanica/especies-singulares.svg'),  'label' => __('Selección botánica', 'fg-theme')],
+        ['icon' => fg_asset('icons/servicios/materiales-stones.svg'),   'label' => __('Complementos de jardín', 'fg-theme')],
+        ['icon' => fg_asset('icons/servicios/cafeteria.svg'),           'label' => __('Cafetería', 'fg-theme')],
+        ['icon' => fg_asset('icons/servicios/zona-infantil.svg'),       'label' => __('Zona infantil', 'fg-theme')],
+        ['icon' => fg_asset('icons/servicios/parking.svg'),             'label' => __('Parking', 'fg-theme')],
       ];
-      fg_feature_row($garden_center, 'compact'); ?>
+      fg_feature_row($garden_center, 'compact', true); ?>
     </div>
   </div>
 </section>
@@ -91,8 +93,7 @@ fg_stats_band([
         ['img' => 'plantacion-1.jpg',                    'name' => __('Flor de temporada', 'fg-theme'),    'meta' => __('Color bajo cubierta todo el año', 'fg-theme'),     'alt' => __('Parterres de flores de temporada en el invernadero', 'fg-theme')],
         ['img' => 'plantacion-3.jpg',                    'name' => __('Palmeras y coníferas', 'fg-theme'), 'meta' => __('Washingtonia y Cupressus en cultivo', 'fg-theme'), 'alt' => __('Palmeras y cipreses en la plantación de Ronda', 'fg-theme')],
         ['img' => 'plantacion-4.jpg',                    'name' => __('Grandes ejemplares', 'fg-theme'),   'meta' => __('Porte listo para trasplante', 'fg-theme'),         'alt' => __('Grandes ejemplares en macetón en la explanada del Garden Center', 'fg-theme')],
-        ['img' => 'plantacion-interior-invernadero.jpg', 'name' => __('Bajo cubierta', 'fg-theme'),        'meta' => __('4.000 m² de instalaciones', 'fg-theme'),           'alt' => __('Interior del Garden Center con hileras de flores', 'fg-theme')],
-        ['img' => 'card-vivero-min.jpg',                 'name' => __('Mediterráneo', 'fg-theme'),         'meta' => __('Olivo, aromáticas y macetería', 'fg-theme'),       'alt' => __('Camino de vivero con olivos y macetas de barro', 'fg-theme')],
+        ['img' => 'flores-plantas-invernadero-vivero-ronda.jpg',  'name' => __('Bajo cubierta', 'fg-theme'),        'meta' => __('4.000 m² de instalaciones', 'fg-theme'),           'alt' => __('Invernadero del vivero de Fantastic Gardens en Ronda con flores y plantas de temporada', 'fg-theme')],
         ['img' => 'plantacion-2.jpg',                    'name' => __('El Garden Center', 'fg-theme'),     'meta' => __('Un jardín para pasear', 'fg-theme'),               'alt' => __('Pabellón de madera dentro del Garden Center', 'fg-theme')],
       ];
       foreach ($panels as $p) : ?>
@@ -141,9 +142,9 @@ fg_stats_band([
           </figcaption>
         </figure>
       <?php endforeach; ?>
-      <figure class="species-card species-card--icon">
-        <div class="species-card__media">
-          <img src="<?php echo esc_url(fg_asset('icons/servicios/materiales-stones.svg')); ?>" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <figure class="species-card">
+        <div class="species-card__media fx-frame" data-img-reveal>
+          <img src="<?php echo esc_url(fg_asset('complementos-jardin-macetas-sustratos-vivero.jpg')); ?>" alt="<?php esc_attr_e('Estanterías de maceteros, sustratos y herramientas de jardín en el Garden Center de Fantastic Gardens', 'fg-theme'); ?>" loading="lazy" decoding="async">
         </div>
         <figcaption>
           <h3 class="species-card__title"><?php esc_html_e('Complementos', 'fg-theme'); ?></h3>

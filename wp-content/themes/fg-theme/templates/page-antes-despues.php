@@ -21,7 +21,7 @@ fg_photo_hero([
 
 // Cifras reales ya usadas en otras páginas del sitio (home, Contacto, Vivero).
 fg_stats_band([
-  ['num' => '+20',    'count' => 20,   'prefix' => '+',            'label' => __('Años de experiencia', 'fg-theme')],
+  ['num' => '+30',    'count' => 30,   'prefix' => '+',            'label' => __('Años de experiencia', 'fg-theme')],
   ['num' => '+1.000', 'count' => 1000, 'prefix' => '+', 'sep' => '.', 'label' => __('Proyectos realizados', 'fg-theme')],
   ['num' => '2',      'count' => 2,                                'label' => __('Sedes: Marbella y Ronda', 'fg-theme')],
   ['num' => '0 €',    'count' => 0,    'suffix' => ' €',           'label' => __('Visita y presupuesto', 'fg-theme')],

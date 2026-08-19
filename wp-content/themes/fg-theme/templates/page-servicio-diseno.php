@@ -6,9 +6,8 @@ if (!defined('ABSPATH')) exit;
 get_header();
 
 fg_photo_hero([
-  'image'         => fg_asset('hero-diseno-paisajes.jpg'),
-  'image_alt'     => __('Jardín diseñado por Fantastic Gardens en la Costa del Sol', 'fg-theme'),
-  'breadcrumb'    => [['label' => __('Inicio', 'fg-theme'), 'url' => home_url('/')], ['label' => __('Diseño de paisajes', 'fg-theme')]],
+  'image'         => fg_asset('jardin-mediterraneo-villa-piscina-marbella.jpg'),
+  'image_alt'     => __('Jardín mediterráneo de una villa en Marbella con piscina, palmeras y vistas a la montaña', 'fg-theme'),
   'title_html'    => esc_html__('Diseño de', 'fg-theme') . ' <em class="em-lima">' . esc_html__('paisajes', 'fg-theme') . '</em>',
   'accent_rule'   => true,
   'subtitle'      => __('Espacios pensados para vivir el exterior', 'fg-theme'),
@@ -37,7 +36,7 @@ fg_photo_hero([
         <?php esc_html_e('Nuestro equipo de diseño realiza proyectos en AutoCAD, 3D y fotomontajes, para que pueda ver el resultado final de su jardín sin ningún compromiso. Del clásico más sereno al contemporáneo más audaz, siempre en armonía con su vivienda.', 'fg-theme'); ?>
       </p>
       <div class="split-intro__media" data-img-reveal data-reveal-delay="200">
-        <img src="<?php echo esc_url(fg_asset('card-diseno.jpg')); ?>" alt="<?php esc_attr_e('Jardín mediterráneo con piscina y escalinata de piedra diseñado por Fantastic Gardens', 'fg-theme'); ?>" loading="lazy" decoding="async">
+        <img src="<?php echo esc_url(fg_asset('plano-diseno-jardin-piscina-plantas.png')); ?>" alt="<?php esc_attr_e('Plano de diseño de jardín con piscina y leyenda numerada de especies vegetales', 'fg-theme'); ?>" loading="lazy" decoding="async">
       </div>
       <div class="split-intro__cta" data-reveal data-reveal-delay="260">
         <?php echo fg_cta(__('Cuéntenos su proyecto', 'fg-theme'), fg_page_url('contacto') . '#formulario'); ?>
@@ -54,9 +53,13 @@ fg_photo_hero([
         __('Presupuesto detallado, partida a partida, sin costes ocultos', 'fg-theme'),
         __('Ejecución completa: movimientos de tierra, riego, plantación y pavimentación', 'fg-theme'),
       ];
-      foreach ($pasos as $i => $paso) : ?>
+      $romanos = ['I', 'II', 'III', 'IV', 'V', 'VI'];
+      foreach ($pasos as $i => $paso) :
+        $num = $romanos[$i] ?? sprintf('%02d', $i + 1);
+        ?>
         <li class="numbered-grid__item" data-reveal data-reveal-delay="<?php echo esc_attr((string) (60 + $i * 40)); ?>">
-          <span class="numbered-grid__num" aria-hidden="true"><?php echo esc_html(sprintf('%02d', $i + 1)); ?></span>
+          <span class="numbered-grid__bignum" aria-hidden="true"><?php echo esc_html($num); ?></span>
+          <span class="numbered-grid__num" aria-hidden="true"><?php echo esc_html($num); ?></span>
           <span class="numbered-grid__text"><?php echo esc_html($paso); ?></span>
         </li>
       <?php endforeach; ?>

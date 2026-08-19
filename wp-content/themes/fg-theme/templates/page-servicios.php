@@ -6,27 +6,25 @@ if (!defined('ABSPATH')) exit;
 get_header();
 
 fg_photo_hero([
-    'image'         => 'hero-servicios.jpg',
-    'image_alt'     => __('Jardín mediterráneo de una villa al atardecer', 'fg-theme'),
-    'breadcrumb'    => [['label' => __('Inicio', 'fg-theme'), 'url' => home_url('/')], ['label' => __('Servicios', 'fg-theme')]],
+    'image'         => fg_asset('camion-fantastic-gardens-obra-jardin-marbella.jpg'),
+    'image_alt'     => __('Camión y maquinaria de Fantastic Gardens en una obra de jardinería en Marbella', 'fg-theme'),
     'title'         => __('Servicios', 'fg-theme'),
     'subtitle'      => __('Diseñamos, cuidamos y hacemos crecer espacios extraordinarios', 'fg-theme'),
     'subtitle_lead' => true,
     'row_plain'     => true,
-    'stat'          => ['count' => 4, 'label' => __('áreas de trabajo', 'fg-theme')],
+    'stat'          => ['count' => 3, 'label' => __('áreas de trabajo', 'fg-theme')],
 ]);
 
 $items = [
-    ['num' => '01', 'title' => __('Diseño de paisajes', 'fg-theme'), 'url' => fg_page_url('diseno'),        'image' => fg_asset('card-diseno.jpg'),            'image_alt' => __('Jardín mediterráneo con piscina y escalinata de piedra', 'fg-theme')],
-    ['num' => '02', 'title' => __('Mantenimiento', 'fg-theme'),      'url' => fg_page_url('mantenimiento'), 'image' => fg_asset('card-mantenimiento-min.jpg'), 'image_alt' => __('Jardinero podando un seto redondeado', 'fg-theme')],
-    ['num' => '03', 'title' => __('Vivero', 'fg-theme'),             'url' => fg_page_url('vivero'),        'image' => fg_asset('card-vivero-min.jpg'),        'image_alt' => __('Camino de vivero con olivos y plantas en maceta', 'fg-theme')],
-    ['num' => '04', 'title' => __('Plantación propia', 'fg-theme'),  'url' => fg_page_url('vivero'),        'image' => fg_asset('card-plantacion.jpg'),        'image_alt' => __('Hileras de olivos en plantación propia', 'fg-theme')],
+    ['num' => '01', 'title' => __('Diseño de paisajes', 'fg-theme'),         'url' => fg_page_url('diseno'),        'image' => fg_asset('diseno-paisajismo-planos-jardin-marbella.jpg'), 'image_alt' => __('Diseñador de Fantastic Gardens comparando el plano de un jardín con el resultado final en Marbella', 'fg-theme')],
+    ['num' => '02', 'title' => __('Mantenimiento', 'fg-theme'),              'url' => fg_page_url('mantenimiento'), 'image' => fg_asset('mantenimiento-jardin-mediterraneo-marbella.jpg'), 'image_alt' => __('Jardinero de Fantastic Gardens cuidando las plantas de un jardín mediterráneo con piscina en Marbella', 'fg-theme')],
+    ['num' => '03', 'title' => __('Vivero y plantación propia', 'fg-theme'), 'url' => fg_page_url('vivero'),        'image' => fg_asset('vivero-garden-center-ronda-fantastic-gardens.jpg'),        'image_alt' => __('Invernaderos del vivero y garden center de Fantastic Gardens en Ronda con árboles y plantas en maceta', 'fg-theme')],
 ];
 ?>
 <section class="section" id="servicios">
   <div class="wrap">
     <h2 class="sr-only"><?php esc_html_e('Nuestros servicios', 'fg-theme'); ?></h2>
-    <div class="grid grid--4">
+    <div class="grid grid--3">
       <?php foreach ($items as $it) fg_service_tile($it); ?>
     </div>
   </div>

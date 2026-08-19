@@ -5,7 +5,7 @@ Template Name: Proyectos Realizados
 if (!defined('ABSPATH')) exit;
 get_header();
 ?>
-<section class="section has-wm">
+<section class="section has-wm section--tight-t-mobile">
   <?php
   fg_watermark([
     'src' => 'icons/botanica/especies-singulares.svg', 'pos' => 'tr',
@@ -18,8 +18,7 @@ get_header();
     'float' => 28, 'rot' => -7, 'scrub' => 2.2,
   ]); ?>
   <div class="wrap">
-    <?php fg_breadcrumb([['label' => __('Inicio', 'fg-theme'), 'url' => home_url('/')], ['label' => __('Proyectos realizados', 'fg-theme')]]); ?>
-    <h1 class="page-title"><?php esc_html_e('Proyectos realizados', 'fg-theme'); ?></h1>
+    <h1 class="page-title page-title--flush"><?php esc_html_e('Proyectos realizados', 'fg-theme'); ?></h1>
     <span class="accent-rule"></span>
     <p class="page-lead"><?php esc_html_e('Una selección de paisajes que ya forman parte de una historia', 'fg-theme'); ?></p>
 
