@@ -233,7 +233,7 @@ if (strpos($fg_brand_sub, '·') !== false) {
       <?php echo fg_arrow('pill__arrow'); ?>
     </a>
     <?php $fg_wa = fg_opt('phone_href'); if ($fg_wa) : ?>
-      <a class="nav-overlay__whatsapp" href="tel:<?php echo esc_attr($fg_wa); ?>">
+      <a class="nav-overlay__whatsapp" href="https://wa.me/<?php echo esc_attr(str_replace('+', '', $fg_wa)); ?>">
         <?php echo fg_icon('phone'); ?>
         <span><?php echo esc_html(fg_opt('phone')); ?> · WhatsApp</span>
       </a>
