@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Zona infantil">
+  <g fill="none" stroke="#4D7048" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 16h40"/>
+    <path d="M12 16 6 52M12 16 18 52"/>
+    <path d="M52 16 46 52M52 16 58 52"/>
+    <path d="M27 16 30 42M37 16 34 42"/>
+    <path d="M29 42h6"/>
+  </g>
+</svg>
