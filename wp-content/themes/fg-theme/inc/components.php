@@ -253,40 +253,6 @@ function fg_split_hero(array $a): void {
     <?php
 }
 
-/** Hero con foto full-bleed y tarjeta crema superpuesta. */
-function fg_overlay_card_hero(array $a): void {
-    $image = fg_hero_image($a['image']);
-    ?>
-    <section class="overlay-hero">
-      <img class="overlay-hero__img" data-img-reveal data-kenburns src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($a['image_alt'] ?? ''); ?>" fetchpriority="high" decoding="async">
-      <div class="overlay-hero__scrim" aria-hidden="true"></div>
-      <div class="wrap">
-        <div class="overlay-hero__card" data-reveal>
-          <h1 class="overlay-hero__title"><?php echo esc_html($a['title']); ?></h1>
-          <span class="accent-rule"></span>
-          <?php if (!empty($a['subtitle'])) : ?><p class="overlay-hero__sub"><?php echo esc_html($a['subtitle']); ?></p><?php endif; ?>
-          <?php if (!empty($a['cta'])) : ?><div class="overlay-hero__cta"><?php echo fg_cta($a['cta']['label'], $a['cta']['url']); ?></div><?php endif; ?>
-        </div>
-      </div>
-    </section>
-    <?php
-}
-
-/** Tarjeta de servicio (título + flecha, foto 4:3). */
-function fg_service_card(array $a): void {
-    ?>
-    <a class="service-card" href="<?php echo esc_url($a['url']); ?>" data-reveal>
-      <div class="service-card__head">
-        <h3 class="service-card__title"><?php echo esc_html($a['title']); ?></h3>
-        <img class="service-card__arrow" src="<?php echo esc_url(fg_asset('arrow-right.svg')); ?>" alt="" aria-hidden="true">
-      </div>
-      <div class="service-card__media fx-frame" data-img-reveal>
-        <img src="<?php echo esc_url($a['image']); ?>" alt="<?php echo esc_attr($a['image_alt'] ?? ''); ?>" loading="lazy" decoding="async">
-      </div>
-    </a>
-    <?php
-}
-
 /**
  * Tarjeta grande numerada de la rejilla de Servicios: foto a sangre + overlay
  * oscuro + número al vuelo + título y flecha al pie (mismo lenguaje de
@@ -318,7 +284,7 @@ function fg_card_link(array $a): void {
       <div class="card-link__body">
         <h3 class="card-link__title"><?php echo esc_html($a['title']); ?></h3>
         <p class="card-link__text"><?php echo esc_html($a['body']); ?></p>
-        <img class="card-link__arrow" src="<?php echo esc_url(fg_asset('arrow-right.svg')); ?>" alt="" aria-hidden="true">
+        <?php echo fg_arrow('card-link__arrow'); ?>
       </div>
     </a>
     <?php
@@ -343,8 +309,7 @@ function fg_project_card(array $a): void {
 /**
  * Fila de features/valores con icono. $variant 'compact'|'detailed'.
  * $it['icon'] admite una URL (se envuelve en <img>) o marcado SVG ya
- * construido por el llamador (p. ej. fg_icon_machine()), detectado por el
- * prefijo "<".
+ * construido por el llamador, detectado por el prefijo "<".
  */
 function fg_feature_row(array $items, string $variant = 'compact', bool $icon_ring = false): void {
     echo '<div class="feature-row feature-row--' . esc_attr($variant) . ($icon_ring ? ' feature-row--ring' : '') . '" data-reveal>';
@@ -361,11 +326,6 @@ function fg_feature_row(array $items, string $variant = 'compact', bool $icon_ri
         echo '</div>';
     }
     echo '</div>';
-}
-
-/** Icono de línea reutilizable (24×24, stroke=currentColor) para feature-row / listas. */
-function fg_icon_machine(): string {
-    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>';
 }
 
 /** Iconos de línea (24×24, stroke=currentColor salvo detalle relleno puntual) para el footer: ubicación, teléfono, email y redes. */
@@ -705,6 +665,18 @@ function fg_rail_controls(): void {
  * Marquesina de zonas de trabajo: cinta continua sobre verde oscuro.
  * main.js duplica la pista para que el bucle no tenga costura.
  */
+/** Zonas de trabajo por defecto (Marbella, San Pedro, Estepona, Ronda, Costa del Sol, Málaga). */
+function fg_default_zones(): array {
+    return [
+        ['label' => __('Marbella', 'fg-theme')],
+        ['label' => __('San Pedro Alcántara', 'fg-theme'), 'destacada' => true],
+        ['label' => __('Estepona', 'fg-theme')],
+        ['label' => __('Ronda', 'fg-theme')],
+        ['label' => __('Costa del Sol', 'fg-theme'), 'destacada' => true],
+        ['label' => __('Málaga', 'fg-theme')],
+    ];
+}
+
 function fg_zones_marquee(array $zonas): void {
     $hoja = esc_url(fg_asset('hojita.svg'));
     ?>
@@ -793,25 +765,8 @@ function fg_contact_band(string $tab = ''): void {
  * final de página en el lenguaje nuevo.
  */
 function fg_site_closing(string $tab = ''): void {
-    fg_zones_marquee([
-        ['label' => __('Marbella', 'fg-theme')],
-        ['label' => __('San Pedro Alcántara', 'fg-theme'), 'destacada' => true],
-        ['label' => __('Estepona', 'fg-theme')],
-        ['label' => __('Ronda', 'fg-theme')],
-        ['label' => __('Costa del Sol', 'fg-theme'), 'destacada' => true],
-        ['label' => __('Málaga', 'fg-theme')],
-    ]);
+    fg_zones_marquee(fg_default_zones());
     fg_contact_band($tab);
-}
-
-/** Barra fina con motivos de olivo flanqueando un tagline (uso puntual, no como cierre de página). */
-function fg_tagline_bar(string $text): void {
-    $h = esc_url(fg_asset('hojita.png'));
-    echo '<div class="tagline-bar"><div class="wrap tagline-bar__inner">';
-    echo '<img class="tagline-bar__leaf" src="' . $h . '" alt="" aria-hidden="true">';
-    echo '<span class="tagline-bar__text">' . esc_html($text) . '</span>';
-    echo '<img class="tagline-bar__leaf tagline-bar__leaf--flip" src="' . $h . '" alt="" aria-hidden="true">';
-    echo '</div></div>';
 }
 
 /**
@@ -834,4 +789,19 @@ function fg_timeline(array $items): void {
         echo '</div></div>';
     }
     echo '</div>';
+}
+
+/** Lista ordenada de pasos numerados en romanos (proceso de trabajo de una página de servicio). */
+function fg_numbered_grid(array $pasos): void {
+    $romanos = ['I', 'II', 'III', 'IV', 'V', 'VI'];
+    echo '<ol class="numbered-grid">';
+    foreach ($pasos as $i => $paso) {
+        $num = $romanos[$i] ?? sprintf('%02d', $i + 1);
+        echo '<li class="numbered-grid__item" data-reveal data-reveal-delay="' . esc_attr((string) (60 + $i * 40)) . '">';
+        echo '<span class="numbered-grid__bignum" aria-hidden="true">' . esc_html($num) . '</span>';
+        echo '<span class="numbered-grid__num" aria-hidden="true">' . esc_html($num) . '</span>';
+        echo '<span class="numbered-grid__text">' . esc_html($paso) . '</span>';
+        echo '</li>';
+    }
+    echo '</ol>';
 }

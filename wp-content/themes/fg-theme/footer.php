@@ -117,7 +117,7 @@ $fg_maps_ronda    = 'https://www.google.com/maps/search/?api=1&query=' . rawurle
     </div>
 
     <div class="footer-bottom">
-      <span>© <?php echo esc_html(date('Y')); ?> Fantastic Gardens A.J. S.L. · <?php esc_html_e('Todos los derechos reservados', 'fg-theme'); ?></span>
+      <span>© <?php echo esc_html(wp_date('Y')); ?> Fantastic Gardens A.J. S.L. · <?php esc_html_e('Todos los derechos reservados', 'fg-theme'); ?></span>
       <div class="footer-legal">
         <a href="<?php echo esc_url(fg_page_url('cookies')); ?>"><?php esc_html_e('Política de cookies', 'fg-theme'); ?></a>
         <a href="<?php echo esc_url(fg_page_url('aviso-legal')); ?>"><?php esc_html_e('Aviso legal', 'fg-theme'); ?></a>

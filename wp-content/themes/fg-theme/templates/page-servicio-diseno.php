@@ -43,27 +43,15 @@ fg_photo_hero([
       </div>
     </div>
 
-    <ol class="numbered-grid">
-      <?php
-      $pasos = [
-        __('Proyecto en AutoCAD con planos técnicos precisos', 'fg-theme'),
-        __('Visualización 3D fotorrealista antes de empezar la obra', 'fg-theme'),
-        __('Fotomontaje personalizado sobre fotos reales de su propiedad', 'fg-theme'),
-        __('Selección de plantas directas de nuestro vivero propio', 'fg-theme'),
-        __('Presupuesto detallado, partida a partida, sin costes ocultos', 'fg-theme'),
-        __('Ejecución completa: movimientos de tierra, riego, plantación y pavimentación', 'fg-theme'),
-      ];
-      $romanos = ['I', 'II', 'III', 'IV', 'V', 'VI'];
-      foreach ($pasos as $i => $paso) :
-        $num = $romanos[$i] ?? sprintf('%02d', $i + 1);
-        ?>
-        <li class="numbered-grid__item" data-reveal data-reveal-delay="<?php echo esc_attr((string) (60 + $i * 40)); ?>">
-          <span class="numbered-grid__bignum" aria-hidden="true"><?php echo esc_html($num); ?></span>
-          <span class="numbered-grid__num" aria-hidden="true"><?php echo esc_html($num); ?></span>
-          <span class="numbered-grid__text"><?php echo esc_html($paso); ?></span>
-        </li>
-      <?php endforeach; ?>
-    </ol>
+    <?php
+    fg_numbered_grid([
+      __('Proyecto en AutoCAD con planos técnicos precisos', 'fg-theme'),
+      __('Visualización 3D fotorrealista antes de empezar la obra', 'fg-theme'),
+      __('Fotomontaje personalizado sobre fotos reales de su propiedad', 'fg-theme'),
+      __('Selección de plantas directas de nuestro vivero propio', 'fg-theme'),
+      __('Presupuesto detallado, partida a partida, sin costes ocultos', 'fg-theme'),
+      __('Ejecución completa: movimientos de tierra, riego, plantación y pavimentación', 'fg-theme'),
+    ]); ?>
   </div>
 </section>
 <?php

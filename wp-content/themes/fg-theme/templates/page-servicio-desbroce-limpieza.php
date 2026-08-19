@@ -37,27 +37,15 @@ fg_photo_hero([
       </div>
     </div>
 
-    <ol class="numbered-grid">
-      <?php
-      $pasos = [
-        __('Desbroce mecánico de maleza y matorral', 'fg-theme'),
-        __('Retirada y gestión de restos vegetales', 'fg-theme'),
-        __('Limpieza de solares y parcelas abandonadas', 'fg-theme'),
-        __('Preparación del terreno previa a obra o plantación', 'fg-theme'),
-        __('Desbroce preventivo para reducir el riesgo de incendio', 'fg-theme'),
-        __('Presupuesto según superficie y estado del terreno', 'fg-theme'),
-      ];
-      $romanos = ['I', 'II', 'III', 'IV', 'V', 'VI'];
-      foreach ($pasos as $i => $paso) :
-        $num = $romanos[$i] ?? sprintf('%02d', $i + 1);
-        ?>
-        <li class="numbered-grid__item" data-reveal data-reveal-delay="<?php echo esc_attr((string) (60 + $i * 40)); ?>">
-          <span class="numbered-grid__bignum" aria-hidden="true"><?php echo esc_html($num); ?></span>
-          <span class="numbered-grid__num" aria-hidden="true"><?php echo esc_html($num); ?></span>
-          <span class="numbered-grid__text"><?php echo esc_html($paso); ?></span>
-        </li>
-      <?php endforeach; ?>
-    </ol>
+    <?php
+    fg_numbered_grid([
+      __('Desbroce mecánico de maleza y matorral', 'fg-theme'),
+      __('Retirada y gestión de restos vegetales', 'fg-theme'),
+      __('Limpieza de solares y parcelas abandonadas', 'fg-theme'),
+      __('Preparación del terreno previa a obra o plantación', 'fg-theme'),
+      __('Desbroce preventivo para reducir el riesgo de incendio', 'fg-theme'),
+      __('Presupuesto según superficie y estado del terreno', 'fg-theme'),
+    ]); ?>
   </div>
 </section>
 <?php
