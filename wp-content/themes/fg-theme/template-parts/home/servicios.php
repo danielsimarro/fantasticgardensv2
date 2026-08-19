@@ -1,6 +1,6 @@
 <?php
 /**
- * Home · 02 Servicios — cuatro filas anchas alternadas, numeradas en romanos.
+ * Home · 02 Servicios — tres filas anchas alternadas, numeradas en romanos.
  * @package Fantastic_Gardens
  */
 if (!defined('ABSPATH')) exit;
@@ -8,11 +8,11 @@ if (!defined('ABSPATH')) exit;
 $items = [
     [
         'title' => __('Diseño y paisajismo', 'fg-theme'),
-        'body'  => __('Realizamos tu proyecto de paisajismo en 3D para que puedas ver cuál será tu resultado antes de mover una sola piedra.', 'fg-theme'),
+        'body'  => __('Realizamos tu proyecto de paisajismo con infografía y 3D para que puedas ver el resultado final de tu jardín.', 'fg-theme'),
         'cta'   => __('Diseño paisajismo', 'fg-theme'),
         'url'   => fg_page_url('diseno'),
-        'image' => fg_asset('card-diseno.jpg'),
-        'image_alt' => __('Jardín mediterráneo con piscina diseñado por Fantastic Gardens', 'fg-theme'),
+        'image' => fg_asset('diseno-paisajismo-planos-jardin-marbella.jpg'),
+        'image_alt' => __('Diseñador de Fantastic Gardens comparando el plano de un jardín con el resultado final en Marbella', 'fg-theme'),
         'icon'  => fg_asset('icons/servicios/concepto-pencil.svg'),
     ],
     [
@@ -20,26 +20,17 @@ $items = [
         'body'  => __('Solo siéntate en tu jardín y disfruta de tu piscina. Tratamientos de plagas, podas, abonado y fertilización con visitas programadas.', 'fg-theme'),
         'cta'   => __('Mantenimiento', 'fg-theme'),
         'url'   => fg_page_url('mantenimiento'),
-        'image' => fg_asset('card-mantenimiento-min.jpg'),
-        'image_alt' => __('Jardinero podando setos en un jardín cuidado', 'fg-theme'),
+        'image' => fg_asset('mantenimiento-jardin-mediterraneo-marbella.jpg'),
+        'image_alt' => __('Jardinero de Fantastic Gardens cuidando las plantas de un jardín mediterráneo con piscina en Marbella', 'fg-theme'),
         'icon'  => fg_asset('icons/servicios/poda-formacion.svg'),
     ],
     [
-        'title' => __('Vivero y garden center', 'fg-theme'),
-        'body'  => __('Dispondrás de la mejor selección de flores y plantas. Nuestro vivero en Ronda hará de tu jardín un verdadero oasis.', 'fg-theme'),
-        'cta'   => __('Vivero', 'fg-theme'),
+        'title' => __('Vivero y plantación propia', 'fg-theme'),
+        'body'  => __('Dispondrás de la mejor selección de flores y plantas en nuestro vivero de Ronda. Cultivamos también en Málaga y Valencia, con trazabilidad completa y ejemplares aclimatados que llegan a tu jardín con raíz fuerte.', 'fg-theme'),
+        'cta'   => __('Vivero y plantación propia', 'fg-theme'),
         'url'   => fg_page_url('vivero'),
-        'image' => fg_asset('card-vivero-min.jpg'),
-        'image_alt' => __('Vivero con olivos y plantas en macetas de barro', 'fg-theme'),
-        'icon'  => fg_asset('icons/servicios/seleccion-local.svg'),
-    ],
-    [
-        'title' => __('Plantación propia', 'fg-theme'),
-        'body'  => __('Cultivamos en Ronda, Málaga y Valencia. Trazabilidad completa y ejemplares aclimatados que llegan al jardín con raíz fuerte.', 'fg-theme'),
-        'cta'   => __('Plantación propia', 'fg-theme'),
-        'url'   => fg_page_url('vivero'),
-        'image' => fg_asset('card-plantacion.jpg'),
-        'image_alt' => __('Plantación propia de olivos y aromáticas', 'fg-theme'),
+        'image' => fg_asset('vivero-garden-center-ronda-fantastic-gardens.jpg'),
+        'image_alt' => __('Invernaderos del vivero y garden center de Fantastic Gardens en Ronda con árboles y plantas en maceta', 'fg-theme'),
         'icon'  => fg_asset('icons/servicios/cultivo-responsable.svg'),
     ],
 ];
@@ -68,7 +59,7 @@ $items = [
         </h2>
       </div>
       <p class="section-head__sub" data-reveal data-reveal-delay="160">
-        <?php esc_html_e('Cuatro disciplinas, un mismo equipo. Del proyecto en 3D al cuidado diario, todo se resuelve dentro de casa.', 'fg-theme'); ?>
+        <?php esc_html_e('Tres disciplinas, un mismo equipo. Del proyecto en 3D al cuidado diario, todo se resuelve dentro de casa.', 'fg-theme'); ?>
       </p>
     </div>
 

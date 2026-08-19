@@ -31,8 +31,8 @@ $publicos = [
 
       <div class="home-estudio__media" data-img-reveal data-reveal-delay="140">
         <img data-parallax="0.05" data-kenburns
-             src="<?php echo esc_url(fg_asset('sobre-historia.jpg')); ?>"
-             alt="<?php esc_attr_e('Equipo de Fantastic Gardens trabajando en un jardín', 'fg-theme'); ?>"
+             src="<?php echo esc_url(fg_asset('jardinero-cuidando-cesped-piscina-marbella.jpg')); ?>"
+             alt="<?php esc_attr_e('Jardinero de Fantastic Gardens cortando el césped junto a la piscina en un jardín de Marbella', 'fg-theme'); ?>"
              loading="lazy" decoding="async">
         <div class="home-estudio__media-tag">
           <span class="home-estudio__media-tag-label"><?php esc_html_e('Estudio', 'fg-theme'); ?></span>

@@ -21,8 +21,8 @@ $familias = [
 
   <div class="wrap home-vivero">
     <div class="home-vivero__media" data-img-reveal>
-      <img data-parallax="0.06" src="<?php echo esc_url(fg_asset('hero-vivero.jpg')); ?>"
-           alt="<?php esc_attr_e('Vivero propio de Fantastic Gardens en Ronda', 'fg-theme'); ?>"
+      <img data-parallax="0.06" src="<?php echo esc_url(fg_asset('flores-plantas-invernadero-vivero-ronda.jpg')); ?>"
+           alt="<?php esc_attr_e('Invernadero del vivero de Fantastic Gardens en Ronda con flores y plantas de temporada', 'fg-theme'); ?>"
            loading="lazy" decoding="async">
       <div class="home-vivero__tag">
         <span class="home-vivero__tag-label"><?php esc_html_e('Garden center', 'fg-theme'); ?></span>

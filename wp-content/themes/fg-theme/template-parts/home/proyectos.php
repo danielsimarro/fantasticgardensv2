@@ -85,7 +85,7 @@ if ($proyectos_query->have_posts()) {
           <?php esc_html_e('La transformación,', 'fg-theme'); ?><br><em class="em-verde"><?php esc_html_e('al descubierto', 'fg-theme'); ?></em>
         </h3>
         <p class="home-ba__text" data-reveal data-reveal-delay="130">
-          <?php esc_html_e('Arrastra la guía para ver el terreno original y el jardín terminado. Jardín Villa Costa del Sol, Marbella.', 'fg-theme'); ?>
+          <?php esc_html_e('Arrastra la guía para ver el solar en obra y el jardín terminado. Reforma de jardín con piscina, Marbella.', 'fg-theme'); ?>
         </p>
         <div data-reveal data-reveal-delay="180">
           <?php echo fg_cta(__('Ver todos los antes y después', 'fg-theme'), fg_page_url('antes-despues')); ?>
@@ -94,10 +94,10 @@ if ($proyectos_query->have_posts()) {
 
       <div data-reveal data-reveal-delay="120">
         <?php fg_before_after([
-          'before'       => fg_asset('page-antes.jpg'),
-          'before_alt'   => __('Jardín Villa Costa del Sol antes de la intervención', 'fg-theme'),
-          'after'        => fg_asset('page-despues.jpg'),
-          'after_alt'    => __('Jardín Villa Costa del Sol con el jardín terminado', 'fg-theme'),
+          'before'       => fg_asset('reforma-jardin-piscina-marbella-antes.jpg'),
+          'before_alt'   => __('Solar en obra junto a la piscina antes de la reforma', 'fg-theme'),
+          'after'        => fg_asset('reforma-jardin-piscina-marbella-despues.jpg'),
+          'after_alt'    => __('Jardín terminado en Marbella con césped natural, piscina y palmeras junto a un porche, reforma de Fantastic Gardens', 'fg-theme'),
           'before_label' => __('Antes', 'fg-theme'),
           'after_label'  => __('Después', 'fg-theme'),
         ]); ?>

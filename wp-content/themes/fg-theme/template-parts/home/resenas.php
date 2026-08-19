@@ -27,8 +27,8 @@ $resenas = [
     ],
     [
         'kind'      => 'cta',
-        'image'     => fg_asset('proyecto-3.jpg'),
-        'image_alt' => __('Jardín en Ronda', 'fg-theme'),
+        'image'     => fg_asset('villa-jardin-piscina-marbella-vista-aerea.jpg'),
+        'image_alt' => __('Vista aérea de una villa en Marbella con piscina, palmeras y jardín mediterráneo', 'fg-theme'),
         'title'     => __('El próximo jardín puede ser el tuyo', 'fg-theme'),
         'cta_label' => __('Cuéntanos tu proyecto', 'fg-theme'),
         'cta_url'   => fg_page_url('contacto'),

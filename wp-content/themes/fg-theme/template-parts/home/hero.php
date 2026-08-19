@@ -13,9 +13,9 @@ $hero_poster = fg_media_url('hero_poster', 'hero-indice-poster.jpg');
 $hero_video  = fg_media_url('hero_video',  'hero-indice.mp4');
 
 $cifras = [
-    ['num' => '+20',       'count' => 20, 'prefix' => '+', 'label' => __('Años de experiencia', 'fg-theme')],
+    ['num' => '+30',       'count' => 30, 'prefix' => '+', 'label' => __('Años de experiencia', 'fg-theme')],
     ['num' => 'Ronda',                                     'label' => __('Vivero y garden center', 'fg-theme')],
-    ['num' => '3',         'count' => 3,                   'label' => __('Plantaciones propias', 'fg-theme')],
+    ['num' => '40',        'count' => 40,                  'label' => __('Hectáreas de plantación propia', 'fg-theme')],
     ['num' => 'San Pedro',                                 'label' => __('Oficinas en Marbella', 'fg-theme')],
 ];
 ?>

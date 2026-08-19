@@ -23,7 +23,7 @@ $avales = [
     <div>
       <?php echo fg_kicker(__('Calidad y garantía', 'fg-theme'), '03', 'light'); ?>
       <h2 class="section-head__title" data-reveal data-reveal-delay="80">
-        <?php esc_html_e('Más de veinte años', 'fg-theme'); ?><br><em class="em-lima"><?php esc_html_e('de oficio', 'fg-theme'); ?></em>
+        <?php esc_html_e('Más de treinta años', 'fg-theme'); ?><br><em class="em-lima"><?php esc_html_e('de oficio', 'fg-theme'); ?></em>
       </h2>
 
       <div class="home-garantia__media" data-img-reveal data-reveal-delay="200">
