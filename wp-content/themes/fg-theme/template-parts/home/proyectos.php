@@ -90,7 +90,10 @@ if ($proyectos_query->have_posts()) {
     </div>
 
     <div class="home-ba">
-      <div>
+      <img class="home-ba__bg" src="<?php echo esc_url(fg_asset('textura-jardin-tropical-claro.jpg')); ?>" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="home-ba__scrim" aria-hidden="true"></div>
+
+      <div class="home-ba__info">
         <?php echo fg_kicker(__('Antes y después', 'fg-theme')); ?>
         <h3 class="home-ba__title" data-reveal data-reveal-delay="70">
           <?php esc_html_e('La transformación,', 'fg-theme'); ?><br><em class="em-verde"><?php esc_html_e('al descubierto', 'fg-theme'); ?></em>
