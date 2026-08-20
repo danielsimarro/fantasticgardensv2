@@ -899,9 +899,16 @@ body.nav-open { overflow: hidden; }
 .photo-hero__content { position: relative; z-index: 2; color: var(--crema); }
 .photo-hero__title { max-width: 18ch; }
 .photo-hero__content .breadcrumb { margin-bottom: 1.625rem; }
-.photo-hero__title { font-family: var(--serif); font-weight: 300; font-size: clamp(2.75rem, 8vw, 6.5rem); line-height: .96; letter-spacing: -.025em; color: var(--crema); }
+/* Sombra en dos capas (ceñida + halo), mismo motivo que .hero__title/
+   .hero__subtitle del hero de portada: sin ella el titular y la entradilla
+   dependían solo del velo de la foto (.photo-hero__overlay) y se perdían
+   sobre tramos claros — más notorio aún en la variante --compact
+   (Contacto), con titular más pequeño y hero más bajo. Al ser un
+   componente compartido por casi todas las páginas interiores, mejora la
+   legibilidad en todas a la vez, no solo en Contacto. */
+.photo-hero__title { font-family: var(--serif); font-weight: 300; font-size: clamp(2.75rem, 8vw, 6.5rem); line-height: .96; letter-spacing: -.025em; color: var(--crema); text-shadow: 0 2px 8px rgba(8,14,9,.6), 0 10px 36px rgba(8,14,9,.45); }
 .photo-hero__content .accent-rule { margin-top: 1.5rem; background: color-mix(in srgb, var(--crema) 45%, transparent); }
-.photo-hero__sub { margin-top: 1.5rem; max-width: 44ch; font-size: clamp(.9375rem, 1.1vw, 1.125rem); line-height: 1.75; color: color-mix(in srgb, var(--crema) 86%, transparent); }
+.photo-hero__sub { margin-top: 1.5rem; max-width: 44ch; font-size: clamp(.9375rem, 1.1vw, 1.125rem); line-height: 1.75; color: color-mix(in srgb, var(--crema) 86%, transparent); text-shadow: 0 1px 3px rgba(8,14,9,.7), 0 4px 18px rgba(8,14,9,.5); }
 .photo-hero__cta { margin-top: 2.25rem; }
 
 /* Variante "rica" (de momento solo Mantenimiento): más alto, titular en dos
