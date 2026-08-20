@@ -248,11 +248,6 @@ if (strpos($fg_brand_sub, '·') !== false) {
       </a>
     <?php endif; ?>
   </div>
-
-  <div class="nav-overlay__foot">
-    <span><?php esc_html_e('San Pedro Alcántara · Marbella', 'fg-theme'); ?></span>
-    <span><?php esc_html_e('Ronda', 'fg-theme'); ?></span>
-  </div>
 </div>
 
 <main id="main">
