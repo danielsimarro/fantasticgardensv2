@@ -13,6 +13,9 @@ $avales = [
 ];
 ?>
 <section class="section section--osc has-wm" id="garantia">
+  <img class="home-garantia__bg" src="<?php echo esc_url(fg_asset('textura-jardin-tropical-oscuro.jpg')); ?>" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <div class="home-garantia__scrim" aria-hidden="true"></div>
+
   <?php fg_watermark([
     'src' => 'hojita.svg', 'pos' => 'tr', 'ratio' => '581 / 690',
     'size' => 'clamp(10rem, 22vw, 24rem)', 'opacity' => '.06', 'color' => 'var(--crema)',
