@@ -652,6 +652,17 @@ body.nav-open { overflow: hidden; }
 @media (min-width: 768px) { .grid--2 { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .grid--4 { grid-template-columns: repeat(4, 1fr); } .grid--3 { grid-template-columns: repeat(3, 1fr); } }
 
+/* Cabecera + cuerpo a dos columnas iguales (foto+CTA / rejilla numerada),
+   pensada para caber en poca altura y equilibrada tanto en móvil (todo
+   apilado, la foto da un respiro visual antes de la lista) como en
+   escritorio (dos bloques del mismo peso, sin aside fijo ni desajuste de
+   alturas) — p.ej. "01 Qué incluye" de Desbroce y limpieza. */
+.intake-grid { margin-top: clamp(2rem, 4.5vw, 3rem); display: grid; grid-template-columns: 1fr; gap: clamp(1.75rem, 4vw, 3rem); }
+@media (min-width: 760px) { .intake-grid { grid-template-columns: 1fr 1fr; align-items: start; } }
+.intake-grid__media .ba { height: clamp(14rem, 22vw, 19rem); border-radius: 3px; }
+.intake-grid__media .ba__base { height: 100%; object-fit: cover; }
+.intake-grid__cta { margin-top: 1.5rem; }
+
 /* Introducción partida: aside fijo (kicker + titular + CTA) junto a una
    rejilla numerada de pasos/puntos (Diseño de paisajismo — "Cuéntanos qué
    necesitas"). El aside se fija en pantallas anchas mientras se recorre la
@@ -668,12 +679,6 @@ body.nav-open { overflow: hidden; }
    rejilla numerada de al lado — solo un acento visual, no un media grande. */
 .split-intro__media { margin-top: clamp(1.75rem, 4vh, 2.5rem); overflow: hidden; background: var(--crema); }
 .split-intro__media img { display: block; width: 100%; height: clamp(9rem, 13vw, 12.5rem); object-fit: cover; }
-/* Variante con comparador arrastrable (.ba) en vez de una <img> suelta —
-   mismo alto fijo y compacto que .split-intro__media, .ba__base pasa de
-   height:auto (su comportamiento normal en .ba-item__slider) a llenar esa
-   franja con object-fit:cover. */
-.split-intro__media--compare .ba { height: clamp(9rem, 13vw, 12.5rem); }
-.split-intro__media--compare .ba__base { height: 100%; object-fit: cover; }
 
 /* ================================================================
    Vídeo "en acción" (p.ej. Desbroce y limpieza): tarjeta vertical
@@ -775,6 +780,7 @@ body.nav-open { overflow: hidden; }
 /* Franja de fondo oscura de "En acción": misma foto-tras-velo que
    .video-desbroce__bg, sobre section--osc (color sólido de respaldo si la
    imagen no llega a cargar). */
+.section.action-features { padding: clamp(1.75rem, 4vh, 2.5rem) 0; }
 .action-features { position: relative; overflow: hidden; }
 .action-features__bg { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; }
 .action-features__scrim { position: absolute; inset: 0; z-index: 0; background: color-mix(in srgb, var(--verde-osc) 62%, transparent); }
@@ -783,13 +789,21 @@ body.nav-open { overflow: hidden; }
 /* Variante "action" de fila de iconos: icono arriba, rótulo en versalitas y
    descripción corta, todo centrado — para la franja oscura con textura de
    "En acción" (Desbroce). No reutiliza .design-features (esa sigue en fila
-   horizontal para Diseño de paisajismo, ver arriba). */
-.feature-row--action { grid-template-columns: repeat(2, 1fr); row-gap: 2.5rem; column-gap: 1.5rem; }
+   horizontal para Diseño de paisajismo, ver arriba).
+   En móvil los 4 puntos se apilan en una sola columna, divididos por un
+   filete horizontal (misma idea que en escritorio, donde el filete es
+   vertical porque ahí van en fila) — no un grid 2×2 suelto sin relación
+   entre los puntos. */
+.feature-row--action { grid-template-columns: 1fr; row-gap: 0; }
 @media (min-width: 640px) { .feature-row--action { grid-template-columns: repeat(4, 1fr); column-gap: 0; } }
-.feature-row--action .feature { flex-direction: column; align-items: center; text-align: center; gap: .875rem; padding: 0 1.5rem; border-top: 0; }
+.feature-row--action .feature {
+  flex-direction: column; align-items: center; text-align: center; gap: .875rem;
+  padding: 1.625rem 1.5rem; border-top: 1px solid color-mix(in srgb, var(--crema) 16%, transparent);
+}
+.feature-row--action .feature:first-child { border-top: 0; padding-top: 0; }
 @media (min-width: 640px) {
-  .feature-row--action .feature { border-left: 1px solid color-mix(in srgb, var(--crema) 16%, transparent); }
-  .feature-row--action .feature:first-child { border-left: 0; }
+  .feature-row--action .feature { padding: 0 1.5rem; border-top: 0; border-left: 1px solid color-mix(in srgb, var(--crema) 16%, transparent); }
+  .feature-row--action .feature:first-child { border-left: 0; padding-left: 0; }
 }
 .feature-row--action .feature__icon { color: color-mix(in srgb, var(--lima) 65%, var(--crema) 30%); }
 .feature-row--action .feature__icon svg { width: 1.875rem; height: 1.875rem; }

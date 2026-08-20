@@ -23,37 +23,57 @@ fg_photo_hero([
     'src' => 'icons/servicios/materiales-stones.svg', 'pos' => 'cl',
     'size' => 'clamp(12rem, 28vw, 24rem)', 'opacity' => '.06', 'float' => 65,
   ]); ?>
-  <div class="wrap split-intro">
-    <div class="split-intro__aside">
-      <?php echo fg_kicker(__('Qué incluye', 'fg-theme'), '01'); ?>
-      <h2 class="section-head__title" data-reveal data-reveal-delay="80">
-        <?php esc_html_e('Desbroce de terrenos, parcelas y fincas', 'fg-theme'); ?>
-      </h2>
-      <p class="split-intro__lead" data-reveal data-reveal-delay="160">
+  <div class="wrap">
+    <div class="section-head section-head--split">
+      <div>
+        <?php echo fg_kicker(__('Qué incluye', 'fg-theme'), '01'); ?>
+        <h2 class="section-head__title" data-reveal data-reveal-delay="80">
+          <?php esc_html_e('Desbroce de terrenos, parcelas y fincas', 'fg-theme'); ?>
+        </h2>
+      </div>
+      <p class="section-head__sub" data-reveal data-reveal-delay="160">
         <?php esc_html_e('Retiramos maleza, matorral y restos vegetales, dejando la parcela lista para construir, plantar o simplemente disfrutar.', 'fg-theme'); ?>
       </p>
-      <div class="split-intro__media split-intro__media--compare" data-img-reveal data-reveal-delay="200">
-        <?php fg_before_after([
-          'before'       => fg_asset('desbroce-parcela-marbella-antes.jpg'),
-          'after'        => fg_asset('desbroce-parcela-marbella-despues.jpg'),
-          'after_alt'    => __('Vista aérea de una parcela en Marbella tras el desbroce, con el terreno limpio y preparado', 'fg-theme'),
-          'before_label' => __('Antes', 'fg-theme'),
-          'after_label'  => __('Después', 'fg-theme'),
-        ]); ?>
-      </div>
-      <div class="split-intro__cta" data-reveal data-reveal-delay="260">
-        <?php echo fg_cta(__('Cuéntenos su parcela', 'fg-theme'), fg_page_url('contacto') . '#formulario'); ?>
-      </div>
     </div>
 
-    <?php
-    fg_numbered_grid([
-      __('Desbroce mecánico de maleza y matorral', 'fg-theme'),
-      __('Retirada y gestión de restos vegetales', 'fg-theme'),
-      __('Preparación del terreno previa a obra o plantación', 'fg-theme'),
-      __('Desbroce preventivo para reducir el riesgo de incendio', 'fg-theme'),
-    ]); ?>
+    <div class="intake-grid">
+      <div class="intake-grid__media">
+        <div data-img-reveal data-reveal-delay="120">
+          <?php fg_before_after([
+            'before'       => fg_asset('desbroce-parcela-marbella-antes.jpg'),
+            'after'        => fg_asset('desbroce-parcela-marbella-despues.jpg'),
+            'after_alt'    => __('Vista aérea de una parcela en Marbella tras el desbroce, con el terreno limpio y preparado', 'fg-theme'),
+            'before_label' => __('Antes', 'fg-theme'),
+            'after_label'  => __('Después', 'fg-theme'),
+          ]); ?>
+        </div>
+        <div class="intake-grid__cta" data-reveal data-reveal-delay="200">
+          <?php echo fg_cta(__('Cuéntenos su parcela', 'fg-theme'), fg_page_url('contacto') . '#formulario'); ?>
+        </div>
+      </div>
+
+      <?php
+      fg_numbered_grid([
+        __('Desbroce mecánico de maleza y matorral', 'fg-theme'),
+        __('Retirada y gestión de restos vegetales', 'fg-theme'),
+        __('Preparación del terreno previa a obra o plantación', 'fg-theme'),
+        __('Desbroce preventivo para reducir el riesgo de incendio', 'fg-theme'),
+      ]); ?>
+    </div>
   </div>
+</section>
+<?php
+$features = [
+  ['icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-9"/><path d="M12 12c0-3.5-2.5-6-6-6 0 3.5 2.5 6 6 6z"/><path d="M12 12c0-3.5 2.5-6 6-6 0 3.5-2.5 6-6 6z"/></svg>', 'label' => __('Maquinaria ligera', 'fg-theme'),  'description' => __('Accedemos a cualquier punto sin dañar el entorno.', 'fg-theme')],
+  ['icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18 9 8l4 6 2-3 6 7z"/></svg>', 'label' => __('Máxima precisión', 'fg-theme'), 'description' => __('Trabajamos con cuidado entre muros, arbolado y construcciones.', 'fg-theme')],
+  ['icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c8 0 14-6 14-14-8 0-14 6-14 14z"/><path d="M5 19c3-5 6-8 11-11"/></svg>', 'label' => __('Impacto mínimo', 'fg-theme'), 'description' => __('Respetamos el paisaje y la biodiversidad del terreno.', 'fg-theme')],
+  ['icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>', 'label' => __('Terreno listo', 'fg-theme'), 'description' => __('Dejamos tu parcela preparada para seguir avanzando.', 'fg-theme')],
+];
+?>
+<section class="section section--osc action-features">
+  <img class="action-features__bg" src="<?php echo esc_url(fg_asset('textura-jardin-tropical-oscuro.jpg')); ?>" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <div class="action-features__scrim" aria-hidden="true"></div>
+  <div class="wrap"><?php fg_feature_row($features, 'action'); ?></div>
 </section>
 <section class="section has-wm" id="video-desbroce">
   <img class="video-desbroce__bg" src="<?php echo esc_url(fg_asset('textura-jardin-tropical-claro.jpg')); ?>" alt="" aria-hidden="true" loading="lazy" decoding="async">
@@ -104,19 +124,6 @@ fg_photo_hero([
       </div>
     </div>
   </div>
-</section>
-<?php
-$features = [
-  ['icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-9"/><path d="M12 12c0-3.5-2.5-6-6-6 0 3.5 2.5 6 6 6z"/><path d="M12 12c0-3.5 2.5-6 6-6 0 3.5-2.5 6-6 6z"/></svg>', 'label' => __('Maquinaria ligera', 'fg-theme'),  'description' => __('Accedemos a cualquier punto sin dañar el entorno.', 'fg-theme')],
-  ['icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18 9 8l4 6 2-3 6 7z"/></svg>', 'label' => __('Máxima precisión', 'fg-theme'), 'description' => __('Trabajamos con cuidado entre muros, arbolado y construcciones.', 'fg-theme')],
-  ['icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c8 0 14-6 14-14-8 0-14 6-14 14z"/><path d="M5 19c3-5 6-8 11-11"/></svg>', 'label' => __('Impacto mínimo', 'fg-theme'), 'description' => __('Respetamos el paisaje y la biodiversidad del terreno.', 'fg-theme')],
-  ['icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>', 'label' => __('Terreno listo', 'fg-theme'), 'description' => __('Dejamos tu parcela preparada para seguir avanzando.', 'fg-theme')],
-];
-?>
-<section class="section section--osc action-features">
-  <img class="action-features__bg" src="<?php echo esc_url(fg_asset('textura-jardin-tropical-oscuro.jpg')); ?>" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <div class="action-features__scrim" aria-hidden="true"></div>
-  <div class="wrap"><?php fg_feature_row($features, 'action'); ?></div>
 </section>
 <?php
 fg_site_closing(__('Marbella · Costa del Sol', 'fg-theme'));
