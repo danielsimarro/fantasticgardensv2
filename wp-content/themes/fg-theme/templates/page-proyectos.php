@@ -35,42 +35,42 @@ get_header();
     ]);
 
     if ($fg_proyectos_q->have_posts()) :
-        ?>
-        <div class="grid grid--3 section-body" data-reveal>
-          <?php
-          while ($fg_proyectos_q->have_posts()) : $fg_proyectos_q->the_post();
-              $thumb     = get_the_post_thumbnail_url(null, 'large') ?: fg_asset('proyecto-1.jpg');
-              $ubicacion = get_post_meta(get_the_ID(), 'ubicacion', true) ?: 'Marbella · Costa del Sol';
-              fg_project_card([
-                  'url'       => get_permalink(),
-                  'image'     => $thumb,
-                  'image_alt' => get_the_title() . ' · ' . $ubicacion,
-                  'title'     => get_the_title(),
-                  'meta'      => $ubicacion,
-              ]);
-          endwhile;
-          wp_reset_postdata();
-          ?>
-        </div>
-    <?php else :
+        $fg_proyectos_rows = [];
+        while ($fg_proyectos_q->have_posts()) : $fg_proyectos_q->the_post();
+            $thumb     = get_the_post_thumbnail_url(null, 'full') ?: fg_asset('proyecto-1.jpg');
+            $ubicacion = get_post_meta(get_the_ID(), 'ubicacion', true) ?: 'Marbella · Costa del Sol';
+            $detalle   = fg_proyecto_detalle(get_the_ID());
+            $fg_proyectos_rows[] = [
+                'url'       => get_permalink(),
+                'image'     => $thumb,
+                'image_alt' => get_the_title() . ' · ' . $ubicacion,
+                'eyebrow'   => __('Proyecto realizado', 'fg-theme'),
+                'title'     => get_the_title(),
+                'body'      => ($detalle['resumen'] ?? null) ?: $ubicacion,
+                'cta'       => __('Ver proyecto', 'fg-theme'),
+            ];
+        endwhile;
+        wp_reset_postdata();
+        fg_service_rows($fg_proyectos_rows, 'section-body service-rows--projects');
+    else :
         $fg_static_projects = [
-            ['img' => fg_asset('proyecto-1.jpg'), 'title' => __('Villa Mediterránea', 'fg-theme'), 'ubicacion' => __('Marbella · Costa del Sol', 'fg-theme')],
-            ['img' => fg_asset('proyecto-2.jpg'), 'title' => __('Jardín con Palmeras', 'fg-theme'), 'ubicacion' => __('Benahavís · Málaga', 'fg-theme')],
-            ['img' => fg_asset('proyecto-3.jpg'), 'title' => __('Jardín en Ronda', 'fg-theme'), 'ubicacion' => __('Ronda · Málaga', 'fg-theme')],
+            ['title' => __('Villa Mediterránea', 'fg-theme'), 'ubicacion' => __('Marbella · Costa del Sol', 'fg-theme'), 'img' => fg_asset('proyecto-1.jpg')],
+            ['title' => __('Jardín con Palmeras', 'fg-theme'), 'ubicacion' => __('Benahavís · Málaga', 'fg-theme'), 'img' => fg_asset('proyecto-2.jpg')],
+            ['title' => __('Jardín en Ronda', 'fg-theme'), 'ubicacion' => __('Ronda · Málaga', 'fg-theme'), 'img' => fg_asset('proyecto-3.jpg')],
         ];
-        ?>
-        <div class="grid grid--3 section-body" data-reveal>
-          <?php foreach ($fg_static_projects as $p) :
-              fg_project_card([
-                  'url'       => fg_page_url('proyectos'),
-                  'image'     => $p['img'],
-                  'image_alt' => $p['title'] . ' · ' . $p['ubicacion'],
-                  'title'     => $p['title'],
-                  'meta'      => $p['ubicacion'],
-              ]);
-          endforeach; ?>
-        </div>
-    <?php endif; ?>
+        $fg_proyectos_rows = array_map(static function (array $p): array {
+            return [
+                'url'       => fg_page_url('proyectos'),
+                'image'     => $p['img'],
+                'image_alt' => $p['title'] . ' · ' . $p['ubicacion'],
+                'eyebrow'   => __('Proyecto realizado', 'fg-theme'),
+                'title'     => $p['title'],
+                'body'      => $p['ubicacion'],
+                'cta'       => __('Ver proyecto', 'fg-theme'),
+            ];
+        }, $fg_static_projects);
+        fg_service_rows($fg_proyectos_rows, 'section-body service-rows--projects');
+    endif; ?>
 
     <div class="section-cta" data-reveal>
       <p class="projects-nota"><?php esc_html_e('¿Quiere ver cómo empezaron estos jardines?', 'fg-theme'); ?></p>

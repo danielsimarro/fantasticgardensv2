@@ -88,6 +88,21 @@ fg_stats_band([
         </div>
         <figcaption class="ba-item__cap"><?php esc_html_e('Solar en obra junto a la piscina · jardín terminado con césped natural y palmeras', 'fg-theme'); ?></figcaption>
       </figure>
+
+      <figure class="ba-item ba-item--framed" data-reveal>
+        <h3 class="compare__name"><?php esc_html_e('Jardín de villa con palmera en Marbella', 'fg-theme'); ?></h3>
+        <span class="accent-rule"></span>
+        <div class="ba-item__slider">
+          <?php fg_before_after([
+            'before'       => fg_asset('jardin-villa-palmeras-marbella-antes.jpg'),
+            'after'        => fg_asset('jardin-villa-palmeras-marbella-despues.jpg'),
+            'after_alt'    => __('Jardín de villa en Marbella terminado, con césped natural, palmera y zona ajardinada junto al porche', 'fg-theme'),
+            'before_label' => __('Antes', 'fg-theme'),
+            'after_label'  => __('Después', 'fg-theme'),
+          ]); ?>
+        </div>
+        <figcaption class="ba-item__cap"><?php esc_html_e('Parcela en obra con acopio de tierra · jardín terminado con césped natural, palmera y arriates', 'fg-theme'); ?></figcaption>
+      </figure>
     </div>
 
     <div class="section-cta" data-reveal>

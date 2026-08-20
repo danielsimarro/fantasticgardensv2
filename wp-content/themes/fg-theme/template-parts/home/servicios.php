@@ -37,23 +37,24 @@ $items = [
 ?>
 <section class="section section--beige has-wm" id="servicios">
   <?php
-  // Dos planos de profundidad: la de delante recorre más y responde rápido;
-  // la del fondo apenas se mueve. Esa diferencia es la que da profundidad.
+  // Sombra de hojas de fondo: la misma silueta desenfocada y teñida de
+  // --ink (en vez del motivo botánico trazado en --verde), en dos tamaños
+  // y esquinas opuestas, como si el sol atravesara un árbol fuera de plano.
   fg_watermark([
-    'src' => 'icons/botanica/aromaticas.svg', 'pos' => 'cl',
-    'size' => 'clamp(12rem, 26vw, 28rem)', 'opacity' => '.07',
-    'float' => 90, 'rot' => 4,
+    'src' => 'hojita.svg', 'pos' => 'tl', 'ratio' => '581 / 690', 'shadow' => true,
+    'size' => 'clamp(16rem, 34vw, 34rem)', 'opacity' => '.14',
+    'float' => 70, 'rot' => -8, 'scrub' => 1.4,
   ]);
   fg_watermark([
-    'src' => 'icons/botanica/gramineas.svg', 'pos' => 'br',
-    'size' => 'clamp(11rem, 22vw, 23rem)', 'opacity' => '.08',
-    'float' => 26, 'rot' => -6,
+    'src' => 'hojita.svg', 'pos' => 'br', 'ratio' => '581 / 690', 'flip' => true, 'shadow' => true,
+    'size' => 'clamp(12rem, 24vw, 24rem)', 'opacity' => '.1',
+    'float' => 30, 'rot' => 10, 'scrub' => 2,
   ]); ?>
 
   <div class="wrap">
     <div class="section-head section-head--split section-head--rule">
       <div>
-        <?php echo fg_kicker(__('Servicios', 'fg-theme'), '02'); ?>
+        <?php echo fg_kicker(__('Nuestros servicios', 'fg-theme'), '02'); ?>
         <h2 class="section-head__title" data-reveal data-reveal-delay="80">
           <?php esc_html_e('Diseñaremos el jardín', 'fg-theme'); ?><br><?php esc_html_e('de tus sueños', 'fg-theme'); ?>
         </h2>
@@ -63,6 +64,6 @@ $items = [
       </p>
     </div>
 
-    <?php fg_service_rows($items); ?>
+    <?php fg_service_rows($items, 'service-rows--home'); ?>
   </div>
 </section>
