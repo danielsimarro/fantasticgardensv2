@@ -26,7 +26,7 @@ $avales = [
         <?php esc_html_e('Más de treinta años', 'fg-theme'); ?><br><em class="em-lima"><?php esc_html_e('de oficio', 'fg-theme'); ?></em>
       </h2>
 
-      <div class="home-garantia__media" data-img-reveal data-reveal-delay="200">
+      <div class="home-garantia__media" data-img-reveal data-reveal-delay="200" data-tilt="3">
         <img src="<?php echo esc_url(fg_asset('calidad-garden.jpg')); ?>"
              alt="<?php esc_attr_e('Pérgola y jardín terminado por Fantastic Gardens', 'fg-theme'); ?>"
              loading="lazy" decoding="async">

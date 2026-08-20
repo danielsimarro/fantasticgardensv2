@@ -668,6 +668,12 @@ body.nav-open { overflow: hidden; }
    rejilla numerada de al lado — solo un acento visual, no un media grande. */
 .split-intro__media { margin-top: clamp(1.75rem, 4vh, 2.5rem); overflow: hidden; background: var(--crema); }
 .split-intro__media img { display: block; width: 100%; height: clamp(9rem, 13vw, 12.5rem); object-fit: cover; }
+/* Variante con comparador arrastrable (.ba) en vez de una <img> suelta —
+   mismo alto fijo y compacto que .split-intro__media, .ba__base pasa de
+   height:auto (su comportamiento normal en .ba-item__slider) a llenar esa
+   franja con object-fit:cover. */
+.split-intro__media--compare .ba { height: clamp(9rem, 13vw, 12.5rem); }
+.split-intro__media--compare .ba__base { height: 100%; object-fit: cover; }
 
 .numbered-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 1px; background: color-mix(in srgb, var(--ink) 14%, transparent); }
 @media (min-width: 560px) { .numbered-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -2306,13 +2312,49 @@ button.project-card:focus-visible { outline: 2px solid var(--verde); outline-off
 .home-estudio__media-tag-name { display: block; margin-top: .25rem; font-family: var(--serif); font-size: clamp(1.25rem, 2vw, 1.75rem); }
 
 /* — 03 Calidad y garantía — */
-.home-garantia { display: grid; grid-template-columns: 1fr; gap: clamp(2.25rem, 6vw, 6.875rem); align-items: start; }
+/* Resplandor ambiental (verde + lima), mismo recurso que #maquinaria — fondo
+   ya oscuro, así que admite la misma intensidad que allí (a diferencia de
+   #estudio/#servicios/#resultados, en crema, mucho más tenues). Esquina
+   opuesta a la hoja de fg_watermark (arriba-der.) para repartir el peso. */
+#garantia { position: relative; }
+#garantia::before, #garantia::after {
+  content: ""; position: absolute; z-index: 0; border-radius: 50%; pointer-events: none;
+}
+#garantia::before {
+  bottom: -14%; left: -6%; width: clamp(18rem, 36vw, 30rem); height: clamp(18rem, 36vw, 30rem);
+  opacity: .14; background: radial-gradient(circle, color-mix(in srgb, var(--verde) 60%, transparent) 0%, transparent 72%);
+}
+#garantia::after {
+  top: 24%; right: 6%; width: clamp(14rem, 28vw, 24rem); height: clamp(14rem, 28vw, 24rem);
+  opacity: .13; background: radial-gradient(circle, color-mix(in srgb, var(--lima) 55%, transparent) 0%, transparent 72%);
+}
+.home-garantia { position: relative; display: grid; grid-template-columns: 1fr; gap: clamp(2.25rem, 6vw, 6.875rem); align-items: start; }
 @media (min-width: 900px) { .home-garantia { grid-template-columns: 1fr 1fr; } }
+/* Mismo doble marco de "01 El estudio" pero en la clave de "joyería" que ya
+   usan las insignias .aval__icon de esta sección: filo lima en vez de ink,
+   para que la foto se lea como la misma familia de piezas trabajadas, no
+   como un recurso aparte. */
 .home-garantia__media {
   position: relative; margin-top: clamp(1.875rem, 5vh, 3.125rem);
   aspect-ratio: 4/3; max-height: 21.25rem; overflow: hidden;
   background: color-mix(in srgb, var(--crema) 10%, transparent);
+  border-radius: 2px;
+  outline: 1px solid color-mix(in srgb, var(--lima) 30%, transparent);
+  outline-offset: .8125rem;
+  box-shadow:
+    0 .75rem 1.5rem -1rem rgba(0,0,0,.5),
+    0 2.75rem 5rem -2.5rem rgba(0,0,0,.6);
+  transition: box-shadow .5s ease, outline-color .5s ease;
 }
+.home-garantia__media:hover {
+  outline-color: color-mix(in srgb, var(--lima) 55%, transparent);
+  box-shadow:
+    0 1rem 2rem -1rem rgba(0,0,0,.55),
+    0 3.5rem 6rem -2.25rem rgba(0,0,0,.68);
+}
+/* Ver la nota equivalente en .home-estudio__media: el reveal recorta con
+   clip-path lo que se pinta fuera de la caja (outline + sombra). */
+.js-reveal .home-garantia__media.rv-img.is-in { clip-path: inset(-8rem); }
 .home-garantia__media > img { width: 100%; height: 100%; object-fit: cover; }
 .home-garantia__copy { display: flex; flex-direction: column; gap: clamp(1.25rem, 3vh, 1.875rem); max-width: 62ch; }
 .home-garantia__copy p { font-size: clamp(.9375rem, 1.05vw, 1.0625rem); line-height: 1.9; }
