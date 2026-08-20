@@ -541,6 +541,11 @@ function fg_watermark(array $a = []): void {
 /**
  * Banda de cita a sangre: fotografía con parallax y una frase grande encima.
  * $a: image, image_alt, text (marcado ya escapado por el llamador).
+ *
+ * La comilla gigante lleva su propio data-parallax, más lento que el de la
+ * foto (0.09 frente a 0.32): dos planos que se desplazan a distinta
+ * velocidad son lo que el ojo lee como profundidad real, no solo un fondo
+ * que se mueve solo.
  */
 function fg_quote_band(array $a): void {
     $cls = 'quote-band' . (!empty($a['compact']) ? ' quote-band--compact' : '');
@@ -552,7 +557,7 @@ function fg_quote_band(array $a): void {
       <div class="quote-band__scrim" aria-hidden="true"></div>
       <div class="wrap quote-band__inner">
         <div class="quote-band__quote">
-          <span class="quote-band__mark" aria-hidden="true">&ldquo;</span>
+          <span class="quote-band__mark" aria-hidden="true" data-parallax="0.09">&ldquo;</span>
           <p class="quote-band__text" data-reveal><?php echo $a['text']; ?></p>
         </div>
       </div>
