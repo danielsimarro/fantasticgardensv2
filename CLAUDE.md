@@ -247,6 +247,7 @@ Los iconos (`icons/servicios/*.svg`, `icons/botanica/*.svg`) llevan el verde ya 
 | `hero-indice.mp4` / `hero-indice-poster.jpg` | Vídeo/póster del hero de portada |
 | `hero-jardines-permanecen.jpg` / `-movil.jpg` | Banda de cita a sangre del home; el `-movil` también sirve de fallback de `hero_mobile` |
 | `hero-nuestra-historia.jpg`, `hero-servicios.jpg`, `hero-diseno-paisajes.jpg`, `hero-mantenimiento.jpg`, `hero-vivero.jpg`, `hero-contacto.jpg` | Heroes de páginas |
+| `hero-desbroce-mecanico-parcela-marbella.jpg` | Hero de `page-servicio-desbroce-limpieza.php` (sustituye a `hero-mantenimiento.jpg`, ahora huérfano) — imagen generada con IA (ChatGPT), no una fotografía real — ver Pendientes |
 | `calendario-ritmo-del-jardin.jpg` | Sección "Cómo trabajamos" de Mantenimiento |
 | `maquinaria-camion-*.png`, `maquinaria-tractor.png` | Fotos reales de flota, sección "Personal y maquinaria" |
 | `plantacion-1/2/3/4.jpg`, `plantacion-interior-invernadero.jpg`, `plantacion-pabellon.jpg` | Galería horizontal fijada y secciones de Plantación propia (página Vivero) |
@@ -254,13 +255,14 @@ Los iconos (`icons/servicios/*.svg`, `icons/botanica/*.svg`) llevan el verde ya 
 | `page-antes.jpg`/`page-despues.jpg`, `transformacion-jardin-antes-despues-piscina-marbella.jpg` (hero, fotomontaje), `reforma-jardin-piscina-marbella-antes/despues.jpg`, `jardin-villa-palmeras-marbella-antes/despues.jpg`, `muro-piedra-jardin-tropical-marbella-antes/despues.jpg` | Las 5 parejas/piezas reales de Antes y Después de `page-antes-despues.php` — no tocar sin motivo |
 | `desbroce-parcela-marbella-antes/despues.jpg` | Comparador arrastrable compacto (`.split-intro__media--compare`) en "01 Qué incluye" de `page-servicio-desbroce-limpieza.php` — vista aérea real de una parcela antes/después del desbroce |
 | `desbroce-mecanico-maquinaria-marbella.mp4` + `-poster.jpg` | Vídeo real (fuente: Instagram del cliente, re-comprimido con ffmpeg a h.264 CRF 28 ~2,7 MB para los 16 s) de una miniexcavadora desbrozando, autoalojado en la sección "02 En acción" de `page-servicio-desbroce-limpieza.php` — tarjeta `.video-reel`, reproducción bajo demanda (`preload="none"`, JS en `main.js` solo activa `controls`+`play()` al pulsar el botón), no descarga el vídeo hasta que el usuario pulsa play |
+| `textura-jardin-tropical-claro.jpg` / `-oscuro.jpg` | Fondos fotográficos a sangre (imágenes generadas con IA, ChatGPT) de la sección "02 En acción" y de la franja `.action-features` de `page-servicio-desbroce-limpieza.php` — replica el diseño de un mockup aportado por el cliente (ago. 2026): tarjeta de vídeo con chip de ubicación y sello circular giratorio (`.video-seal`, SVG `textPath`), y franja de iconos oscura con 4 puntos (maquinaria ligera / precisión / impacto mínimo / terreno listo) vía nueva variante `fg_feature_row(..., 'action')` |
 | `villa-mediterranea-marbella-piscina-pergola-jardin.jpg`, `detalle-hoja-palmera-mediterranea-jardin.jpg`, `vivero-ronda-campos-cultivo-fantastic-gardens-aereo.jpg` | Fotos reales adicionales de v1, usadas en las fichas ampliadas de proyecto |
 | `equipo-fantastic-gardens-vivero-ronda.jpg` | Foto real del equipo en el vivero de Ronda, en "Nuestros orígenes" (Historia) — sustituye al placeholder de stock; no identifica a los fundadores concretos, ver Pendientes |
 | `escudo-ronda.png`, `page-contacto-hero.jpg` | Piezas reales ya validadas, sin cambios |
 | `especies/*.jpg` (20 archivos) | **Única excepción a la convención plana** — catálogo "Descubrir especies", backed por `inc/especies.php` |
 | `hojita.svg`, `wordmark-olivo.svg`, `arrow-right.svg`, `chevron-down.svg` | Iconografía/motivos de marca |
 
-**Limpieza pendiente:** hay imágenes huérfanas de versiones anteriores del tema (`hero-jardines-*` viejas, `sobre-historia.jpg`, `vivero-*.jpg`, `svc-*.jpg`, `page-*-2/3/4.jpg`, `page-antes-despues-hero.jpg`, `page-antes-despues-2.jpg`, etc.) sin referenciar por ningún PHP — ver Pendientes.
+**Limpieza pendiente:** hay imágenes huérfanas de versiones anteriores del tema (`hero-jardines-*` viejas, `sobre-historia.jpg`, `vivero-*.jpg`, `svc-*.jpg`, `page-*-2/3/4.jpg`, `page-antes-despues-hero.jpg`, `page-antes-despues-2.jpg`, `hero-mantenimiento.jpg` (ago. 2026, sustituida en Desbroce), etc.) sin referenciar por ningún PHP — ver Pendientes.
 
 ---
 
@@ -381,6 +383,7 @@ Todo respeta `prefers-reduced-motion`. Si el JS no llega a ejecutarse, nada qued
 - [ ] Catálogo real de "Proyectos realizados": solo hay 3 proyectos en el CPT; añadir más conforme el cliente aporte material
 - [ ] Confirmar con el cliente la superficie y duración de obra de Villa Mediterránea (≈1.200 m² / 4 meses), Jardín con Palmeras (≈950 m² / 3 meses), Villa Tortuga (≈400 m² / 6 semanas) y **Villa Estrella** (≈600 m² / 5 meses) en `inc/proyectos-detalle.php` — estimaciones del estudio, no dato real
 - [ ] Villa Estrella (post 40) usa como foto destacada y como comparador plano↔resultado (`assets/img/plano-diseno-jardin-piscina-villa-estrella.png` / `vista-aerea-jardin-piscina-villa-estrella-marbella.jpg`) imágenes reales retocadas con IA a petición del cliente (confirmado por el cliente, no renders generados desde cero) — pendiente de sustituir por las fotos originales sin retocar o confirmar que estas versiones son las definitivas
+- [ ] Hero de `page-servicio-desbroce-limpieza.php` (`hero-desbroce-mecanico-parcela-marbella.jpg`, ago. 2026) es una imagen generada con IA (ChatGPT), a diferencia de Villa Estrella no parte de ninguna foto real del cliente — pendiente de confirmar con el cliente si vale como definitiva o debe sustituirse por una fotografía real de su maquinaria/equipo
 - [ ] Decidir qué hacer con las imágenes huérfanas de `assets/img/` (~30 MB+, ver Inventario de imágenes)
 - [ ] Optimizar/comprimir imágenes en uso (convertir a WebP, redimensionar) — sin herramientas de optimización instaladas en este entorno
 - [ ] Añadir campo meta `categoria` al CPT proyecto + filtro real en la galería de "Proyectos realizados" (los filtros actuales son solo decorativos)

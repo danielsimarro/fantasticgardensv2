@@ -682,29 +682,41 @@ body.nav-open { overflow: hidden; }
    que el usuario decide verlo, así no penaliza el peso de la página.
    ================================================================ */
 .video-showcase { display: grid; grid-template-columns: 1fr; gap: clamp(2.5rem, 6vw, 5rem); align-items: center; }
-@media (min-width: 900px) { .video-showcase { grid-template-columns: 1.05fr .95fr; } }
+@media (min-width: 900px) { .video-showcase { grid-template-columns: 1fr 1.1fr; } }
 .video-showcase__lead { margin-top: 1.5rem; max-width: 42ch; font-size: .9375rem; line-height: 1.85; font-weight: 300; color: color-mix(in srgb, var(--ink) 72%, transparent); text-wrap: pretty; }
+.video-showcase__lead strong { font-weight: 500; color: var(--ink); }
 .video-showcase__cta { margin-top: clamp(1.625rem, 4vh, 2.375rem); }
 .video-showcase__media { display: flex; flex-direction: column; align-items: center; }
+/* Ancho exacto de la tarjeta (no de la columna): así el sello circular,
+   posicionado respecto a este envoltorio, queda pegado al borde real de la
+   tarjeta sea cual sea el ancho de la columna del grid. */
+.video-reel-wrap { position: relative; width: 100%; max-width: 22rem; }
 
-/* Halos ambientales, mismo tratamiento que #resultados (Antes y Después):
-   dan profundidad al fondo claro sin competir con la tarjeta de vídeo. */
-#video-desbroce::before, #video-desbroce::after {
-  content: ""; position: absolute; z-index: 0; border-radius: 50%; pointer-events: none;
-}
-#video-desbroce::before {
-  top: -8%; right: -6%; width: clamp(16rem, 32vw, 26rem); height: clamp(16rem, 32vw, 26rem);
-  opacity: .10; background: radial-gradient(circle, color-mix(in srgb, var(--verde) 55%, transparent) 0%, transparent 72%);
-}
-#video-desbroce::after {
-  bottom: -10%; left: 4%; width: clamp(12rem, 26vw, 20rem); height: clamp(12rem, 26vw, 20rem);
-  opacity: .10; background: radial-gradient(circle, color-mix(in srgb, var(--lima) 55%, transparent) 0%, transparent 72%);
+/* Máscara reutilizable para recolorear siluetas SVG de una sola pieza
+   (mismo truco que fg_watermark(): mask-image + background-color) sin
+   depender de filter: invert()/hue-rotate() para aproximar un color. */
+.leaf-mask {
+  display: inline-block; background-color: currentColor;
+  -webkit-mask-image: var(--leaf-src); mask-image: var(--leaf-src);
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center; mask-position: center;
+  -webkit-mask-size: contain; mask-size: contain;
 }
 
-/* La tarjeta: proporción de reel (9/16), recorte y sombra como una
-   fotografía enmarcada. object-fit:cover en el vídeo evita cualquier
-   distorsión sea cual sea el ancho de columna. */
-.video-reel { position: relative; width: 100%; max-width: 19rem; aspect-ratio: 9 / 16; margin-inline: auto; overflow: hidden; border-radius: 4px; background: var(--ink); box-shadow: 0 2.5rem 5.5rem -3rem rgba(31,46,34,.45); }
+/* Filete con un punto verde en el centro, entre el titular y la entradilla. */
+.video-showcase__divider { display: flex; align-items: center; gap: .75rem; margin-top: 1.375rem; max-width: 20rem; }
+.video-showcase__divider-line { flex: 1; height: 1px; background: color-mix(in srgb, var(--ink) 22%, transparent); }
+.video-showcase__divider-dot { width: .3125rem; height: .3125rem; border-radius: 50%; background: var(--verde); flex-shrink: 0; }
+
+/* Fondo fotográfico a sangre de la sección, mismo patrón que .quote-band__img
+   (img absoluta + velo), reutilizando el ascenso a z-index:1 que .has-wm ya
+   da a .wrap — así el texto y la tarjeta quedan siempre por encima. */
+.video-desbroce__bg { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; }
+.video-desbroce__scrim { position: absolute; inset: 0; z-index: 0; background: color-mix(in srgb, var(--crema) 58%, transparent); }
+
+/* La tarjeta: recorte y sombra como una fotografía enmarcada. object-fit:cover
+   en el vídeo evita cualquier distorsión sea cual sea el ancho de columna. */
+.video-reel { position: relative; width: 100%; max-width: 22rem; aspect-ratio: 3 / 4; margin-inline: auto; overflow: hidden; border-radius: 4px; background: var(--ink); box-shadow: 0 2.5rem 5.5rem -3rem rgba(31,46,34,.45); }
 .video-reel__video { display: block; width: 100%; height: 100%; object-fit: cover; }
 /* Velo sutil para que el botón de play se lea bien encima de un fotograma
    muy claro (cielo, contraluz); desaparece en cuanto empieza a reproducir. */
@@ -730,7 +742,59 @@ body.nav-open { overflow: hidden; }
 }
 .video-reel__play:hover, .video-reel__play:focus-visible { transform: scale(1.08); background: var(--verde-700); }
 .video-reel.is-playing .video-reel__play { opacity: 0; pointer-events: none; }
-.video-reel__cap { margin-top: 1rem; font-size: .9rem; letter-spacing: .04em; color: var(--ink-soft); text-align: center; }
+
+/* Chip de ubicación dentro de la propia tarjeta (abajo a la izquierda), en
+   vez de una leyenda suelta debajo — se retira al reproducir para no chocar
+   con la barra de controles nativa del vídeo. */
+.video-reel__badge {
+  position: absolute; left: 1rem; bottom: 1rem; z-index: 2;
+  display: flex; align-items: center; gap: .625rem;
+  padding: .625rem .875rem; border-radius: 3px;
+  background: color-mix(in srgb, var(--verde-osc) 80%, transparent);
+  backdrop-filter: blur(3px); color: var(--crema);
+  transition: opacity .3s ease;
+}
+.video-reel.is-playing .video-reel__badge { opacity: 0; pointer-events: none; }
+.video-reel__badge-icon { width: 1.125rem; height: 1.125rem; flex-shrink: 0; color: var(--crema); }
+.video-reel__badge-icon svg { width: 100%; height: 100%; }
+.video-reel__badge-text { font-size: .75rem; line-height: 1.4; }
+.video-reel__badge-text strong { display: block; font-weight: 500; }
+
+/* Sello circular flotante, mitad fuera de la tarjeta: el texto gira sobre
+   sí mismo (SVG textPath), la hoja del centro queda fija — mismo gesto que
+   un sello de cera. Se oculta en móvil (poco sitio) y con reduced-motion
+   deja de girar pero sigue visible. */
+.video-seal { position: absolute; top: 10%; right: -2.25rem; z-index: 3; width: 5.5rem; height: 5.5rem; display: none; align-items: center; justify-content: center; pointer-events: none; }
+@media (min-width: 640px) { .video-seal { display: flex; } }
+.video-seal__ring { width: 100%; height: 100%; animation: video-seal-spin 24s linear infinite; }
+.video-seal__text { font-family: var(--sans); font-size: 8.2px; letter-spacing: .1em; text-transform: uppercase; fill: color-mix(in srgb, var(--verde-700) 85%, transparent); }
+.video-seal__icon { position: absolute; inset: 0; margin: auto; width: 1.375rem; height: 1.375rem; color: var(--verde-700); }
+@keyframes video-seal-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .video-seal__ring { animation: none; } }
+
+/* Franja de fondo oscura de "En acción": misma foto-tras-velo que
+   .video-desbroce__bg, sobre section--osc (color sólido de respaldo si la
+   imagen no llega a cargar). */
+.action-features { position: relative; overflow: hidden; }
+.action-features__bg { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; }
+.action-features__scrim { position: absolute; inset: 0; z-index: 0; background: color-mix(in srgb, var(--verde-osc) 62%, transparent); }
+.action-features .wrap { position: relative; z-index: 1; }
+
+/* Variante "action" de fila de iconos: icono arriba, rótulo en versalitas y
+   descripción corta, todo centrado — para la franja oscura con textura de
+   "En acción" (Desbroce). No reutiliza .design-features (esa sigue en fila
+   horizontal para Diseño de paisajismo, ver arriba). */
+.feature-row--action { grid-template-columns: repeat(2, 1fr); row-gap: 2.5rem; column-gap: 1.5rem; }
+@media (min-width: 640px) { .feature-row--action { grid-template-columns: repeat(4, 1fr); column-gap: 0; } }
+.feature-row--action .feature { flex-direction: column; align-items: center; text-align: center; gap: .875rem; padding: 0 1.5rem; border-top: 0; }
+@media (min-width: 640px) {
+  .feature-row--action .feature { border-left: 1px solid color-mix(in srgb, var(--crema) 16%, transparent); }
+  .feature-row--action .feature:first-child { border-left: 0; }
+}
+.feature-row--action .feature__icon { color: color-mix(in srgb, var(--lima) 65%, var(--crema) 30%); }
+.feature-row--action .feature__icon svg { width: 1.875rem; height: 1.875rem; }
+.feature-row--action .feature__label { font-family: var(--sans); font-size: .8125rem; font-weight: 400; letter-spacing: .14em; text-transform: uppercase; }
+.feature-row--action .feature__desc { max-width: 20ch; margin-inline: auto; }
 
 .numbered-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 1px; background: color-mix(in srgb, var(--ink) 14%, transparent); }
 @media (min-width: 560px) { .numbered-grid { grid-template-columns: repeat(2, 1fr); } }
