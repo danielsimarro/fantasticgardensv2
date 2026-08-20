@@ -20,17 +20,19 @@
  *              'label' => ..., 'url' => fg_page_url(clave) ].
  *   galeria    Fotos adicionales a la destacada: [ 'img' => archivo en
  *              assets/img/, 'alt' => ... ].
+ *   plano      Opcional. Comparador "del plano al jardín construido"
+ *              (fg_before_after): [ 'before' => archivo en assets/img/,
+ *              'before_alt', 'after' => archivo en assets/img/, 'after_alt',
+ *              'before_label', 'after_label', 'caption' ].
  *
- * AVISO: los proyectos 24 (Villa Mediterránea) y 25 (Jardín con Palmeras)
- * son obras reales (fotografía real del cliente), pero sus cifras de
- * superficie y duración son estimaciones redactadas por el estudio a falta
- * de datos exactos del cliente — pendientes de confirmar antes de tratarlas
- * como dato verificado (ver Pendientes en CLAUDE.md). El proyecto 26
- * ("Jardín en Ronda") usa en su lugar las cifras reales del vivero/Garden
- * Center de Ronda (superficie de cultivo, especies, nave cubierta) ya
- * publicadas en el resto del sitio, porque su fotografía real es del propio
- * vivero — no de un jardín de cliente instalado — y no había una cifra de
- * proyecto que inventar sin contradecir la foto.
+ * AVISO: los proyectos 24 (Villa Mediterránea), 25 (Jardín con Palmeras),
+ * 26 (Villa Tortuga) y 40 (Villa Estrella) son obras reales del cliente,
+ * pero sus cifras de superficie y duración son estimaciones redactadas por
+ * el estudio a falta de datos exactos del cliente — pendientes de confirmar
+ * antes de tratarlas como dato verificado (ver Pendientes en CLAUDE.md). La
+ * fotografía destacada y el comparador plano↔resultado de Villa Estrella (40)
+ * son fotos reales retocadas con IA a petición del cliente, no renders
+ * generados desde cero.
  *
  * @package Fantastic_Gardens
  */
@@ -92,29 +94,67 @@ function fg_proyecto_detalle(int $post_id): ?array {
             ],
         ],
 
-        // Jardín en Ronda (vivero / Garden Center — ver aviso arriba)
+        // Villa Tortuga · Marbella
         26 => [
-            'resumen'  => __('Antes de llegar a cualquier jardín, cada planta pasa por nuestro vivero de Ronda: 40 hectáreas de cultivo propio en plena Serranía, con más de 17.000 especies disponibles.', 'fg-theme'),
+            'resumen'  => __('Una villa mediterránea con arbolado ya consolidado, donde el reto era integrar una piscina nueva y todo su entorno sin perder la sombra ni el carácter del jardín existente.', 'fg-theme'),
             'reto'     => [
                 'titulo' => __('El reto', 'fg-theme'),
-                'texto'  => __('Encontrar planta mediterránea bien aclimatada, en la cantidad y el calibre exactos que pide cada proyecto, sin depender de terceros ni de plazos de importación.', 'fg-theme'),
+                'texto'  => __('La parcela ya tenía árboles maduros y una piscina recién construida, pero el espacio alrededor seguía sin resolver: tierra suelta, sin césped ni vegetación que acompañara la casa y respetara el arbolado existente.', 'fg-theme'),
             ],
             'solucion' => [
                 'titulo' => __('La solución', 'fg-theme'),
-                'texto'  => __('Cultivamos nuestra propia planta en el vivero de Ronda — 40 ha y 4.000 m² cubiertos — y seleccionamos ahí mismo cada ejemplar antes de llevarlo al jardín del cliente.', 'fg-theme'),
+                'texto'  => __('Césped natural en línea recta hasta el vaso, una palmera como pieza central junto al solárium y un perímetro de vegetación mediterránea de bajo mantenimiento —agaves, cactus y arbustos— sobre gravilla blanca que enmarca la parcela.', 'fg-theme'),
             ],
             'specs'    => [
-                ['icon' => 'pin',  'label' => __('Ubicación', 'fg-theme'), 'value' => __('Ronda · Málaga', 'fg-theme')],
-                ['icon' => 'area', 'label' => __('Superficie de cultivo', 'fg-theme'), 'value' => __('40 ha', 'fg-theme')],
-                ['icon' => 'icons/botanica/especies-singulares.svg', 'label' => __('Especies disponibles', 'fg-theme'), 'value' => __('+17.000', 'fg-theme')],
+                ['icon' => 'pin',      'label' => __('Ubicación', 'fg-theme'), 'value' => __('Marbella · Costa del Sol', 'fg-theme')],
+                ['icon' => 'area',     'label' => __('Superficie', 'fg-theme'), 'value' => __('≈ 400 m²', 'fg-theme')],
+                ['icon' => 'calendar', 'label' => __('Duración de la obra', 'fg-theme'), 'value' => __('6 semanas', 'fg-theme')],
             ],
             'servicios' => [
-                ['icon' => 'icons/servicios/plantacion-destino.svg', 'label' => __('Vivero y plantación propia', 'fg-theme'), 'url' => fg_page_url('vivero')],
-                ['icon' => 'icons/servicios/concepto-pencil.svg',    'label' => __('Diseño de paisajismo', 'fg-theme'), 'url' => fg_page_url('diseno')],
-                ['icon' => 'icons/servicios/poda-formacion.svg',     'label' => __('Mantenimiento', 'fg-theme'), 'url' => fg_page_url('mantenimiento')],
+                ['icon' => 'icons/servicios/concepto-pencil.svg',     'label' => __('Diseño de paisajismo', 'fg-theme'), 'url' => fg_page_url('diseno')],
+                ['icon' => 'icons/servicios/plantacion-destino.svg',  'label' => __('Plantación', 'fg-theme'), 'url' => fg_page_url('vivero')],
+                ['icon' => 'icons/servicios/poda-formacion.svg',      'label' => __('Mantenimiento', 'fg-theme'), 'url' => fg_page_url('mantenimiento')],
             ],
-            'galeria' => [
-                ['img' => 'vivero-ronda-campos-cultivo-fantastic-gardens-aereo.jpg', 'alt' => __('Vista aérea de los campos de cultivo del vivero de Fantastic Gardens en Ronda', 'fg-theme')],
+            'plano' => [
+                'before'       => 'plano-diseno-jardin-piscina-plantas.png',
+                'before_alt'   => __('Plano de diseño del jardín de Villa Tortuga con piscina y leyenda numerada de especies vegetales', 'fg-theme'),
+                'after'        => 'vista-aerea-jardin-piscina-villa-tortuga-marbella.jpg',
+                'after_alt'    => __('Vista aérea del jardín de Villa Tortuga ya construido, con piscina, césped y vegetación mediterránea', 'fg-theme'),
+                'before_label' => __('Plano', 'fg-theme'),
+                'after_label'  => __('Resultado', 'fg-theme'),
+                'caption'      => __('Villa Tortuga · del plano al jardín construido', 'fg-theme'),
+            ],
+        ],
+
+        // Villa Estrella · Marbella
+        40 => [
+            'resumen'  => __('Una villa contemporánea de líneas minimalistas, donde el jardín tenía que acompañar la arquitectura sin competir con ella: verde continuo, bordes limpios y una piscina infinity que parece prolongar el césped.', 'fg-theme'),
+            'reto'     => [
+                'titulo' => __('El reto', 'fg-theme'),
+                'texto'  => __('La arquitectura ya era muy fuerte por sí sola —volúmenes de cristal, líneas rectas, una piscina infinity a nivel de suelo— y el jardín no podía competir con ella ni quedarse en un simple relleno verde alrededor de la piscina.', 'fg-theme'),
+            ],
+            'solucion' => [
+                'titulo' => __('La solución', 'fg-theme'),
+                'texto'  => __('Césped continuo hasta el borde del vaso para prolongar visualmente el agua, un perímetro de palmeras y vegetación tropical que da intimidad sin tapar las vistas, y bordes muy definidos que respetan la geometría de la arquitectura.', 'fg-theme'),
+            ],
+            'specs'    => [
+                ['icon' => 'pin',      'label' => __('Ubicación', 'fg-theme'), 'value' => __('Marbella · Costa del Sol', 'fg-theme')],
+                ['icon' => 'area',     'label' => __('Superficie', 'fg-theme'), 'value' => __('≈ 600 m²', 'fg-theme')],
+                ['icon' => 'calendar', 'label' => __('Duración de la obra', 'fg-theme'), 'value' => __('5 meses', 'fg-theme')],
+            ],
+            'servicios' => [
+                ['icon' => 'icons/servicios/concepto-pencil.svg',    'label' => __('Diseño de paisajismo', 'fg-theme'), 'url' => fg_page_url('diseno')],
+                ['icon' => 'icons/servicios/plantacion-destino.svg', 'label' => __('Plantación', 'fg-theme'), 'url' => fg_page_url('vivero')],
+                ['icon' => 'icons/servicios/riego-eficiente.svg',    'label' => __('Riego eficiente', 'fg-theme'), 'url' => fg_page_url('mantenimiento')],
+            ],
+            'plano' => [
+                'before'       => 'plano-diseno-jardin-piscina-villa-estrella.png',
+                'before_alt'   => __('Plano de diseño del jardín de Villa Estrella con piscina infinity, césped y vegetación tropical de borde', 'fg-theme'),
+                'after'        => 'vista-aerea-jardin-piscina-villa-estrella-marbella.jpg',
+                'after_alt'    => __('Vista aérea del jardín de Villa Estrella ya construido, con piscina infinity, césped continuo y palmeras', 'fg-theme'),
+                'before_label' => __('Plano', 'fg-theme'),
+                'after_label'  => __('Resultado', 'fg-theme'),
+                'caption'      => __('Villa Estrella · del plano al jardín construido', 'fg-theme'),
             ],
         ],
     ];

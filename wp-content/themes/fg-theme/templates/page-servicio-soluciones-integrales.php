@@ -7,8 +7,8 @@ get_header();
 ?>
 <?php
 fg_photo_hero([
-  'image'         => fg_asset('hero-servicios.jpg'),
-  'image_alt'     => __('Jardín mediterráneo de una villa al atardecer', 'fg-theme'),
+  'image'         => fg_asset('hero-soluciones-integrales-villa-tortuga.jpg'),
+  'image_alt'     => __('Vista aérea de Villa Tortuga en Marbella con piscina, palmeras y jardín mediterráneo', 'fg-theme'),
   'title_html'    => esc_html__('Soluciones', 'fg-theme') . ' <em class="em-lima">' . esc_html__('integrales', 'fg-theme') . '</em>',
   'accent_rule'   => true,
   'subtitle'      => __('Un único interlocutor, del diseño al mantenimiento', 'fg-theme'),
@@ -66,8 +66,8 @@ $obra_extra = [
     'title'     => __('Caminos', 'fg-theme'),
     'body'      => __('Caminos de piedra de canto rodado decorativa, en distintos colores y tamaños, que conectan las zonas del jardín con durabilidad y un atractivo visual pensado para complementar el entorno natural.', 'fg-theme'),
     'cta'       => __('Consultar caminos', 'fg-theme'),
-    'image'     => fg_asset('camino-piedra-jardin-palmeras-marbella.jpg'),
-    'image_alt' => __('Camino de piedra decorativa entre palmeras junto a un muro de piedra natural en un jardín de Marbella', 'fg-theme'),
+    'image'     => fg_asset('camino-losas-piedra-jardin-mediterraneo-marbella.jpg'),
+    'image_alt' => __('Camino de losas de piedra sobre grava blanca decorativa en un jardín mediterráneo con olivo y palmeras en Marbella', 'fg-theme'),
     'url'       => fg_page_url('contacto') . '#formulario',
   ],
   [

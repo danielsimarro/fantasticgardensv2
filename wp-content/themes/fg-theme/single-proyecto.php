@@ -58,6 +58,24 @@ while (have_posts()) : the_post();
           <?php fg_project_story($detalle['reto'], $detalle['solucion']); ?>
         <?php endif; ?>
 
+        <?php if ($detalle && !empty($detalle['plano'])) : $plano = $detalle['plano']; ?>
+          <div class="ba-list">
+            <figure class="ba-item" data-reveal>
+              <?php fg_before_after([
+                  'before'       => fg_asset($plano['before']),
+                  'before_alt'   => $plano['before_alt'] ?? '',
+                  'after'        => fg_asset($plano['after']),
+                  'after_alt'    => $plano['after_alt'] ?? '',
+                  'before_label' => $plano['before_label'] ?? null,
+                  'after_label'  => $plano['after_label'] ?? null,
+              ]); ?>
+              <?php if (!empty($plano['caption'])) : ?>
+                <figcaption class="ba-item__cap"><?php echo esc_html($plano['caption']); ?></figcaption>
+              <?php endif; ?>
+            </figure>
+          </div>
+        <?php endif; ?>
+
         <?php if ($detalle && !empty($detalle['galeria'])) : ?>
           <?php fg_project_gallery($detalle['galeria'], get_the_title()); ?>
         <?php endif; ?>

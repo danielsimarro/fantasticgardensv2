@@ -297,6 +297,7 @@ function fg_project_card(array $a): void {
     <<?php echo $tag; ?> class="project-card"<?php echo !empty($a['url']) ? ' href="' . esc_url($a['url']) . '"' : ''; ?>>
       <div class="project-card__media fx-frame" data-img-reveal>
         <img src="<?php echo esc_url($a['image']); ?>" alt="<?php echo esc_attr($a['image_alt'] ?? ''); ?>" loading="lazy" decoding="async">
+        <?php if (!empty($a['badge'])) : ?><span class="project-card__zoom" aria-hidden="true"><?php echo esc_html($a['badge']); ?></span><?php endif; ?>
       </div>
       <div class="project-card__body">
         <h2 class="project-card__title"><?php echo esc_html($a['title']); ?></h2>
@@ -507,8 +508,11 @@ function fg_stats_band(array $stats, array $wm = [], int $duration = 0): void {
  * marca que se le pase (no depende del color original del archivo).
  * La sección que la contiene debe llevar la clase `has-wm`.
  *
- * @param array $a src (ruta en assets/img), pos (tr|br|cl|bl), size (CSS),
+ * @param array $a src (ruta en assets/img), pos (tr|tl|br|bl|cl|cr), size (CSS),
  *                 ratio (aspect-ratio CSS), opacity, color (CSS), flip (bool),
+ *                 shadow (bool: desenfoca la silueta y la funde en --ink por
+ *                         multiply, para leerse como sombra de follaje en vez
+ *                         de motivo botánico trazado — ver .wm--shadow),
  *                 float (int: px de deriva vertical al hacer scroll; 0 = quieta),
  *                 rot (grados de giro a lo largo del recorrido),
  *                 scrub (inercia: 0 = pegada al scroll, 1.5 = va rezagada y
@@ -522,7 +526,9 @@ function fg_watermark(array $a = []): void {
     foreach (['size' => '--wm-size', 'ratio' => '--wm-ratio', 'opacity' => '--wm-opacity', 'color' => '--wm-color'] as $k => $var) {
         if (!empty($a[$k])) $style .= ';' . $var . ':' . $a[$k];
     }
-    $cls   = 'wm wm--' . preg_replace('/[^a-z-]/', '', $pos) . (!empty($a['flip']) ? ' wm--flip' : '');
+    $cls   = 'wm wm--' . preg_replace('/[^a-z-]/', '', $pos)
+           . (!empty($a['flip']) ? ' wm--flip' : '')
+           . (!empty($a['shadow']) ? ' wm--shadow' : '');
     $float = isset($a['float']) ? (int) $a['float'] : 60;
 
     echo '<span class="' . esc_attr($cls) . '" style="' . esc_attr($style) . '"'
@@ -559,11 +565,14 @@ function fg_quote_band(array $a): void {
  * romanos. Es el módulo que sustituye a la rejilla de cuatro tarjetas: cada
  * servicio ocupa su franja y se lee como un índice de revista.
  *
- * $items: title, body, url, cta (rótulo del enlace), image, image_alt, icon.
+ * $items: title, body, url, cta (rótulo del enlace), image, image_alt, icon,
+ * eyebrow (rótulo corto opcional en versalitas sobre el título — p. ej. la
+ * ubicación de un proyecto).
+ * $extra_class: clase adicional en el contenedor (p. ej. 'service-rows--projects').
  */
-function fg_service_rows(array $items): void {
+function fg_service_rows(array $items, string $extra_class = ''): void {
     $romanos = ['I', 'II', 'III', 'IV', 'V', 'VI'];
-    echo '<div class="service-rows">';
+    echo '<div class="service-rows' . ($extra_class ? ' ' . esc_attr($extra_class) : '') . '">';
     foreach ($items as $i => $it) {
         $flip = $i % 2 === 1; // las impares llevan la foto a la izquierda
         ?>
@@ -572,6 +581,9 @@ function fg_service_rows(array $items): void {
             <span class="service-row__bignum" aria-hidden="true"><?php echo esc_html($romanos[$i] ?? (string) ($i + 1)); ?></span>
             <span class="service-row__num" aria-hidden="true"><?php echo esc_html($romanos[$i] ?? (string) ($i + 1)); ?></span>
             <div>
+              <?php if (!empty($it['eyebrow'])) : ?>
+                <span class="service-row__eyebrow"><?php echo esc_html($it['eyebrow']); ?></span>
+              <?php endif; ?>
               <h3 class="service-row__title" data-reveal><?php echo esc_html($it['title']); ?></h3>
               <p class="service-row__body"><?php echo esc_html($it['body']); ?></p>
               <span class="cta service-row__cta">
