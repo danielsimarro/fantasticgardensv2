@@ -2386,27 +2386,45 @@ button.project-card:focus-visible { outline: 2px solid var(--verde); outline-off
 .home-estudio__point--verde .home-estudio__point-icon { background: var(--verde); }
 .home-estudio__point--arena .home-estudio__point-icon { background: var(--verde-900); }
 .home-estudio__intro { display: flex; flex-direction: column; }
+/* Doble marco reutilizable: outline + sombra en dos capas + hover, ambos
+   resueltos con custom properties (--frame-*) en vez de repetir el bloque
+   entero en cada una de las tres fotos grandes del home que lo usan
+   (El estudio, Calidad y garantía, Botánica) — solo cambia el color del
+   filo y el tono de sombra (ink+verde en fondo claro, lima+negro en
+   fondo oscuro). El JS de main.js ([data-tilt]) escribe un transform en
+   cada fotograma mientras el ratón está encima; will-change adelanta la
+   promoción a su propia capa de composición en vez de esperar al primer
+   cambio, así el primer movimiento no da un tirón. */
+.photo-frame {
+  border-radius: 2px;
+  outline: 1px solid var(--frame-outline);
+  outline-offset: .8125rem;
+  box-shadow: var(--frame-shadow);
+  transition: box-shadow .5s ease, outline-color .5s ease;
+}
+.photo-frame:hover {
+  outline-color: var(--frame-outline-hover, var(--frame-outline));
+  box-shadow: var(--frame-shadow-hover);
+}
+[data-tilt] { will-change: transform; }
 /* La fotografía flota como una lámina: sombra en dos capas (contacto ceñido
    + halo amplio, mismo lenguaje que .service-rows--home) y un segundo marco
    en filete dibujado con outline — el outline no lo recorta el
-   overflow:hidden del propio elemento (a diferencia de un ::after interior)
-   y además gira CON la foto cuando el tilt de main.js ([data-tilt]) la
-   inclina siguiendo el ratón, así el doble marco refuerza el volumen. */
+   overflow:hidden del propio elemento (a diferencia de un ::after interior).
+   El tilt de main.js ([data-tilt]) vive en .home-estudio__media-stage, una
+   capa interna que envuelve solo la foto — NO en este contenedor: el marco
+   y la etiqueta de cristal se quedan fijos y solo la foto se inclina, como
+   una lámina suelta dentro de un paspartú. Además de verse mejor (el marco
+   "sujeta" la foto en vez de moverse con ella), evita un bug real de
+   render: backdrop-filter (.home-estudio__media-tag) deja de pintarse -el
+   panel se volvía invisible- cuando su ancestro tiene un transform 3D
+   (perspective+rotate) activo, algo conocido en Chrome/WebKit. */
 .home-estudio__media {
+  --frame-outline: color-mix(in srgb, var(--ink) 16%, transparent);
+  --frame-shadow: 0 .75rem 1.5rem -1rem rgba(31,46,34,.26), 0 2.75rem 5rem -2.5rem rgba(31,46,34,.34);
+  --frame-shadow-hover: 0 1rem 2rem -1rem rgba(31,46,34,.3), 0 3.5rem 6rem -2.25rem rgba(31,46,34,.42);
   position: relative; margin-top: clamp(1.875rem, 5vh, 3.125rem);
   aspect-ratio: 4/5; max-height: 33.75rem; overflow: hidden; background: #c9c2b2;
-  border-radius: 2px;
-  outline: 1px solid color-mix(in srgb, var(--ink) 16%, transparent);
-  outline-offset: .8125rem;
-  box-shadow:
-    0 .75rem 1.5rem -1rem rgba(31,46,34,.26),
-    0 2.75rem 5rem -2.5rem rgba(31,46,34,.34);
-  transition: box-shadow .5s ease;
-}
-.home-estudio__media:hover {
-  box-shadow:
-    0 1rem 2rem -1rem rgba(31,46,34,.3),
-    0 3.5rem 6rem -2.25rem rgba(31,46,34,.42);
 }
 /* El reveal de imagen termina en clip-path: inset(0), que recorta todo lo
    que el elemento pinta FUERA de su caja — es decir, el outline del doble
@@ -2418,6 +2436,7 @@ button.project-card:focus-visible { outline: 2px solid var(--verde); outline-off
 /* En escritorio la columna izquierda (kicker + título + foto) no debe superar
    en alto a la columna de texto: retrato más corto y con techo más bajo. */
 @media (min-width: 900px) { .home-estudio__media { aspect-ratio: 4/3; max-height: 21.25rem; } }
+.home-estudio__media-stage { position: absolute; inset: 0; }
 .home-estudio__media img { position: absolute; inset: -10% 0; width: 100%; height: 120%; object-fit: cover; }
 /* Placa en vidrio esmerilado (antes crema casi opaco): deja intuir la foto
    debajo y se lee como una capa físicamente separada de ella. */
@@ -2456,22 +2475,13 @@ button.project-card:focus-visible { outline: 2px solid var(--verde); outline-off
    para que la foto se lea como la misma familia de piezas trabajadas, no
    como un recurso aparte. */
 .home-garantia__media {
+  --frame-outline: color-mix(in srgb, var(--lima) 30%, transparent);
+  --frame-outline-hover: color-mix(in srgb, var(--lima) 55%, transparent);
+  --frame-shadow: 0 .75rem 1.5rem -1rem rgba(0,0,0,.5), 0 2.75rem 5rem -2.5rem rgba(0,0,0,.6);
+  --frame-shadow-hover: 0 1rem 2rem -1rem rgba(0,0,0,.55), 0 3.5rem 6rem -2.25rem rgba(0,0,0,.68);
   position: relative; margin-top: clamp(1.875rem, 5vh, 3.125rem);
   aspect-ratio: 4/3; max-height: 21.25rem; overflow: hidden;
   background: color-mix(in srgb, var(--crema) 10%, transparent);
-  border-radius: 2px;
-  outline: 1px solid color-mix(in srgb, var(--lima) 30%, transparent);
-  outline-offset: .8125rem;
-  box-shadow:
-    0 .75rem 1.5rem -1rem rgba(0,0,0,.5),
-    0 2.75rem 5rem -2.5rem rgba(0,0,0,.6);
-  transition: box-shadow .5s ease, outline-color .5s ease;
-}
-.home-garantia__media:hover {
-  outline-color: color-mix(in srgb, var(--lima) 55%, transparent);
-  box-shadow:
-    0 1rem 2rem -1rem rgba(0,0,0,.55),
-    0 3.5rem 6rem -2.25rem rgba(0,0,0,.68);
 }
 /* Ver la nota equivalente en .home-estudio__media: el reveal recorta con
    clip-path lo que se pinta fuera de la caja (outline + sombra). */
@@ -2635,21 +2645,17 @@ button.project-card:focus-visible { outline: 2px solid var(--verde); outline-off
 /* Mismo doble marco de "01 El estudio" — la foto del invernadero era la
    única de las tres fotos grandes del home que seguía sin este tratamiento. */
 .home-vivero__media {
+  --frame-outline: color-mix(in srgb, var(--ink) 14%, transparent);
+  --frame-shadow: 0 .75rem 1.5rem -1rem rgba(31,46,34,.26), 0 2.75rem 5rem -2.5rem rgba(31,46,34,.34);
+  --frame-shadow-hover: 0 1rem 2rem -1rem rgba(31,46,34,.3), 0 3.5rem 6rem -2.25rem rgba(31,46,34,.42);
   position: relative; aspect-ratio: 6/7; overflow: hidden; background: #c9c2b2;
-  border-radius: 2px;
-  outline: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
-  outline-offset: .8125rem;
-  box-shadow:
-    0 .75rem 1.5rem -1rem rgba(31,46,34,.26),
-    0 2.75rem 5rem -2.5rem rgba(31,46,34,.34);
-  transition: box-shadow .5s ease;
-}
-.home-vivero__media:hover {
-  box-shadow:
-    0 1rem 2rem -1rem rgba(31,46,34,.3),
-    0 3.5rem 6rem -2.25rem rgba(31,46,34,.42);
 }
 .js-reveal .home-vivero__media.rv-img.is-in { clip-path: inset(-8rem); }
+/* El tilt vive en esta capa interna, no en .home-vivero__media — ver la
+   nota equivalente en .home-estudio__media (bug real de backdrop-filter
+   bajo un ancestro con transform 3D si el tilt se aplicara al contenedor
+   que también lleva la etiqueta de cristal). */
+.home-vivero__media-stage { position: absolute; inset: 0; }
 .home-vivero__media img { position: absolute; inset: -10% 0; width: 100%; height: 120%; object-fit: cover; }
 /* Vidrio esmerilado en vez de crema casi opaco, mismo motivo que
    .home-estudio__media-tag: se lee como una capa físicamente separada de

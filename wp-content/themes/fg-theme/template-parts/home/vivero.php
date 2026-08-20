@@ -20,10 +20,12 @@ $familias = [
   ]); ?>
 
   <div class="wrap home-vivero">
-    <div class="home-vivero__media" data-img-reveal data-tilt="3">
-      <img data-parallax="0.06" src="<?php echo esc_url(fg_asset('flores-plantas-invernadero-vivero-ronda.jpg')); ?>"
-           alt="<?php esc_attr_e('Invernadero del vivero de Fantastic Gardens en Ronda con flores y plantas de temporada', 'fg-theme'); ?>"
-           loading="lazy" decoding="async">
+    <div class="home-vivero__media photo-frame" data-img-reveal>
+      <div class="home-vivero__media-stage" data-tilt="3">
+        <img data-parallax="0.06" src="<?php echo esc_url(fg_asset('flores-plantas-invernadero-vivero-ronda.jpg')); ?>"
+             alt="<?php esc_attr_e('Invernadero del vivero de Fantastic Gardens en Ronda con flores y plantas de temporada', 'fg-theme'); ?>"
+             loading="lazy" decoding="async">
+      </div>
       <div class="home-vivero__tag">
         <span class="home-vivero__tag-label"><?php esc_html_e('Garden center', 'fg-theme'); ?></span>
         <span class="home-vivero__tag-name"><?php esc_html_e('Ronda, Málaga', 'fg-theme'); ?></span>
