@@ -35,7 +35,7 @@ $familias = [
     <div>
       <?php echo fg_kicker(__('Botánica', 'fg-theme'), '05'); ?>
       <h2 class="section-head__title" data-reveal data-reveal-delay="80">
-        <?php esc_html_e('La mejor selección', 'fg-theme'); ?><br><?php esc_html_e('de flores y plantas', 'fg-theme'); ?>
+        <?php esc_html_e('La mejor selección', 'fg-theme'); ?><br><em class="em-verde"><?php esc_html_e('de flores y plantas', 'fg-theme'); ?></em>
       </h2>
       <p class="home-vivero__text" data-reveal data-reveal-delay="140">
         <?php esc_html_e('Disponemos de viveros con plantación propia que harán de tu jardín un verdadero oasis. Especies mediterráneas seleccionadas y aclimatadas en nuestras plantaciones de Ronda, Málaga y Valencia.', 'fg-theme'); ?>

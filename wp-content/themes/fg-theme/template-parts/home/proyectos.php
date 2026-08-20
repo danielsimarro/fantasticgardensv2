@@ -60,7 +60,9 @@ if ($proyectos_query->have_posts()) {
     <div class="section-head section-head--split">
       <div>
         <?php echo fg_kicker(__('Proyectos', 'fg-theme'), '04'); ?>
-        <h2 class="section-head__title" data-reveal data-reveal-delay="80"><?php esc_html_e('Calidad y diseño', 'fg-theme'); ?></h2>
+        <h2 class="section-head__title" data-reveal data-reveal-delay="80">
+          <?php esc_html_e('Calidad y', 'fg-theme'); ?> <em class="em-verde"><?php esc_html_e('diseño', 'fg-theme'); ?></em>
+        </h2>
       </div>
       <p class="section-head__sub" data-reveal data-reveal-delay="150">
         <?php esc_html_e('Trabajamos junto con particulares, comunidades, promotoras y constructoras. Proyectos y diseños de todo tipo de jardines y campos de golf, con presupuesto sin compromiso.', 'fg-theme'); ?>
