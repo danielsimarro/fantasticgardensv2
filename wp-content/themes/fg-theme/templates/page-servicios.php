@@ -12,13 +12,15 @@ fg_photo_hero([
     'subtitle'      => __('Diseñamos, cuidamos y hacemos crecer espacios extraordinarios', 'fg-theme'),
     'subtitle_lead' => true,
     'row_plain'     => true,
-    'stat'          => ['count' => 3, 'label' => __('áreas de trabajo', 'fg-theme')],
+    'stat'          => ['count' => 5, 'label' => __('áreas de trabajo', 'fg-theme')],
 ]);
 
 $items = [
     ['num' => '01', 'title' => __('Diseño de paisajes', 'fg-theme'),         'url' => fg_page_url('diseno'),        'image' => fg_asset('diseno-paisajismo-planos-jardin-marbella.jpg'), 'image_alt' => __('Diseñador de Fantastic Gardens comparando el plano de un jardín con el resultado final en Marbella', 'fg-theme')],
     ['num' => '02', 'title' => __('Mantenimiento', 'fg-theme'),              'url' => fg_page_url('mantenimiento'), 'image' => fg_asset('mantenimiento-jardin-mediterraneo-marbella.jpg'), 'image_alt' => __('Jardinero de Fantastic Gardens cuidando las plantas de un jardín mediterráneo con piscina en Marbella', 'fg-theme')],
     ['num' => '03', 'title' => __('Vivero y plantación propia', 'fg-theme'), 'url' => fg_page_url('vivero'),        'image' => fg_asset('vivero-garden-center-ronda-fantastic-gardens.jpg'),        'image_alt' => __('Invernaderos del vivero y garden center de Fantastic Gardens en Ronda con árboles y plantas en maceta', 'fg-theme')],
+    ['num' => '04', 'title' => __('Soluciones integrales', 'fg-theme'),      'url' => fg_page_url('soluciones-integrales'), 'image' => fg_asset('hero-soluciones-integrales-villa-tortuga.jpg'), 'image_alt' => __('Vista aérea de Villa Tortuga en Marbella con piscina, palmeras y jardín mediterráneo', 'fg-theme')],
+    ['num' => '05', 'title' => __('Desbroce y limpieza de parcelas', 'fg-theme'), 'url' => fg_page_url('desbroce-limpieza'), 'image' => fg_asset('hero-desbroce-mecanico-parcela-marbella.jpg'), 'image_alt' => __('Miniexcavadora desbrozando una parcela con maleza al atardecer en Marbella', 'fg-theme')],
 ];
 ?>
 <section class="section" id="servicios">

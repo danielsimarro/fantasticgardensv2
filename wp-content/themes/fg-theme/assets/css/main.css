@@ -1561,21 +1561,26 @@ button.project-card:focus-visible { outline: 2px solid var(--verde); outline-off
   background: linear-gradient(180deg, rgba(22,33,26,.14) 0%, rgba(22,33,26,0) 32%, rgba(22,33,26,0) 68%, rgba(22,33,26,.24) 100%);
 }
 
-/* Resplandor ambiental de #servicios: mismo par de halos de círculo
-   (verde + lima) que #resultados/#maquinaria/el footer, con la misma
-   intensidad suave que #resultados porque el fondo también es claro
+/* Resplandor ambiental de "02 Servicios" (home): mismo par de halos de
+   círculo (verde + lima) que #resultados/#maquinaria/el footer, con la
+   misma intensidad suave que #resultados porque el fondo también es claro
    (--beige) — dan al fondo una forma con volumen detrás de las tarjetas
    en vez de una plancha lisa de color. Esquinas opuestas a las hojas de
    fg_watermark() (arriba-izq./abajo-der.) para repartir el peso visual
-   por toda la sección. */
-#servicios::before, #servicios::after {
+   por toda la sección.
+   El selector va con .has-wm además del id: templates/page-servicios.php
+   (la página "Servicios" independiente) reutiliza el mismo id="servicios"
+   para su propia rejilla de fichas, que no lleva overflow:hidden — sin
+   la clase, los halos se colaban fuera de esa sección y ensanchaban toda
+   la página (scroll horizontal real, no solo en la del home). */
+#servicios.has-wm::before, #servicios.has-wm::after {
   content: ""; position: absolute; z-index: 0; border-radius: 50%; pointer-events: none;
 }
-#servicios::before {
+#servicios.has-wm::before {
   top: 8%; right: -6%; width: clamp(18rem, 34vw, 30rem); height: clamp(18rem, 34vw, 30rem);
   opacity: .12; background: radial-gradient(circle, color-mix(in srgb, var(--verde) 55%, transparent) 0%, transparent 72%);
 }
-#servicios::after {
+#servicios.has-wm::after {
   bottom: -4%; left: -8%; width: clamp(16rem, 30vw, 26rem); height: clamp(16rem, 30vw, 26rem);
   opacity: .14; background: radial-gradient(circle, color-mix(in srgb, var(--lima) 55%, transparent) 0%, transparent 72%);
 }
