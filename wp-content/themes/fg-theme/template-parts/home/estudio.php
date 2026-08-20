@@ -29,7 +29,7 @@ $publicos = [
         <em class="em-verde"><?php esc_html_e('al último detalle', 'fg-theme'); ?></em>
       </h2>
 
-      <div class="home-estudio__media" data-img-reveal data-reveal-delay="140">
+      <div class="home-estudio__media" data-img-reveal data-reveal-delay="140" data-tilt="3">
         <img data-parallax="0.05" data-kenburns
              src="<?php echo esc_url(fg_asset('jardinero-cuidando-cesped-piscina-marbella.jpg')); ?>"
              alt="<?php esc_attr_e('Jardinero de Fantastic Gardens cortando el césped junto a la piscina en un jardín de Marbella', 'fg-theme'); ?>"

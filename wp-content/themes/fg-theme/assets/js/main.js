@@ -612,6 +612,42 @@
   })();
 
   /* ══════════════════════════════════════════════════════════════════
+     Inclinación 3D [data-tilt] — la pieza gira unos pocos grados siguiendo
+     al ratón, como una lámina que se orienta hacia quien la mira, y vuelve
+     a plano al salir. El valor del atributo son los grados máximos (por
+     defecto 4). Solo con puntero fino; el movimiento se suaviza con el
+     mismo lerp que el magnetismo. Convive con los reveals porque .rv-img
+     anima clip-path (no transform) en el contenedor.
+     ══════════════════════════════════════════════════════════════════ */
+  (function tilt() {
+    if (reduce || !finePointer) return;
+
+    document.querySelectorAll("[data-tilt]").forEach(function (el) {
+      var max = parseFloat(el.getAttribute("data-tilt")) || 4;
+      var rx = 0, ry = 0, trx = 0, tryy = 0, corriendo = false;
+
+      function anima() {
+        rx += (trx - rx) * 0.12;
+        ry += (tryy - ry) * 0.12;
+        el.style.transform = "perspective(56.25rem) rotateX(" + rx.toFixed(2) + "deg) rotateY(" + ry.toFixed(2) + "deg)";
+        if (Math.abs(trx - rx) > 0.02 || Math.abs(tryy - ry) > 0.02) requestAnimationFrame(anima);
+        else corriendo = false;
+      }
+      function arranca() { if (!corriendo) { corriendo = true; requestAnimationFrame(anima); } }
+
+      el.addEventListener("mousemove", function (e) {
+        var r = el.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;   // -0.5 … 0.5
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        trx = -py * max * 2;
+        tryy = px * max * 2;
+        arranca();
+      });
+      el.addEventListener("mouseleave", function () { trx = 0; tryy = 0; arranca(); });
+    });
+  })();
+
+  /* ══════════════════════════════════════════════════════════════════
      Hero de portada: el vídeo solo en escritorio
      ══════════════════════════════════════════════════════════════════ */
   (function heroVideo() {
