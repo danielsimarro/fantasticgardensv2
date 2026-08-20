@@ -301,7 +301,13 @@ function fg_project_card(array $a): void {
       </div>
       <div class="project-card__body">
         <h2 class="project-card__title"><?php echo esc_html($a['title']); ?></h2>
-        <?php if (!empty($a['meta'])) : ?><p class="project-card__meta"><?php echo esc_html($a['meta']); ?></p><?php endif; ?>
+        <div class="project-card__foot">
+          <?php if (!empty($a['meta'])) : ?><span class="project-card__meta"><?php echo esc_html($a['meta']); ?></span><?php endif; ?>
+          <span class="project-card__cta">
+            <span class="project-card__cta-label"><?php esc_html_e('Ver proyecto', 'fg-theme'); ?></span>
+            <?php echo fg_arrow('project-card__cta-arrow'); ?>
+          </span>
+        </div>
       </div>
     </<?php echo $tag; ?>>
     <?php

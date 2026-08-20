@@ -2191,10 +2191,39 @@ button.project-card:focus-visible { outline: 2px solid var(--verde); outline-off
    el index de referencia), 4/3 en el mosaico de Proyectos realizados. */
 .project-card__media { position: relative; aspect-ratio: var(--pc-ratio, 4/3); overflow: hidden; background: var(--arena); }
 .project-card__media img { width: 100%; height: 100%; object-fit: cover; }
-.project-card__body { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .25rem 1rem; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid color-mix(in srgb, var(--ink) 16%, transparent); }
+.project-card__body { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid color-mix(in srgb, var(--ink) 16%, transparent); }
 .project-card__title { font-family: var(--serif); font-weight: 400; font-size: clamp(1.375rem, 2vw, 1.875rem); line-height: 1.15; transition: color .4s ease; }
 .project-card:hover .project-card__title { color: var(--verde); }
 .project-card__meta { font-size: .65625rem; letter-spacing: .18em; text-transform: uppercase; color: color-mix(in srgb, var(--ink) 50%, transparent); }
+/* Antes la tarjeta solo daba pistas de que era clickable al pasar el ratón
+   (marco, título en verde) — en móvil, sin hover, no queda ninguna señal y
+   se lee como una foto y un texto sueltos, no como una pieza tocable. Un
+   "Ver proyecto" + flecha siempre visible (mismo lenguaje que .card-link)
+   resuelve esto en cualquier dispositivo, no solo en escritorio. */
+.project-card__foot {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  gap: .375rem 1rem; margin-top: .625rem;
+}
+.project-card__cta { display: inline-flex; align-items: center; gap: .5rem; margin-left: auto; }
+.project-card__cta-label { font-size: .6875rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--verde); }
+.project-card__cta-arrow { height: .625rem; width: auto; transition: transform .5s var(--ease); }
+.project-card:hover .project-card__cta-arrow { transform: translateX(6px); }
+/* Móvil: la foto y el pie de tarjeta pasan a leerse como una sola pieza
+   montada (fondo + filete + sombra propia) en vez de una imagen con marco
+   flotante y un bloque de texto suelto debajo — el marco individual de la
+   foto (pensado para leerse como pieza aparte en la rejilla de escritorio)
+   se desactiva aquí porque ahora es la propia tarjeta la que hace de marco. */
+@media (max-width: 639.98px) {
+  .project-card {
+    display: block; overflow: hidden; border-radius: 3px;
+    background: var(--beige);
+    border: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+    box-shadow: 0 1.25rem 2.75rem -1.75rem rgba(31,46,34,.32);
+  }
+  .project-card__media { outline: 0; box-shadow: none; }
+  .project-card:hover .project-card__media { outline: 0; box-shadow: none; }
+  .project-card__body { padding: 1rem 1.125rem 1.125rem; }
+}
 
 /* ================================================================
    Feature row

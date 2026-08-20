@@ -26,15 +26,17 @@ if ($proyectos_query->have_posts()) {
             'meta'      => get_post_meta(get_the_ID(), 'ubicacion', true) ?: __('Marbella · Costa del Sol', 'fg-theme'),
             'image'     => get_the_post_thumbnail_url(get_the_ID(), 'full') ?: fg_asset('proyecto-1.jpg'),
             'image_alt' => get_the_title(),
+            'url'       => get_permalink(),
         ];
     }
     wp_reset_postdata();
 } else {
-    // Fallback estático si aún no hay proyectos publicados en el CPT.
+    // Fallback estático si aún no hay proyectos publicados en el CPT: no hay
+    // ficha individual a la que enlazar, así que las tres apuntan al listado.
     $items = [
-        ['title' => __('Villa Mediterránea', 'fg-theme'), 'meta' => __('Marbella · Costa del Sol', 'fg-theme'), 'image' => fg_asset('proyecto-1.jpg'), 'image_alt' => __('Villa Mediterránea en Marbella', 'fg-theme')],
-        ['title' => __('Jardín con Palmeras', 'fg-theme'), 'meta' => __('Benahavís · Málaga', 'fg-theme'), 'image' => fg_asset('proyecto-2.jpg'), 'image_alt' => __('Jardín con Palmeras en Benahavís', 'fg-theme')],
-        ['title' => __('Jardín en Ronda', 'fg-theme'), 'meta' => __('Ronda · Málaga', 'fg-theme'), 'image' => fg_asset('proyecto-3.jpg'), 'image_alt' => __('Jardín en Ronda', 'fg-theme')],
+        ['title' => __('Villa Mediterránea', 'fg-theme'), 'meta' => __('Marbella · Costa del Sol', 'fg-theme'), 'image' => fg_asset('proyecto-1.jpg'), 'image_alt' => __('Villa Mediterránea en Marbella', 'fg-theme'), 'url' => $url_realizados],
+        ['title' => __('Jardín con Palmeras', 'fg-theme'), 'meta' => __('Benahavís · Málaga', 'fg-theme'), 'image' => fg_asset('proyecto-2.jpg'), 'image_alt' => __('Jardín con Palmeras en Benahavís', 'fg-theme'), 'url' => $url_realizados],
+        ['title' => __('Jardín en Ronda', 'fg-theme'), 'meta' => __('Ronda · Málaga', 'fg-theme'), 'image' => fg_asset('proyecto-3.jpg'), 'image_alt' => __('Jardín en Ronda', 'fg-theme'), 'url' => $url_realizados],
     ];
 }
 ?>
@@ -67,7 +69,7 @@ if ($proyectos_query->have_posts()) {
 
     <div class="grid grid--3 section-body proyectos-retrato">
       <?php foreach ($items as $i => $it) : ?>
-        <a class="project-card" href="<?php echo esc_url($url_realizados); ?>"
+        <a class="project-card" href="<?php echo esc_url($it['url']); ?>"
            data-reveal data-reveal-delay="<?php echo esc_attr((string) ($i * 110)); ?>">
           <div class="project-card__media fx-frame" data-img-reveal data-tilt="2.5">
             <img src="<?php echo esc_url($it['image']); ?>"
@@ -75,7 +77,13 @@ if ($proyectos_query->have_posts()) {
           </div>
           <div class="project-card__body">
             <h3 class="project-card__title"><?php echo esc_html($it['title']); ?></h3>
-            <span class="project-card__meta"><?php echo esc_html($it['meta']); ?></span>
+            <div class="project-card__foot">
+              <span class="project-card__meta"><?php echo esc_html($it['meta']); ?></span>
+              <span class="project-card__cta">
+                <span class="project-card__cta-label"><?php esc_html_e('Ver proyecto', 'fg-theme'); ?></span>
+                <?php echo fg_arrow('project-card__cta-arrow'); ?>
+              </span>
+            </div>
           </div>
         </a>
       <?php endforeach; ?>
