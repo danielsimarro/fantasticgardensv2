@@ -203,20 +203,29 @@ if (strpos($fg_brand_sub, '·') !== false) {
     ?>
       <div class="nav-overlay__item<?php echo $has_children ? ' has-children' : ''; ?><?php echo $active ? ' is-active' : ''; ?>">
         <div class="nav-overlay__row">
-          <a class="nav-overlay__link" href="<?php echo esc_url($item['url']); ?>"<?php echo $active ? ' aria-current="page"' : ''; ?>>
-            <span class="nav-overlay__num" aria-hidden="true"><?php echo esc_html($num); ?></span>
-            <span class="nav-overlay__label"><?php echo esc_html($item['label']); ?></span>
-          </a>
           <?php if ($has_children) : ?>
-            <button type="button" class="nav-overlay__caret" data-nav-accordion aria-expanded="false"
+            <button type="button" class="nav-overlay__link" data-nav-accordion aria-expanded="false"
+                    aria-controls="nav-sub-<?php echo esc_attr($fg_i); ?>"
                     aria-label="<?php echo esc_attr(sprintf(__('Mostrar submenú de %s', 'fg-theme'), $item['label'])); ?>">
-              <svg viewBox="0 0 10 6" width="10" height="6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="nav-overlay__num" aria-hidden="true"><?php echo esc_html($num); ?></span>
+              <span class="nav-overlay__label"><?php echo esc_html($item['label']); ?></span>
+              <span class="nav-overlay__caret" aria-hidden="true">
+                <svg viewBox="0 0 10 6" width="10" height="6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
             </button>
+          <?php else : ?>
+            <a class="nav-overlay__link" href="<?php echo esc_url($item['url']); ?>"<?php echo $active ? ' aria-current="page"' : ''; ?>>
+              <span class="nav-overlay__num" aria-hidden="true"><?php echo esc_html($num); ?></span>
+              <span class="nav-overlay__label"><?php echo esc_html($item['label']); ?></span>
+            </a>
           <?php endif; ?>
         </div>
         <?php if ($has_children) : ?>
-          <div class="nav-overlay__sub" data-nav-panel>
+          <div class="nav-overlay__sub" id="nav-sub-<?php echo esc_attr($fg_i); ?>" data-nav-panel>
             <div class="nav-overlay__sub-inner">
+              <a class="nav-overlay__sub-all" href="<?php echo esc_url($item['url']); ?>">
+                <?php echo esc_html(sprintf(__('Ver %s', 'fg-theme'), $item['label'])); ?>
+              </a>
               <?php foreach ($item['children'] as $child) : ?>
                 <a href="<?php echo esc_url($child['url']); ?>"><?php echo esc_html($child['label']); ?></a>
               <?php endforeach; ?>
@@ -242,7 +251,7 @@ if (strpos($fg_brand_sub, '·') !== false) {
 
   <div class="nav-overlay__foot">
     <span><?php esc_html_e('San Pedro Alcántara · Marbella', 'fg-theme'); ?></span>
-    <span><?php esc_html_e('Vivero en Ronda', 'fg-theme'); ?></span>
+    <span><?php esc_html_e('Ronda', 'fg-theme'); ?></span>
   </div>
 </div>
 
