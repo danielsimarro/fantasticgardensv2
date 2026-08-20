@@ -43,12 +43,14 @@ if ($proyectos_query->have_posts()) {
   <?php
   fg_watermark([
     'src' => 'icons/botanica/olivos.svg', 'pos' => 'cl',
-    'size' => 'clamp(12rem, 24vw, 26rem)', 'opacity' => '.08',
+    'size' => 'clamp(12rem, 24vw, 26rem)', 'opacity' => '.1',
     'float' => 95, 'rot' => 5,
   ]);
+  // Sombra de hoja (mismo tratamiento que "02 Servicios"), no el motivo
+  // trazado plano: a .04 de opacidad casi no se distinguía del fondo.
   fg_watermark([
-    'src' => 'hojita.svg', 'pos' => 'br', 'ratio' => '581 / 690',
-    'size' => 'clamp(11rem, 24vw, 24rem)', 'opacity' => '.04',
+    'src' => 'hojita.svg', 'pos' => 'br', 'ratio' => '581 / 690', 'shadow' => true,
+    'size' => 'clamp(13rem, 26vw, 26rem)', 'opacity' => '.09',
     'float' => 24, 'rot' => -6,
   ]); ?>
 
@@ -67,7 +69,7 @@ if ($proyectos_query->have_posts()) {
       <?php foreach ($items as $i => $it) : ?>
         <a class="project-card" href="<?php echo esc_url($url_realizados); ?>"
            data-reveal data-reveal-delay="<?php echo esc_attr((string) ($i * 110)); ?>">
-          <div class="project-card__media fx-frame" data-img-reveal>
+          <div class="project-card__media fx-frame" data-img-reveal data-tilt="2.5">
             <img src="<?php echo esc_url($it['image']); ?>"
                  alt="<?php echo esc_attr($it['image_alt']); ?>" loading="lazy" decoding="async">
           </div>
@@ -93,7 +95,7 @@ if ($proyectos_query->have_posts()) {
         </div>
       </div>
 
-      <div data-reveal data-reveal-delay="120">
+      <div class="home-ba__frame" data-reveal data-reveal-delay="120">
         <?php fg_before_after([
           'before'       => fg_asset('reforma-jardin-piscina-marbella-antes.jpg'),
           'before_alt'   => __('Solar en obra junto a la piscina antes de la reforma', 'fg-theme'),

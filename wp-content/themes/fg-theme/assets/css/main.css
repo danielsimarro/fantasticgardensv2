@@ -2490,7 +2490,57 @@ button.project-card:focus-visible { outline: 2px solid var(--verde); outline-off
 .aval__label { font-size: .8125rem; line-height: 1.5; letter-spacing: .01em; color: var(--crema); font-weight: 500; max-width: 11rem; }
 
 /* — 04 Proyectos — */
+/* Resplandor ambiental, mismo recurso que #estudio/#resultados (fondo claro,
+   intensidad baja) — esquinas opuestas a las filigranas ya existentes
+   (olivos a la izquierda, hoja-sombra abajo-der.) para repartir el peso. */
+#proyectos { position: relative; }
+#proyectos::before, #proyectos::after {
+  content: ""; position: absolute; z-index: 0; border-radius: 50%; pointer-events: none;
+}
+#proyectos::before {
+  top: 2%; right: -6%; width: clamp(16rem, 32vw, 28rem); height: clamp(16rem, 32vw, 28rem);
+  opacity: .1; background: radial-gradient(circle, color-mix(in srgb, var(--verde) 55%, transparent) 0%, transparent 72%);
+}
+#proyectos::after {
+  bottom: 6%; left: 30%; width: clamp(13rem, 24vw, 20rem); height: clamp(13rem, 24vw, 20rem);
+  opacity: .1; background: radial-gradient(circle, color-mix(in srgb, var(--lima) 55%, transparent) 0%, transparent 72%);
+}
 .proyectos-retrato { --pc-ratio: 3/4; gap: clamp(1rem, 2vw, 1.875rem); }
+/* Doble marco + sombra en dos capas, mismo lenguaje que .home-estudio__media
+   (fondo claro → filo ink, no lima) — antes la foto flotaba sin relación con
+   el resto de fotografías ya trabajadas del home. El tilt (data-tilt en el
+   PHP) usa el mismo bloque, así que necesita su propia transición de
+   transform en vez de heredar solo la de .fx-frame. */
+.project-card__media {
+  border-radius: 2px;
+  outline: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+  outline-offset: .625rem;
+  box-shadow:
+    0 .625rem 1.25rem -.875rem rgba(31,46,34,.3),
+    0 2.25rem 4rem -2.25rem rgba(31,46,34,.38);
+  transition: transform .6s var(--ease), box-shadow .5s ease, outline-color .5s ease;
+}
+.project-card:hover .project-card__media {
+  outline-color: color-mix(in srgb, var(--verde) 42%, transparent);
+  box-shadow:
+    0 .875rem 1.75rem -.875rem rgba(31,46,34,.36),
+    0 3rem 5rem -2.25rem rgba(31,46,34,.46);
+}
+/* Ver la nota equivalente en .home-estudio__media: el reveal recorta con
+   clip-path lo que se pinta fuera de la caja (outline + sombra). */
+.js-reveal .project-card__media.rv-img.is-in { clip-path: inset(-5rem); }
+/* Comparador antes/después destacado del home: mat claro + sombra, mismo
+   principio que .ba-item--framed (página Antes y Después) pero con su
+   propia clase — .ba-item--framed vive en una lista de parejas a ancho
+   limitado y centrado, esto es una sola pieza a ancho de columna. */
+.home-ba__frame {
+  background: var(--crema);
+  padding: clamp(.625rem, 1.6vw, 1.125rem);
+  border: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+  box-shadow:
+    0 .875rem 1.75rem -1rem rgba(31,46,34,.28),
+    0 3rem 5.5rem -2.75rem rgba(31,46,34,.36);
+}
 .home-ba {
   display: grid; grid-template-columns: 1fr; gap: clamp(1.75rem, 4vw, 4.375rem); align-items: center;
   margin-top: clamp(3rem, 10vh, 8.125rem);
