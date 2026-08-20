@@ -1570,7 +1570,16 @@ button.project-card:focus-visible { outline: 2px solid var(--verde); outline-off
    .service-rows--projects — sin esto, el texto (con su grano y numeral)
    quedaba primero y la fila se leía como un bloque de texto con una foto
    de remate, no como una tarjeta fotográfica. */
-@media (max-width: 859.98px) { .service-rows--home .service-row__media { order: -1; } }
+/* En móvil el icono sube a la misma altura (mismo inset) que el numeral del
+   texto justo debajo, en vez de quedarse pegado al borde inferior de la
+   foto — así ambas marcas leen como un mismo gesto al bajar por la tarjeta,
+   no como dos elementos sueltos a distinta altura. En escritorio (filas
+   lado a lado) se queda donde estaba: abajo, contrastando con el numeral
+   arriba del todo. */
+@media (max-width: 859.98px) {
+  .service-rows--home .service-row__media { order: -1; }
+  .service-rows--home .service-row__icon { top: clamp(2rem, 4.5vw, 3.5rem); bottom: auto; }
+}
 .service-rows--home .service-row__media::before {
   content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
   background: linear-gradient(180deg, rgba(22,33,26,.14) 0%, rgba(22,33,26,0) 32%, rgba(22,33,26,0) 68%, rgba(22,33,26,.24) 100%);
@@ -3092,7 +3101,12 @@ button.project-card:focus-visible { outline: 2px solid var(--verde); outline-off
 .contact-tiles-stats .stat__num { color: var(--verde); }
 .contact-tiles-stats .stat__label { color: color-mix(in srgb, var(--ink) 58%, transparent); }
 
-.contact-tile__pulse { position: absolute; top: -.125rem; right: -.125rem; width: .5rem; height: .5rem; border-radius: 999px; background: var(--lima); }
+/* .contact-tile__pulse es hijo de .contact-tile__dot (el punto fijo), no
+   del icono: repetía el mismo top/right con el que .dot se ancla a la
+   esquina del icono, así que el aro animado quedaba descentrado respecto
+   al punto en vez de crecer desde él. inset:0 lo superpone exacto al
+   tamaño de .dot; el propio punto visible lo pinta el ::before. */
+.contact-tile__pulse { position: absolute; inset: 0; }
 .contact-tile__pulse::before { content: ''; position: absolute; inset: 0; border-radius: 999px; background: var(--lima); animation: fg-pulse 2.4s ease-out infinite; }
 @media (prefers-reduced-motion: reduce) { .contact-tile__pulse::before { animation: none; opacity: 0; } }
 @keyframes fg-pulse { 0%, 100% { transform: scale(1); opacity: .9; } 70% { transform: scale(2.6); opacity: 0; } }
