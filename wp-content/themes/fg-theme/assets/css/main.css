@@ -2552,11 +2552,52 @@ button.project-card:focus-visible { outline: 2px solid var(--verde); outline-off
 .home-ba__text { max-width: 40ch; margin-bottom: 1.625rem; font-size: .9375rem; line-height: 1.85; color: color-mix(in srgb, var(--ink) 72%, transparent); }
 
 /* — 05 Botánica — */
-.home-vivero { display: grid; grid-template-columns: 1fr; gap: clamp(1.875rem, 5vw, 5rem); align-items: center; }
+/* Resplandor ambiental, mismo recurso que #estudio/#resultados (fondo
+   claro) — esquina opuesta a la filigrana de aromáticas ya existente. */
+#vivero { position: relative; }
+#vivero::before, #vivero::after {
+  content: ""; position: absolute; z-index: 0; border-radius: 50%; pointer-events: none;
+}
+#vivero::before {
+  top: -6%; left: -7%; width: clamp(16rem, 32vw, 28rem); height: clamp(16rem, 32vw, 28rem);
+  opacity: .1; background: radial-gradient(circle, color-mix(in srgb, var(--verde) 55%, transparent) 0%, transparent 72%);
+}
+#vivero::after {
+  bottom: 10%; right: -6%; width: clamp(13rem, 24vw, 20rem); height: clamp(13rem, 24vw, 20rem);
+  opacity: .1; background: radial-gradient(circle, color-mix(in srgb, var(--lima) 55%, transparent) 0%, transparent 72%);
+}
+.home-vivero { position: relative; display: grid; grid-template-columns: 1fr; gap: clamp(1.875rem, 5vw, 5rem); align-items: center; }
 @media (min-width: 860px) { .home-vivero { grid-template-columns: 1fr 1fr; } }
-.home-vivero__media { position: relative; aspect-ratio: 6/7; overflow: hidden; background: #c9c2b2; }
+/* Mismo doble marco de "01 El estudio" — la foto del invernadero era la
+   única de las tres fotos grandes del home que seguía sin este tratamiento. */
+.home-vivero__media {
+  position: relative; aspect-ratio: 6/7; overflow: hidden; background: #c9c2b2;
+  border-radius: 2px;
+  outline: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+  outline-offset: .8125rem;
+  box-shadow:
+    0 .75rem 1.5rem -1rem rgba(31,46,34,.26),
+    0 2.75rem 5rem -2.5rem rgba(31,46,34,.34);
+  transition: box-shadow .5s ease;
+}
+.home-vivero__media:hover {
+  box-shadow:
+    0 1rem 2rem -1rem rgba(31,46,34,.3),
+    0 3.5rem 6rem -2.25rem rgba(31,46,34,.42);
+}
+.js-reveal .home-vivero__media.rv-img.is-in { clip-path: inset(-8rem); }
 .home-vivero__media img { position: absolute; inset: -10% 0; width: 100%; height: 120%; object-fit: cover; }
-.home-vivero__tag { position: absolute; left: 0; bottom: 0; z-index: 3; padding: 1.125rem 1.375rem; background: color-mix(in srgb, var(--crema) 92%, transparent); }
+/* Vidrio esmerilado en vez de crema casi opaco, mismo motivo que
+   .home-estudio__media-tag: se lee como una capa físicamente separada de
+   la foto, no como una etiqueta pegada encima. */
+.home-vivero__tag {
+  position: absolute; left: 0; bottom: 0; z-index: 3; padding: 1.125rem 1.375rem;
+  background: color-mix(in srgb, var(--crema) 68%, transparent);
+  -webkit-backdrop-filter: blur(10px) saturate(1.1);
+  backdrop-filter: blur(10px) saturate(1.1);
+  border-top: 1px solid color-mix(in srgb, var(--crema) 75%, transparent);
+  border-right: 1px solid color-mix(in srgb, var(--crema) 75%, transparent);
+}
 .home-vivero__tag-label { display: block; font-size: .59375rem; letter-spacing: .24em; text-transform: uppercase; color: color-mix(in srgb, var(--ink) 55%, transparent); }
 .home-vivero__tag-name { display: block; margin-top: .25rem; font-family: var(--serif); font-size: clamp(1.25rem, 2vw, 1.75rem); }
 .home-vivero__text { margin-top: 1.375rem; max-width: 44ch; font-size: clamp(.9375rem, 1.05vw, 1.0625rem); line-height: 1.85; color: color-mix(in srgb, var(--ink) 75%, transparent); }
