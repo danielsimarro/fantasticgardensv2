@@ -675,6 +675,63 @@ body.nav-open { overflow: hidden; }
 .split-intro__media--compare .ba { height: clamp(9rem, 13vw, 12.5rem); }
 .split-intro__media--compare .ba__base { height: 100%; object-fit: cover; }
 
+/* ================================================================
+   Vídeo "en acción" (p.ej. Desbroce y limpieza): tarjeta vertical
+   estilo reel con reproducción bajo demanda — el <video> lleva
+   preload="none" y ni el botón de play ni el JS descargan nada hasta
+   que el usuario decide verlo, así no penaliza el peso de la página.
+   ================================================================ */
+.video-showcase { display: grid; grid-template-columns: 1fr; gap: clamp(2.5rem, 6vw, 5rem); align-items: center; }
+@media (min-width: 900px) { .video-showcase { grid-template-columns: 1.05fr .95fr; } }
+.video-showcase__lead { margin-top: 1.5rem; max-width: 42ch; font-size: .9375rem; line-height: 1.85; font-weight: 300; color: color-mix(in srgb, var(--ink) 72%, transparent); text-wrap: pretty; }
+.video-showcase__cta { margin-top: clamp(1.625rem, 4vh, 2.375rem); }
+.video-showcase__media { display: flex; flex-direction: column; align-items: center; }
+
+/* Halos ambientales, mismo tratamiento que #resultados (Antes y Después):
+   dan profundidad al fondo claro sin competir con la tarjeta de vídeo. */
+#video-desbroce::before, #video-desbroce::after {
+  content: ""; position: absolute; z-index: 0; border-radius: 50%; pointer-events: none;
+}
+#video-desbroce::before {
+  top: -8%; right: -6%; width: clamp(16rem, 32vw, 26rem); height: clamp(16rem, 32vw, 26rem);
+  opacity: .10; background: radial-gradient(circle, color-mix(in srgb, var(--verde) 55%, transparent) 0%, transparent 72%);
+}
+#video-desbroce::after {
+  bottom: -10%; left: 4%; width: clamp(12rem, 26vw, 20rem); height: clamp(12rem, 26vw, 20rem);
+  opacity: .10; background: radial-gradient(circle, color-mix(in srgb, var(--lima) 55%, transparent) 0%, transparent 72%);
+}
+
+/* La tarjeta: proporción de reel (9/16), recorte y sombra como una
+   fotografía enmarcada. object-fit:cover en el vídeo evita cualquier
+   distorsión sea cual sea el ancho de columna. */
+.video-reel { position: relative; width: 100%; max-width: 19rem; aspect-ratio: 9 / 16; margin-inline: auto; overflow: hidden; border-radius: 4px; background: var(--ink); box-shadow: 0 2.5rem 5.5rem -3rem rgba(31,46,34,.45); }
+.video-reel__video { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* Velo sutil para que el botón de play se lea bien encima de un fotograma
+   muy claro (cielo, contraluz); desaparece en cuanto empieza a reproducir. */
+.video-reel::after {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(20,26,20,.30) 0%, rgba(20,26,20,.05) 35%, rgba(20,26,20,.35) 100%);
+  transition: opacity .4s ease;
+}
+.video-reel.is-playing::after { opacity: 0; }
+.video-reel__play {
+  position: absolute; inset: 0; margin: auto; z-index: 2;
+  width: 4.25rem; height: 4.25rem; border: 0; border-radius: 50%; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  background: color-mix(in srgb, var(--verde) 92%, transparent);
+  box-shadow: 0 1rem 2.25rem -.75rem rgba(0,0,0,.5);
+  transition: transform .35s var(--ease), background .35s ease, opacity .3s ease;
+}
+/* Triángulo de "play" dibujado con bordes, sin icono ni SVG externo. */
+.video-reel__play::before {
+  content: ""; width: 0; height: 0; margin-left: .28rem;
+  border-top: .65rem solid transparent; border-bottom: .65rem solid transparent;
+  border-left: 1rem solid var(--crema);
+}
+.video-reel__play:hover, .video-reel__play:focus-visible { transform: scale(1.08); background: var(--verde-700); }
+.video-reel.is-playing .video-reel__play { opacity: 0; pointer-events: none; }
+.video-reel__cap { margin-top: 1rem; font-size: .9rem; letter-spacing: .04em; color: var(--ink-soft); text-align: center; }
+
 .numbered-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 1px; background: color-mix(in srgb, var(--ink) 14%, transparent); }
 @media (min-width: 560px) { .numbered-grid { grid-template-columns: repeat(2, 1fr); } }
 .numbered-grid__item { position: relative; overflow: hidden; display: flex; flex-direction: column; gap: .875rem; background: var(--crema); padding: clamp(1.5rem, 2.6vw, 2.375rem); transition: background .45s ease; }

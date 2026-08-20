@@ -68,6 +68,34 @@ $features = [
 <section class="section section--osc design-features">
   <div class="wrap"><?php fg_feature_row($features, 'compact'); ?></div>
 </section>
+<section class="section has-wm" id="video-desbroce">
+  <div class="wrap video-showcase">
+    <div>
+      <?php echo fg_kicker(__('En acción', 'fg-theme'), '02'); ?>
+      <h2 class="section-head__title" data-reveal data-reveal-delay="80">
+        <?php esc_html_e('Desbroce mecánico', 'fg-theme'); ?> <em class="em-verde"><?php esc_html_e('en marcha', 'fg-theme'); ?></em>
+      </h2>
+      <p class="video-showcase__lead" data-reveal data-reveal-delay="160">
+        <?php esc_html_e('Grabado durante uno de nuestros trabajos: despejamos parcelas grandes con maquinaria propia —miniexcavadora y desbrozadora— avanzando con precisión entre muros, arbolado y construcciones sin dañarlos.', 'fg-theme'); ?>
+      </p>
+      <div class="video-showcase__cta" data-reveal data-reveal-delay="240">
+        <?php echo fg_cta(__('Pedir presupuesto', 'fg-theme'), fg_page_url('contacto') . '#formulario'); ?>
+      </div>
+    </div>
+
+    <div class="video-showcase__media" data-img-reveal data-reveal-delay="200">
+      <div class="video-reel" data-video-reel>
+        <video class="video-reel__video"
+               src="<?php echo esc_url(fg_asset('desbroce-mecanico-maquinaria-marbella.mp4')); ?>"
+               poster="<?php echo esc_url(fg_asset('desbroce-mecanico-maquinaria-marbella-poster.jpg')); ?>"
+               preload="none" playsinline
+               aria-label="<?php esc_attr_e('Vídeo de un trabajo real de desbroce mecánico con miniexcavadora en una parcela de la Costa del Sol', 'fg-theme'); ?>"></video>
+        <button type="button" class="video-reel__play" data-video-play aria-label="<?php esc_attr_e('Reproducir vídeo', 'fg-theme'); ?>"></button>
+      </div>
+      <p class="video-reel__cap"><?php esc_html_e('Trabajo real de desbroce con miniexcavadora · Costa del Sol', 'fg-theme'); ?></p>
+    </div>
+  </div>
+</section>
 <?php
 fg_site_closing(__('Marbella · Costa del Sol', 'fg-theme'));
 get_footer();

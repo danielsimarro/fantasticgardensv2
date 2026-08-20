@@ -658,4 +658,27 @@
     var p = video.play();
     if (p && p.catch) p.catch(function () {}); // autoplay bloqueado → queda el póster
   })();
+
+  /* ══════════════════════════════════════════════════════════════════
+     Tarjeta de vídeo "en acción" (p.ej. Desbroce): reproducción bajo
+     demanda. El <video> lleva preload="none" — no se descarga nada
+     hasta que el usuario pulsa el botón de play.
+     ══════════════════════════════════════════════════════════════════ */
+  (function videoReel() {
+    document.querySelectorAll("[data-video-reel]").forEach(function (card) {
+      var video = card.querySelector("video");
+      var btn = card.querySelector("[data-video-play]");
+      if (!video || !btn) return;
+      btn.addEventListener("click", function () {
+        card.classList.add("is-playing");
+        video.controls = true;
+        video.play();
+      });
+      video.addEventListener("ended", function () {
+        card.classList.remove("is-playing");
+        video.controls = false;
+        video.currentTime = 0;
+      });
+    });
+  })();
 })();
