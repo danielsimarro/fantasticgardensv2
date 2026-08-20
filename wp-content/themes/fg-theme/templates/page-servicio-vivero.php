@@ -51,7 +51,6 @@ fg_stats_band([
         ['icon' => fg_asset('icons/botanica/especies-singulares.svg'),  'label' => __('Selección botánica', 'fg-theme')],
         ['icon' => fg_asset('icons/servicios/materiales-stones.svg'),   'label' => __('Complementos de jardín', 'fg-theme')],
         ['icon' => fg_asset('icons/servicios/cafeteria.svg'),           'label' => __('Cafetería', 'fg-theme')],
-        ['icon' => fg_asset('icons/servicios/zona-infantil.svg'),       'label' => __('Zona infantil', 'fg-theme')],
         ['icon' => fg_asset('icons/servicios/parking.svg'),             'label' => __('Parking', 'fg-theme')],
       ];
       fg_feature_row($garden_center, 'compact', true); ?>
