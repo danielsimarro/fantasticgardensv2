@@ -32,6 +32,15 @@ fg_photo_hero([
       <p class="split-intro__lead" data-reveal data-reveal-delay="160">
         <?php esc_html_e('Retiramos maleza, matorral y restos vegetales de parcelas, solares y fincas rústicas, dejando el terreno preparado para una obra, un jardín nuevo o simplemente para reducir el riesgo de incendio y mantener la parcela en condiciones.', 'fg-theme'); ?>
       </p>
+      <div class="split-intro__media split-intro__media--compare" data-img-reveal data-reveal-delay="200">
+        <?php fg_before_after([
+          'before'       => fg_asset('desbroce-parcela-marbella-antes.jpg'),
+          'after'        => fg_asset('desbroce-parcela-marbella-despues.jpg'),
+          'after_alt'    => __('Vista aérea de una parcela en Marbella tras el desbroce, con el terreno limpio y preparado', 'fg-theme'),
+          'before_label' => __('Antes', 'fg-theme'),
+          'after_label'  => __('Después', 'fg-theme'),
+        ]); ?>
+      </div>
       <div class="split-intro__cta" data-reveal data-reveal-delay="260">
         <?php echo fg_cta(__('Cuéntenos su parcela', 'fg-theme'), fg_page_url('contacto') . '#formulario'); ?>
       </div>
