@@ -250,7 +250,7 @@ Los iconos (`icons/servicios/*.svg`, `icons/botanica/*.svg`) llevan el verde ya 
 | `maquinaria-camion-*.png`, `maquinaria-tractor.png` | Fotos reales de flota, sección "Personal y maquinaria" |
 | `plantacion-1/2/3/4.jpg`, `plantacion-interior-invernadero.jpg`, `plantacion-pabellon.jpg` | Galería horizontal fijada y secciones de Plantación propia (página Vivero) |
 | `diseno-plano-1/2.jpg`, `diseno-render-1/2.jpg` | Comparador antes/después (plano↔render 3D) de Diseño de paisajismo |
-| `page-antes.jpg`/`page-despues.jpg`, `transformacion-jardin-antes-despues-piscina-marbella.jpg` (hero, fotomontaje), `reforma-jardin-piscina-marbella-antes/despues.jpg`, `jardin-villa-palmeras-marbella-antes/despues.jpg` | Las 4 parejas/piezas reales de Antes y Después — no tocar sin motivo |
+| `page-antes.jpg`/`page-despues.jpg`, `transformacion-jardin-antes-despues-piscina-marbella.jpg` (hero, fotomontaje), `reforma-jardin-piscina-marbella-antes/despues.jpg`, `jardin-villa-palmeras-marbella-antes/despues.jpg`, `muro-piedra-jardin-tropical-marbella-antes/despues.jpg` | Las 5 parejas/piezas reales de Antes y Después — no tocar sin motivo |
 | `villa-mediterranea-marbella-piscina-pergola-jardin.jpg`, `detalle-hoja-palmera-mediterranea-jardin.jpg`, `vivero-ronda-campos-cultivo-fantastic-gardens-aereo.jpg` | Fotos reales adicionales de v1, usadas en las fichas ampliadas de proyecto |
 | `equipo-fantastic-gardens-vivero-ronda.jpg` | Foto real del equipo en el vivero de Ronda, en "Nuestros orígenes" (Historia) — sustituye al placeholder de stock; no identifica a los fundadores concretos, ver Pendientes |
 | `escudo-ronda.png`, `page-contacto-hero.jpg` | Piezas reales ya validadas, sin cambios |

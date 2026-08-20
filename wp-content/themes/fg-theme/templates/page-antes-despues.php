@@ -103,6 +103,21 @@ fg_stats_band([
         </div>
         <figcaption class="ba-item__cap"><?php esc_html_e('Parcela en obra con acopio de tierra · jardín terminado con césped natural, palmera y arriates', 'fg-theme'); ?></figcaption>
       </figure>
+
+      <figure class="ba-item ba-item--framed" data-reveal>
+        <h3 class="compare__name"><?php esc_html_e('Muro de piedra y jardín tropical en Marbella', 'fg-theme'); ?></h3>
+        <span class="accent-rule"></span>
+        <div class="ba-item__slider">
+          <?php fg_before_after([
+            'before'       => fg_asset('muro-piedra-jardin-tropical-marbella-antes.jpg'),
+            'after'        => fg_asset('muro-piedra-jardin-tropical-marbella-despues.jpg'),
+            'after_alt'    => __('Jardín tropical terminado en Marbella con muro de piedra natural en terrazas y plantación exuberante de hojas grandes y flores', 'fg-theme'),
+            'before_label' => __('Antes', 'fg-theme'),
+            'after_label'  => __('Después', 'fg-theme'),
+          ]); ?>
+        </div>
+        <figcaption class="ba-item__cap"><?php esc_html_e('Obra en tierra con muro de piedra en construcción · jardín terminado con plantación tropical exuberante', 'fg-theme'); ?></figcaption>
+      </figure>
     </div>
 
     <div class="section-cta" data-reveal>
