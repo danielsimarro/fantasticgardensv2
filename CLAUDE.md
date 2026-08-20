@@ -25,7 +25,7 @@ Rediseño premium de **Fantastic Gardens** (empresa de jardinería y paisajismo 
 | **Imágenes útiles** | `/home/daniel/proyectos/fantasticgardens/wp-content/uploads/` |
 | **Uso** | Extraer contenido real (textos, datos, imágenes) para alimentar v2 |
 
-Fotos de proyectos reales del cliente ya extraídas a v2 (`uploads/2020/07/` → CPT `proyecto`): `Fantastic-Gardens-Proyectos.jpg` → `proyecto-1.jpg` (Villa Mediterránea · Marbella), `Fantastic-Gardens-Proyectos-5.jpg` → `proyecto-2.jpg` (Jardín con Palmeras · Benahavís), `GARDEN-RONDA.jpg` → `proyecto-3.jpg` (Jardín en Ronda — en realidad el interior del Garden Center, no un jardín instalado, ver Pendientes).
+Fotos de proyectos reales del cliente ya extraídas a v2 (`uploads/2020/07/` → CPT `proyecto`): `Fantastic-Gardens-Proyectos.jpg` → `proyecto-1.jpg` (Villa Mediterránea · Marbella), `Fantastic-Gardens-Proyectos-5.jpg` → `proyecto-2.jpg` (Jardín con Palmeras · Benahavís). `proyecto-3.jpg` (attachment 23, la foto del interior del Garden Center) quedó huérfana en ago. 2026 al sustituir el proyecto "Jardín en Ronda" por **Villa Tortuga · Marbella** (attachment 37, `villa-tortuga-vista-aerea-piscina-jardin-marbella.jpg` — foto real aportada por el cliente).
 
 ### v2 — Este proyecto (desarrollo activo)
 
@@ -250,7 +250,7 @@ Los iconos (`icons/servicios/*.svg`, `icons/botanica/*.svg`) llevan el verde ya 
 | `maquinaria-camion-*.png`, `maquinaria-tractor.png` | Fotos reales de flota, sección "Personal y maquinaria" |
 | `plantacion-1/2/3/4.jpg`, `plantacion-interior-invernadero.jpg`, `plantacion-pabellon.jpg` | Galería horizontal fijada y secciones de Plantación propia (página Vivero) |
 | `diseno-plano-1/2.jpg`, `diseno-render-1/2.jpg` | Comparador antes/después (plano↔render 3D) de Diseño de paisajismo |
-| `page-antes.jpg`/`page-despues.jpg`, `transformacion-jardin-antes-despues-piscina-marbella.jpg` (hero, fotomontaje), `reforma-jardin-piscina-marbella-antes/despues.jpg` | Las 3 parejas/piezas reales de Antes y Después — no tocar sin motivo |
+| `page-antes.jpg`/`page-despues.jpg`, `transformacion-jardin-antes-despues-piscina-marbella.jpg` (hero, fotomontaje), `reforma-jardin-piscina-marbella-antes/despues.jpg`, `jardin-villa-palmeras-marbella-antes/despues.jpg` | Las 4 parejas/piezas reales de Antes y Después — no tocar sin motivo |
 | `villa-mediterranea-marbella-piscina-pergola-jardin.jpg`, `detalle-hoja-palmera-mediterranea-jardin.jpg`, `vivero-ronda-campos-cultivo-fantastic-gardens-aereo.jpg` | Fotos reales adicionales de v1, usadas en las fichas ampliadas de proyecto |
 | `equipo-fantastic-gardens-vivero-ronda.jpg` | Foto real del equipo en el vivero de Ronda, en "Nuestros orígenes" (Historia) — sustituye al placeholder de stock; no identifica a los fundadores concretos, ver Pendientes |
 | `escudo-ronda.png`, `page-contacto-hero.jpg` | Piezas reales ya validadas, sin cambios |
@@ -287,11 +287,16 @@ Los iconos (`icons/servicios/*.svg`, `icons/botanica/*.svg`) llevan el verde ya 
 
 | ID | Título | Ubicación | menu_order |
 |---|---|---|---|
-| 24 | Villa Mediterránea · Marbella | Marbella · Costa del Sol | 1 |
-| 25 | Jardín con Palmeras · Benahavís | Benahavís · Málaga | 2 |
-| 26 | Jardín en Ronda | Ronda · Málaga | 3 |
+| 26 | Villa Tortuga · Marbella | Marbella · Costa del Sol | 1 |
+| 24 | Villa Mediterránea · Marbella | Marbella · Costa del Sol | 2 |
+| 25 | Jardín con Palmeras · Benahavís | Benahavís · Málaga | 3 |
+| 40 | Villa Estrella · Marbella | Marbella · Costa del Sol | 4 |
 
-Meta field `ubicacion` (texto libre, registrado con `register_post_meta()` para REST). `supports` incluye `page-attributes` (para que el campo Orden sea visible en el admin). Cada proyecto tiene además una ficha ampliada en `inc/proyectos-detalle.php` (resumen, reto/solución, cifras, chips de servicio, galería) — ver Pendientes para qué datos son reales y cuáles son estimaciones del estudio.
+Meta field `ubicacion` (texto libre, registrado con `register_post_meta()` para REST). `supports` incluye `page-attributes` (para que el campo Orden sea visible en el admin). Cada proyecto tiene además una ficha ampliada en `inc/proyectos-detalle.php` (resumen, reto/solución, cifras, chips de servicio, galería, y opcionalmente `plano` — comparador arrastrable plano↔resultado con `fg_before_after()`, usado en Villa Tortuga y Villa Estrella) — ver Pendientes para qué datos son reales y cuáles son estimaciones del estudio.
+
+**Nota home vs. listado completo:** la sección "04 Proyectos" del home (`template-parts/home/proyectos.php`) limita `posts_per_page` a 3 (muestra Villa Tortuga, Villa Mediterránea y Jardín con Palmeras por `menu_order`), mientras que `templates/page-proyectos.php` ("Proyectos realizados") no tiene límite y los muestra todos, incluida Villa Estrella. Si se quiere que un 4º proyecto aparezca también en el home hay que subir su `menu_order` por delante de otro o ampliar el límite a propósito.
+
+**"Proyectos realizados" (ago. 2026):** ya no es una rejilla de tarjetas (`projects-mosaic`/`fg_project_card`, retirada) — reutiliza `fg_service_rows()` (el mismo componente de "02 Servicios" del home) con la clase extra `service-rows--projects`, así cada proyecto ocupa una franja ancha alterna con su `resumen` real de `inc/proyectos-detalle.php` como cuerpo de texto. `fg_project_card()` se mantiene porque `single-proyecto.php` la sigue usando para "También te puede interesar".
 
 ---
 
@@ -348,6 +353,7 @@ Todo respeta `prefers-reduced-motion`. Si el JS no llega a ejecutarse, nada qued
 ## Gotchas técnicos
 
 - **CSS Grid + `order` no es seguro para alternar posiciones si las columnas tienen tamaños distintos** (p. ej. pista angosta + `1fr`): invertir `order` también invierte qué pista de la grid ocupa cada hijo. Usar `grid-template-areas` con una plantilla por variante.
+- **`.service-row--flip` (filas alternadas de `fg_service_rows()`) necesita `order` de texto MAYOR que el de la imagen** (`text: order 2` / `media: order 1`) para que la imagen pase a la izquierda — con los valores al revés (`1`/`2`) el texto sigue teniendo el número menor y la fila no alterna aunque tenga la clase `--flip` (bug real corregido en ago. 2026, visible al usar el componente en 4+ filas seguidas, como en "Proyectos realizados").
 - **`grid-template-areas` debe declararse en TODOS los breakpoints donde el hijo participe en el grid**: un `grid-area: <nombre>` sin ese nombre definido en el `grid-template-areas` activo crea líneas implícitas y descuadra el grid (se manifiesta solo en el breakpoint sin la declaración).
 - **Especificidad de modificadores CSS**: un modificador de una sola clase (`.ba-list--pair`) puede perder la cascada frente a la clase base (`.ba-list`) si esta se define más abajo en el archivo. Cualificarlo junto a la base (`.ba-list.ba-list--pair`).
 - **No reintroducir `content-visibility: auto` en secciones**: rompe el sistema de reveals de scroll. `reveals()` en `main.js` mide `getBoundingClientRect()` a propósito (no `IntersectionObserver`, porque elementos ocultos con `clip-path`/`scaleY(0)` tienen intersección vacía); con `content-visibility: auto` un elemento "no relevante" devuelve un rect vacío que el chequeo interpreta como "ya visible".
@@ -370,8 +376,8 @@ Todo respeta `prefers-reduced-motion`. Si el JS no llega a ejecutarse, nada qued
 - [ ] Confirmar con el cliente: año exacto de fundación, CIF y denominación social exactos (`B-92065101` / "Fantastic Gardens A.J. S.L." vienen de la plantilla de referencia, no verificados de forma independiente)
 - [ ] Validar con el cliente los datos técnicos de cultivo del catálogo de especies (`inc/especies.php`) — borrador redactado con criterios generales de jardinería mediterránea
 - [ ] Catálogo real de "Proyectos realizados": solo hay 3 proyectos en el CPT; añadir más conforme el cliente aporte material
-- [ ] Confirmar con el cliente la superficie y duración de obra de Villa Mediterránea (≈1.200 m² / 4 meses) y Jardín con Palmeras (≈950 m² / 3 meses) en `inc/proyectos-detalle.php` — estimaciones del estudio, no dato real
-- [ ] Conseguir una fotografía real de un jardín de cliente en Ronda: la ficha "Jardín en Ronda" del CPT usa en realidad una foto del interior del Garden Center/vivero (no un jardín instalado)
+- [ ] Confirmar con el cliente la superficie y duración de obra de Villa Mediterránea (≈1.200 m² / 4 meses), Jardín con Palmeras (≈950 m² / 3 meses), Villa Tortuga (≈400 m² / 6 semanas) y **Villa Estrella** (≈600 m² / 5 meses) en `inc/proyectos-detalle.php` — estimaciones del estudio, no dato real
+- [ ] Villa Estrella (post 40) usa como foto destacada y como comparador plano↔resultado (`assets/img/plano-diseno-jardin-piscina-villa-estrella.png` / `vista-aerea-jardin-piscina-villa-estrella-marbella.jpg`) imágenes reales retocadas con IA a petición del cliente (confirmado por el cliente, no renders generados desde cero) — pendiente de sustituir por las fotos originales sin retocar o confirmar que estas versiones son las definitivas
 - [ ] Decidir qué hacer con las imágenes huérfanas de `assets/img/` (~30 MB+, ver Inventario de imágenes)
 - [ ] Optimizar/comprimir imágenes en uso (convertir a WebP, redimensionar) — sin herramientas de optimización instaladas en este entorno
 - [ ] Añadir campo meta `categoria` al CPT proyecto + filtro real en la galería de "Proyectos realizados" (los filtros actuales son solo decorativos)
@@ -381,7 +387,7 @@ Todo respeta `prefers-reduced-motion`. Si el JS no llega a ejecutarse, nada qued
 
 ### Mejoras propuestas por Maria (docx recibido ago. 2026) — pendientes de fotos reales
 
-- [ ] Nuevo proyecto destacado "Villa Tortuga" para el CPT `proyecto` — Ericka mandará infografía/planos; las fotos están en Drive (referencia interna del cliente para localizarlas: "Magestic, 86" — **no publicar ese dato**, es solo para encontrar el material)
+- [x] Nuevo proyecto destacado "Villa Tortuga" para el CPT `proyecto` — sustituye a "Jardín en Ronda" (post 26, ahora primero en el listado, `menu_order` 1), con foto real aportada por el cliente (también reutilizada como hero de `page-servicio-soluciones-integrales.php`), ficha completa en `inc/proyectos-detalle.php` y comparador plano↔resultado (`assets/img/plano-diseno-jardin-piscina-plantas.png` ↔ `assets/img/vista-aerea-jardin-piscina-villa-tortuga-marbella.jpg` — este último es un volteo horizontal de `vista-aerea-jardin-piscina-villa-mediterranea-marbella.jpg`, copia aparte para no alterar esa foto donde ya se usa en `page-servicio-soluciones-integrales.php`, hecho porque el plano y la foto original tenían la casa en lados opuestos) — ubicación y cifras de obra son estimación, pendientes de confirmar (ver arriba)
 - [ ] Foto real para la sección "01 El estudio" del home (`template-parts/home/estudio.php`), sustituyendo la actual de stock
 - [ ] Foto real para la fila "Diseño y paisajismo" del home y de `templates/page-servicio-diseno.php` (el texto de la fila del home ya está actualizado)
 - [ ] Retocar/sustituir la foto de "Mantenimiento" (fila del home y página propia): tono más mediterráneo, más vegetación, valorar incluir una persona trabajando
